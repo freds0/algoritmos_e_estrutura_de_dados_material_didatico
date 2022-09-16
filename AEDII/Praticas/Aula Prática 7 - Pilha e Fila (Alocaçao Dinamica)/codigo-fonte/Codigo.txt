@@ -1,0 +1,331 @@
+/** @file Fila.c
+ *  @brief Conteudo das funcoes referentes ao tipo abstrato de dado Fila.
+ *
+ *  Este arquivo contem os conteudos das funcoes do tipo abstrato de dado Fila.
+ *
+ *  @author Frederico S. Oliveira
+ */
+#include<stdio.h>
+#include <stdlib.h>
+#include "Fila.h"
+
+void CriaFila(fila *f)
+{ 
+  f->frente = (noh*) malloc(sizeof(noh));
+  f->tras = f->frente;
+  f->frente->prox = NULL;
+} 
+
+int Vazia(fila f)
+{ 
+  return (f.frente == f.tras); 
+} 
+
+void Enfileira(int x, fila *f)
+{ 
+  f->tras->prox = (noh*) malloc(sizeof(noh));
+  f->tras = f->tras->prox;
+  f->tras->item = x;
+  f->tras->prox = NULL;
+} 
+
+void Desenfileira(fila *f, int *item)
+{ 
+  noh *q;
+  if (Vazia(*f)) { 
+    printf("Erro fila esta vazia\n"); 
+    return; 
+  }
+  q = f->frente;
+  f->frente = f->frente->prox;
+  *item = f->frente->item;
+  free(q);
+}
+void ApagaFila(fila *f) 
+{
+  noh *q;
+  while(!Vazia(*f))
+  {
+    q = f->frente;
+    f->frente = f->frente->prox;
+    free(q);
+  }
+  free(f->frente);
+  f->frente=f->tras = NULL;  
+  
+################################################################################
+
+
+}/** @file Lista.c
+ *  @brief Conteudo das funcoes referentes ao tipo abstrato de dado Lista.
+ *
+ *  Este arquivo contem os conteudos das funcoes do tipo abstrato de dado Lista.
+ *
+ *  @author Frederico S. Oliveira
+ */
+#include <sys/time.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include "Lista.h"
+
+void CriaLista(lista *l)
+{ 
+  l->primeiro = (noh *) malloc(sizeof(noh));
+  l->ultimo = l->primeiro;
+  l->primeiro->prox = NULL;
+}
+
+int Vazia(lista l)
+{ 
+  return (l.primeiro == l.ultimo);
+}
+
+void Insere(int x, lista *l)
+{ 
+  l->ultimo->prox = (noh *) malloc(sizeof(noh));
+  l->ultimo = l->ultimo->prox;
+  l->ultimo->item = x;
+  l->ultimo->prox = NULL;
+}
+
+void Retira(noh *p, lista *l, int *item)
+{ /*  ---   Obs.: o item a ser retirado eh o seguinte ao apontado por  p --- */
+  noh *q;
+  if (Vazia(*l) || p == NULL || p->prox == NULL) 
+  { 
+    printf(" Erro   l vazia ou posicao nao existe\n");
+    return;
+  }
+  q = p->prox;
+  *item = q->item;
+  p->prox = q->prox;
+  if (p->prox == NULL) 
+    l->ultimo = p;
+  free(q);
+}
+
+void Imprime(lista l)
+{ 
+  noh *aux;
+  aux = l.primeiro->prox;
+  while (aux != NULL) 
+  { 
+    printf("%d\n", aux->item);
+    aux = aux->prox;
+  }
+}#include <sys/time.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include "Fila.h"
+#define MAX 10
+
+int main(int argc, char *argv[])
+{ 
+  struct timeval t;
+  fila f;
+  int item;
+  int vetor[MAX];
+  int i, j, k, n;
+
+  gettimeofday(&t,NULL);
+  srand((unsigned int)t.tv_usec);
+
+  CriaFila(&f);
+  
+  /*Gera uma permutacao aleatoria de chaves entre 1 e MAX*/
+  for(i = 0; i < MAX; i++) 
+    vetor[i] = i + 1;
+  for(i = 0; i < MAX; i++)
+  { 
+    k =  (int) (10.0 * rand()/(RAND_MAX + 1.0));
+    j =  (int) (10.0 * rand()/(RAND_MAX + 1.0));
+    n = vetor[k];
+    vetor[k] = vetor[j];
+    vetor[j] = n;
+  }
+  /*Insere cada chave na lista */
+  for (i = 0;i < MAX; i++)
+  { 
+    item = vetor[i];
+    Enfileira(item, &f);
+    printf("Enfileirou: %d \n", item);
+  }
+  /*Desenfileira cada chave */
+  for (i = 0;i < MAX; i++)
+  { 
+    Desenfileira(&f, &item);
+    printf("Desenfileirou: %d \n", item);
+  }
+  return 0;
+}
+ 
+#include <sys/time.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include "Lista.h"
+#define MAX 10
+
+int main(int argc, char *argv[])
+{ 
+  struct timeval t;
+  lista l;
+  int item;
+  int vetor[MAX];
+  noh *p;
+  int i, j, k, n;
+  float  tamanho=0;
+  gettimeofday(&t,NULL);
+  srand((unsigned int)t.tv_usec);
+  CriaLista(&l);
+
+  /*Gera uma permutacao aleatoria de chaves entre 1 e MAX*/
+  for(i = 0; i < MAX; i++) 
+    vetor[i] = i + 1;
+  for(i = 0; i < MAX; i++)
+  { 
+    k =  (int) (10.0 * rand()/(RAND_MAX + 1.0));
+    j =  (int) (10.0 * rand()/(RAND_MAX + 1.0));
+    n = vetor[k];
+    vetor[k] = vetor[j];
+    vetor[j] = n;
+  }
+  /*Insere cada chave na lista */
+  for (i = 0; i < MAX; i++)
+  { 
+    item = vetor[i];
+    Insere(item, &l);
+    tamanho++;
+    printf("Inseriu: %d \n", item);
+  }
+  Imprime(l);
+
+  /*Retira cada chave da lista */
+  for(i = 0; i < MAX; i++)
+  { /*escolhe uma chave aleatoriamente */
+    k = (int) ((tamanho) * rand() / (RAND_MAX + 1.0));
+    p = l.primeiro;
+    /*retira chave apontada */
+    Retira(p, &l, &item);
+    tamanho--;
+    printf("Retirou: %d\n", item);
+  }
+  Imprime (l);
+  return(0);
+}
+ 
+##################################################################################################
+ 
+#include <sys/time.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include "Pilha.h"
+#define MAX 10
+
+int main(int argc, char *argv[])
+{ 
+  struct timeval t;
+  pilha p;
+  int item;
+  int vetor[MAX];
+  int i, j, k, n;
+ 
+  gettimeofday(&t,NULL);
+  srand((unsigned int)t.tv_usec);
+ 
+  CriaPilha(&p);
+  
+  /*Gera uma permutacao aleatoria de chaves entre 1 e MAX*/
+  for(i = 0; i < MAX; i++) 
+    vetor[i] = i + 1;
+  for(i = 0; i < MAX; i++)
+  { 
+    k =  (int) (10.0*rand()/(RAND_MAX + 1.0));
+    j =  (int) (10.0*rand()/(RAND_MAX + 1.0));
+    n = vetor[k];
+    vetor[k] = vetor[j];
+    vetor[j] = n;
+  }
+  /*Empilha cada chave */
+  for (i = 0; i < MAX; i++)
+  { 
+    item = vetor[i];
+    Empilha(item, &p);
+    printf("Empilhou: %d \n", item);
+  }
+  printf("Tamanho da p: %d \n", Tamanho(p));  
+
+  /*Desempilha cada chave */
+  for(i = 0; i < MAX; i++)
+  { 
+    Desempilha (&p,&item);
+    printf ("Desempilhou: %d \n", item);
+  }
+  printf("Tamanho da p: %d\n", Tamanho(p));
+  return(0);
+} 
+
+
+################################################################################
+/** @file Pilha.c
+ *  @brief Conteudo das funcoes referentes ao tipo abstrato de dado Pilha.
+ *
+ *  Este arquivo contem os conteudos das funcoes do tipo abstrato de dado Pilha.
+ *
+ *  @author Frederico S. Oliveira
+ */
+#include<stdio.h>
+#include<stdlib.h>
+#include "Pilha.h"
+void CriaPilha(pilha *p)
+{ 
+  p->topo = (noh *) malloc(sizeof(noh));
+  p->fundo = p->topo;
+  p->topo->prox = NULL;
+  p->tamanho = 0;
+} 
+
+int Vazia(pilha p)
+{ 
+  return (p.topo == p.fundo); 
+} 
+
+void Empilha(int x, pilha *p)
+{ 
+  noh *aux = (noh*) malloc(sizeof(noh));
+  p->topo->item = x;
+  aux->prox = p->topo;
+  p->topo = aux;
+  p->tamanho++;
+} 
+
+void Desempilha(pilha *p, int *item)
+{ 
+  noh *q;
+  if (Vazia(*p)) 
+  { 
+    printf("Erro: lista vazia\n"); 
+    return; 
+  }
+  q = p->topo;
+  p->topo = q->prox;
+  *item = q->prox->item;
+  free(q);  
+  p->tamanho--;
+} 
+
+int Tamanho(pilha p)
+{ 
+  return (p.tamanho); 
+} 
+ 
+void ApagaPilha(pilha *p) 
+{
+  noh *q;
+  while (!Vazia(*p)) 
+  {
+    q=p->topo;
+    p->topo = p->topo->prox;
+    free(q);
+  }
+  free(p->topo);
+} 

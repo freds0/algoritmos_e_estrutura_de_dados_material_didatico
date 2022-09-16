@@ -1,0 +1,137 @@
+\hypertarget{Fila_8c}{\section{Referência do Arquivo Fila.\+c}
+\label{Fila_8c}\index{Fila.\+c@{Fila.\+c}}
+}
+
+
+Conteudo das funcoes referentes ao tipo abstrato de dado Fila.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}Fila.\+h\char`\"{}}\\*
+Gráfico de dependência de inclusões para Fila.\+c\+:
+\subsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{Fila_8c_a49ff6def4128901a5085cfead7674ff3}{Cria\+Fila} (\hyperlink{structfila}{fila} $\ast$f)
+\begin{DoxyCompactList}\small\item\em Cria uma fila vazia, atribuindo o endereco a um ponteiro passado como parametro. \end{DoxyCompactList}\item 
+int \hyperlink{Fila_8c_a06b8790498ec6302864d4d6e012ff42e}{Vazia} (\hyperlink{structfila}{fila} f)
+\begin{DoxyCompactList}\small\item\em Verifica se a fila passada como parametro estah vazia. \end{DoxyCompactList}\item 
+void \hyperlink{Fila_8c_a3aa46b4caac4dd856dacb76db9b88114}{Enfileira} (int x, \hyperlink{structfila}{fila} $\ast$f)
+\begin{DoxyCompactList}\small\item\em Enfileira o item x na fila f. \end{DoxyCompactList}\item 
+void \hyperlink{Fila_8c_a5997796dcd639cda061aece256a444fd}{Desenfileira} (\hyperlink{structfila}{fila} $\ast$f, int $\ast$item)
+\begin{DoxyCompactList}\small\item\em Desenfileira um item da fila armazenando seu valor na variavel item. \end{DoxyCompactList}\item 
+void \hyperlink{Fila_8c_a40f01247e51823e857192ec28bb5de37}{Apaga\+Fila} (\hyperlink{structfila}{fila} $\ast$f)
+\begin{DoxyCompactList}\small\item\em Apaga toda a fila, inclusive o noh vazio localizado na frente da fila. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrição Detalhada}
+Conteudo das funcoes referentes ao tipo abstrato de dado Fila. 
+
+Este arquivo contem os conteudos das funcoes do tipo abstrato de dado Fila.
+
+\begin{DoxyAuthor}{Autor}
+Frederico S. Oliveira 
+\end{DoxyAuthor}
+
+
+\subsection{Funções}
+\hypertarget{Fila_8c_a40f01247e51823e857192ec28bb5de37}{\index{Fila.\+c@{Fila.\+c}!Apaga\+Fila@{Apaga\+Fila}}
+\index{Apaga\+Fila@{Apaga\+Fila}!Fila.\+c@{Fila.\+c}}
+\subsubsection[{Apaga\+Fila}]{\setlength{\rightskip}{0pt plus 5cm}void Apaga\+Fila (
+\begin{DoxyParamCaption}
+\item[{{\bf fila} $\ast$}]{f}
+\end{DoxyParamCaption}
+)}}\label{Fila_8c_a40f01247e51823e857192ec28bb5de37}
+
+
+Apaga toda a fila, inclusive o noh vazio localizado na frente da fila. 
+
+Remove todos os elementos da fila, um por um, incluindo o primeiro noh vazio, desalocando o espaco de memoria de cada item. Esta funcao tem objetivo apagar todo a memoria alocada.
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em fila} & ponteiro para a fila. \\
+\hline
+\end{DoxyParams}
+\hypertarget{Fila_8c_a49ff6def4128901a5085cfead7674ff3}{\index{Fila.\+c@{Fila.\+c}!Cria\+Fila@{Cria\+Fila}}
+\index{Cria\+Fila@{Cria\+Fila}!Fila.\+c@{Fila.\+c}}
+\subsubsection[{Cria\+Fila}]{\setlength{\rightskip}{0pt plus 5cm}void Cria\+Fila (
+\begin{DoxyParamCaption}
+\item[{{\bf fila} $\ast$}]{f}
+\end{DoxyParamCaption}
+)}}\label{Fila_8c_a49ff6def4128901a5085cfead7674ff3}
+
+
+Cria uma fila vazia, atribuindo o endereco a um ponteiro passado como parametro. 
+
+O primeiro elemento de uma fila eh sempre um noh vazio. Ao criar uma fila vazia, aponta-\/se os ponteiros frente e tras para esse noh vazio.
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em fila} & ponteiro do tipo fila que receberah o endereco da fila criada. \\
+\hline
+\end{DoxyParams}
+\hypertarget{Fila_8c_a5997796dcd639cda061aece256a444fd}{\index{Fila.\+c@{Fila.\+c}!Desenfileira@{Desenfileira}}
+\index{Desenfileira@{Desenfileira}!Fila.\+c@{Fila.\+c}}
+\subsubsection[{Desenfileira}]{\setlength{\rightskip}{0pt plus 5cm}void Desenfileira (
+\begin{DoxyParamCaption}
+\item[{{\bf fila} $\ast$}]{f, }
+\item[{int $\ast$}]{item}
+\end{DoxyParamCaption}
+)}}\label{Fila_8c_a5997796dcd639cda061aece256a444fd}
+
+
+Desenfileira um item da fila armazenando seu valor na variavel item. 
+
+Para desenfileirar o elemento da frente, deve-\/se lembrar o que primeiro elemento da lista eh um noh vazio. Portanto, o valor a ser desenfileirado encontra-\/se no segundo noh. Para isso, remove-\/se o primeiro elemento (noh vazio) e aponta o ponteiro frente para o segundo elemento na fila. Em seguida, copia o valor do noh desenfileirado para a variavel item. Por fim, desaloca o elemento que era o primeiro elemento da fila.
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em fila} & ponteiro para a fila da qual serah desenfileirado o item. \\
+\hline
+{\em item} & ponteiro que armazenarah o valor do item desenfileirado. \\
+\hline
+\end{DoxyParams}
+\hypertarget{Fila_8c_a3aa46b4caac4dd856dacb76db9b88114}{\index{Fila.\+c@{Fila.\+c}!Enfileira@{Enfileira}}
+\index{Enfileira@{Enfileira}!Fila.\+c@{Fila.\+c}}
+\subsubsection[{Enfileira}]{\setlength{\rightskip}{0pt plus 5cm}void Enfileira (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{{\bf fila} $\ast$}]{f}
+\end{DoxyParamCaption}
+)}}\label{Fila_8c_a3aa46b4caac4dd856dacb76db9b88114}
+
+
+Enfileira o item x na fila f. 
+
+Para enfileirar um elemento aloca-\/se um novo noh. Aponta-\/se o campo prox do ultimo elemento da fila para o novo noh. Copia o valor de x para o novo noh. Aponta o campo prox do novo noh para N\+U\+L\+L.
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em item} & a ser inserido na fila. \\
+\hline
+{\em fila} & ponteiro para a fila na qual serah enfileirado o novo item. \\
+\hline
+\end{DoxyParams}
+\hypertarget{Fila_8c_a06b8790498ec6302864d4d6e012ff42e}{\index{Fila.\+c@{Fila.\+c}!Vazia@{Vazia}}
+\index{Vazia@{Vazia}!Fila.\+c@{Fila.\+c}}
+\subsubsection[{Vazia}]{\setlength{\rightskip}{0pt plus 5cm}int Vazia (
+\begin{DoxyParamCaption}
+\item[{{\bf fila}}]{f}
+\end{DoxyParamCaption}
+)}}\label{Fila_8c_a06b8790498ec6302864d4d6e012ff42e}
+
+
+Verifica se a fila passada como parametro estah vazia. 
+
+Para verificar se a fila estah vazia, realiza-\/se o teste se os ponteiros frente e tras apontam para o mesmo noh, o noh vazio inserido na funcao Cria\+Fila.
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em fila} & variavel do tipo fila. Observe que nao eh um ponteiro. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Zero (true) se fila vazia, um (false) se nao-\/vazia. 
+\end{DoxyReturn}

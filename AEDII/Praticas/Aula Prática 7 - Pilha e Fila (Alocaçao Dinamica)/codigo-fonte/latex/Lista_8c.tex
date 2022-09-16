@@ -1,0 +1,133 @@
+\hypertarget{Lista_8c}{\section{Referência do Arquivo Lista.\+c}
+\label{Lista_8c}\index{Lista.\+c@{Lista.\+c}}
+}
+
+
+Conteudo das funcoes referentes ao tipo abstrato de dado Lista.  
+
+
+{\ttfamily \#include $<$sys/time.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}Lista.\+h\char`\"{}}\\*
+Gráfico de dependência de inclusões para Lista.\+c\+:
+\subsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{Lista_8c_a4081e9b1f9748fb71eb9644ed4005565}{Cria\+Lista} (\hyperlink{structlista}{lista} $\ast$l)
+\begin{DoxyCompactList}\small\item\em Cria uma lista vazia, atribuindo o endereco a um ponteiro passado como parametro. \end{DoxyCompactList}\item 
+int \hyperlink{Lista_8c_a8bad26a0f39bafd07ebe378db41dfeea}{Vazia} (\hyperlink{structlista}{lista} l)
+\begin{DoxyCompactList}\small\item\em Verifica se a lista passada como parametro estah vazia. \end{DoxyCompactList}\item 
+void \hyperlink{Lista_8c_ac8e74d11621384d388df357c31f64795}{Insere} (int x, \hyperlink{structlista}{lista} $\ast$l)
+\begin{DoxyCompactList}\small\item\em Insere o item x no final da lista l. \end{DoxyCompactList}\item 
+void \hyperlink{Lista_8c_a789f3c871469752a8a1b65edc1516f4b}{Retira} (\hyperlink{Noh_8h_a0d7ef1758ed4704552e1e2020f126654}{noh} $\ast$p, \hyperlink{structlista}{lista} $\ast$l, int $\ast$item)
+\begin{DoxyCompactList}\small\item\em Retira o item localizado apos o noh p na lista. \end{DoxyCompactList}\item 
+void \hyperlink{Lista_8c_a4453a96104a538bb30e42aa6c2e89bad}{Imprime} (\hyperlink{structlista}{lista} l)
+\begin{DoxyCompactList}\small\item\em Imprime o conteudo de todos os nohs da lista. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrição Detalhada}
+Conteudo das funcoes referentes ao tipo abstrato de dado Lista. 
+
+Este arquivo contem os conteudos das funcoes do tipo abstrato de dado Lista.
+
+\begin{DoxyAuthor}{Autor}
+Frederico S. Oliveira 
+\end{DoxyAuthor}
+
+
+\subsection{Funções}
+\hypertarget{Lista_8c_a4081e9b1f9748fb71eb9644ed4005565}{\index{Lista.\+c@{Lista.\+c}!Cria\+Lista@{Cria\+Lista}}
+\index{Cria\+Lista@{Cria\+Lista}!Lista.\+c@{Lista.\+c}}
+\subsubsection[{Cria\+Lista}]{\setlength{\rightskip}{0pt plus 5cm}void Cria\+Lista (
+\begin{DoxyParamCaption}
+\item[{{\bf lista} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{Lista_8c_a4081e9b1f9748fb71eb9644ed4005565}
+
+
+Cria uma lista vazia, atribuindo o endereco a um ponteiro passado como parametro. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em lista} & ponteiro do tipo lista que receberah o endereco da lista criada. \\
+\hline
+\end{DoxyParams}
+\hypertarget{Lista_8c_a4453a96104a538bb30e42aa6c2e89bad}{\index{Lista.\+c@{Lista.\+c}!Imprime@{Imprime}}
+\index{Imprime@{Imprime}!Lista.\+c@{Lista.\+c}}
+\subsubsection[{Imprime}]{\setlength{\rightskip}{0pt plus 5cm}void Imprime (
+\begin{DoxyParamCaption}
+\item[{{\bf lista}}]{l}
+\end{DoxyParamCaption}
+)}}\label{Lista_8c_a4453a96104a538bb30e42aa6c2e89bad}
+
+
+Imprime o conteudo de todos os nohs da lista. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em lista} & ponteiro apontando para a lista que serah impressa. \\
+\hline
+\end{DoxyParams}
+\hypertarget{Lista_8c_ac8e74d11621384d388df357c31f64795}{\index{Lista.\+c@{Lista.\+c}!Insere@{Insere}}
+\index{Insere@{Insere}!Lista.\+c@{Lista.\+c}}
+\subsubsection[{Insere}]{\setlength{\rightskip}{0pt plus 5cm}void Insere (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{{\bf lista} $\ast$}]{l}
+\end{DoxyParamCaption}
+)}}\label{Lista_8c_ac8e74d11621384d388df357c31f64795}
+
+
+Insere o item x no final da lista l. 
+
+Primeiramente aloca um novo noh. Adiciona esse novo noh no final da lista. Copia o valor do item para o novo noh. O novo noh passa a ser o ultimo noh da lista. Atualiza o campo ultimo da fila, fazendo-\/o apontar para o novo noh, que eh o ultimo.
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em item} & a ser inserido na lista. \\
+\hline
+{\em lista} & ponteiro do tipo lista apontando para a lista na qual serah inserido o novo item. \\
+\hline
+\end{DoxyParams}
+\hypertarget{Lista_8c_a789f3c871469752a8a1b65edc1516f4b}{\index{Lista.\+c@{Lista.\+c}!Retira@{Retira}}
+\index{Retira@{Retira}!Lista.\+c@{Lista.\+c}}
+\subsubsection[{Retira}]{\setlength{\rightskip}{0pt plus 5cm}void Retira (
+\begin{DoxyParamCaption}
+\item[{{\bf noh} $\ast$}]{p, }
+\item[{{\bf lista} $\ast$}]{l, }
+\item[{int $\ast$}]{item}
+\end{DoxyParamCaption}
+)}}\label{Lista_8c_a789f3c871469752a8a1b65edc1516f4b}
+
+
+Retira o item localizado apos o noh p na lista. 
+
+Aponta o ponteiro q para o noh a ser removido da lista. Copia o valor de q para outra variavel. Atualiza o noh p, alterando seu campo prox, pois devemos \char`\"{}pular\char`\"{} o noh q. Por fim, deve-\/se verificar se foi removido o ultimo elemento, atualizando a lista.
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em lista} & ponteiro do tipo lista apontando para a lista da qual serah retirado o item. \\
+\hline
+{\em item} & ponteiro que armazenarah o valor do item removido da lista. \\
+\hline
+\end{DoxyParams}
+\hypertarget{Lista_8c_a8bad26a0f39bafd07ebe378db41dfeea}{\index{Lista.\+c@{Lista.\+c}!Vazia@{Vazia}}
+\index{Vazia@{Vazia}!Lista.\+c@{Lista.\+c}}
+\subsubsection[{Vazia}]{\setlength{\rightskip}{0pt plus 5cm}int Vazia (
+\begin{DoxyParamCaption}
+\item[{{\bf lista}}]{l}
+\end{DoxyParamCaption}
+)}}\label{Lista_8c_a8bad26a0f39bafd07ebe378db41dfeea}
+
+
+Verifica se a lista passada como parametro estah vazia. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em lista} & variavel do tipo lista. Observe que nao eh um ponteiro. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Zero (true) se lista vazia, um (false) se nao-\/vazia. 
+\end{DoxyReturn}

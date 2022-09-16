@@ -1,0 +1,17 @@
+
+typedef struct {
+  noh *frente; /**< ponteiro para o primeiro elemento da fila, ou seja, a sua frente. */
+  noh *tras; /**< ponteiro para o ultimo elemento da fila, ou seja, a sua traseira. */
+} fila;
+
+
+typedef struct {
+  noh *primeiro; /**< ponteiro para o primeiro elemento da lista. */
+  noh *ultimo; /**< ponteiro para o ultimo elemento da lista. */
+} lista;
+
+typedef struct {
+  noh *fundo;/**< ponteiro para o primeiro elemento empilhado, ou seja, o seu fundo. */
+  noh *topo;  /**< ponteiro para o ultimo elemento empilhado, ou seja, o seu topo. */
+  int tamanho; /**< total de itens empilhados. */
+} pilha;

@@ -1,0 +1,581 @@
+%\documentclass{beamer}
+\documentclass[aspectratio=169]{beamer}
+\usetheme{Boadilla}
+%\usetheme{Warsaw}
+%\setbeamercovered{transparent}
+\beamertemplatetransparentcoveredhigh
+\usepackage[portuges]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref} 
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=C,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\newcommand{\eng}[1]{\textsl{#1}}
+\newcommand{\cod}[1]{\texttt{#1}}
+
+\title[Estruturas de Dados Homogêneas: Vetores]{Estruturas de Dados Homogêneas: Vetores\\
+   Algoritmos e Estrutura de Dados I}
+\author[IEng - UFMT]{Instituto de Engenharia -- UFMT}
+%\institute[2020/2]{Segundo Semestre de 2020}
+\date{}
+
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+%\section*{Roteiro}
+
+\begin{frame}
+  \frametitle{Agenda}
+  \tableofcontents
+\end{frame}
+
+\section{Objetivos}
+\begin{frame}
+  \frametitle{Objetivos}
+\begin{itemize}
+ \item Aprender a utilizar vetores. 
+ \item Fazer diversas operações sobre vetores.
+\end{itemize}
+\end{frame}
+
+
+\section{Introdução}
+
+\begin{frame}[fragile]
+  \frametitle{Introdução}
+   Como armazenar 3 notas?
+\begin{lstlisting}
+#include<stdio.h>
+int main () {
+  float nota1, nota2, nota3;
+  printf("Digite a nota 1:");
+  scanf("%f",&nota1);
+  printf("Digite a nota 2:");
+  scanf("%f",&nota2);
+  printf("Digite a nota 3:");
+  scanf("%f",&nota3);
+  return 0;  
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Introdução}
+   Como armazenar 100 notas?
+\begin{lstlisting}
+#include<stdio.h>
+int main () {
+  float nota1, nota2, nota3, /*... ,*/ nota100;
+  printf("Digite a nota 1:");
+  scanf("%f",&nota1);
+  printf("Digite a nota 2:");
+  scanf("%f",&nota2);
+  printf("Digite a nota 3:");
+  scanf("%f",&nota3);
+  /* ... */
+  printf("Digite a nota 100:");
+  scanf("%f",&nota100);  
+  return 0;  
+}
+\end{lstlisting}
+Declaramos 100 variáveis? Totalmente inviável.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Introdução}
+  Deseja-se saber quantas notas de um total 10 são maiores que a média.
+  \begin{figure}[!ht]
+    \centering
+    \includegraphics[width=200pt]{imgs/Valores.png}
+  \end{figure}  
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Introdução}
+  Sem salvar cada uma das notas, não é possível determinar quantas delas são maiores que a média.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Introdução}
+  A solução é utilizar um vetor para armazenar os valores.
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=200pt]{imgs/Vetor.png}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Introdução}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=200pt]{imgs/Vetor_preenchido.png}
+\end{figure}
+\end{frame}
+
+\section{Vetores}
+
+\begin{frame}
+  \frametitle{Vetores}
+  Um vetor é:
+  \begin{itemize}
+   \item uma variável composta homogênea unidimensional;
+   \item formada por uma sequência de variáveis, todas do mesmo tipo de dados;
+   \item com o mesmo identificador (mesmo nome);
+   \item alocadas sequencialmente na memória.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Vetores}
+  Um vetor é:
+  \begin{itemize}
+   \item uma variável composta homogênea unidimensional,
+   \item formada por uma sequência de variáveis, todas do mesmo tipo de dados,
+   \item com o mesmo identificador (mesmo nome),
+   \item alocadas sequencialmente na memória.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Vetores}
+  Uma vez que as variáveis que compõem o vetor têm o mesmo nome, o que distingue cada uma delas é um índice, que referencia sua localização dentro da estrutura.
+  \begin{figure}[!ht]
+    \centering
+    \includegraphics[width=200pt]{imgs/Indices.png}
+  \end{figure}  
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Declaração de Vetores}
+  Para declarar um vetor, utiliza-se a forma geral:
+  \begin{lstlisting}
+   <tipo> identificador [ <numero de posicoes> ]; 
+  \end{lstlisting}
+  \begin{itemize}
+   \item Primeiro o tipo dos dados: int, float, char;
+   \item Segundo, o nome da variável, usando as mesmas convenções de uma variável comum: vetor, notas, valores, pesos...
+   \item E por fim, o tamanho do vetor necessário para armazenamento entre colchetes: [5], [10], [1000].
+   \item Exemplos:
+  \end{itemize}
+  \begin{lstlisting}
+   float notas[100];
+   int pesos[10];
+   char nome_completo[30];
+  \end{lstlisting}  
+\end{frame}
+
+\begin{frame}
+  \frametitle{Vetores}
+  \begin{itemize}
+   \item Observe que a primeira posição do vetor tem índice 0 (zero);
+   \item E a última posição tem índice <numero de posicoes> -1;
+   \item Na linguagem C não se verifica se ocorre um acesso fora dos limites do vetor.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Vetores}
+  \begin{itemize}
+   \item Todo vetor é um espaço linear dividido de acordo com o tamanho que declaramos;
+   \item Considere a declaração de um vetor de 4 posições, conforme o código abaixo:
+   \begin{lstlisting} 
+    int vetor[4];                     
+   \end{lstlisting}
+   \item Na memória é representado da seguinte forma:
+  \end{itemize}
+  \begin{figure}[!ht]
+    \centering
+    \includegraphics[width=200pt]{imgs/Memoria.png}
+  \end{figure}    
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Vetores}
+  \begin{itemize}
+   \item Para acessar ou atribuir um valor é necessário indicar entre colchetes o índice no qual será inserido o valor.
+   \item {\bf Exemplo:}
+   \begin{lstlisting} 
+    int vetor[4];
+    vetor[1] = 540;
+    vetor[3] = 8456;
+    printf("%d", vetor[1]);
+    printf("%d", vetor[3]);
+   \end{lstlisting}
+   \item Após a atribuição, a memória é representada da seguinte forma:
+  \end{itemize}
+  \begin{figure}[!ht]
+    \centering
+    \includegraphics[width=200pt]{imgs/Atribuicao.png}
+  \end{figure}    
+\end{frame}
+
+\section{Exemplos}
+
+\begin{frame}[fragile]
+  \frametitle{Exemplos vetores}
+  {\bf Exemplo:} Inserir 5 notas em um vetor, depois disso imprimir os valores inseridos.
+\begin{lstlisting} 
+#include<stdio.h>
+int main() {
+  int i, vetor[5];
+  printf("Digite 5 notas: ");
+  for (i=0;i<5;i++)
+    scanf("%d", &vetor[i]);
+  printf("As notas digitadas foram:");
+  for (i=0;i<5;i++)
+    printf("%d ", vetor[i]);
+  return 0;
+}
+   \end{lstlisting}   
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Exemplos vetores}
+  Exemplo de execução
+   \begin{lstlisting} 
+Digite 5 notas: 
+5 2 1 9 7
+As notas digitadas foram:
+5 2 1 9 7
+   \end{lstlisting}    
+  \begin{figure}[!ht]
+    \centering
+    \includegraphics[width=200pt]{imgs/Exemplo1.png}
+  \end{figure} 
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Exemplos vetores}
+  {\bf Exemplo:} Inserir 5 notas em um vetor, depois disso imprimir os valores em ordem contrária a que foram inseridos.
+\begin{lstlisting} 
+#include<stdio.h>
+int main() {
+  int i, vetor[5];
+  printf("Digite 5 notas: ");
+  for (i=0;i<5;i++)
+    scanf("%d", &vetor[i]);
+  printf("As notas digitadas em ordem contraria foram:");
+  for (i=4;i>=0;i--)
+    printf("%d ", vetor[i]);
+  return 0;
+}
+   \end{lstlisting}   
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Exemplos vetores}
+  {\bf Exemplo:} Modifique o programa anterior de forma que depois de inseridas as 5 notas, calcule a média.
+   \begin{lstlisting} 
+#include<stdio.h>
+int main() {
+  int i, vetor[5], soma=0;
+  printf("Digite 5 notas: ");
+  for (i=0;i<5;i++)
+    scanf("%d", &vetor[i]);
+  /* Calculo da media */
+  for (i=0;i<5;i++)
+    soma += vetor[i];
+  printf("A media eh: %d", soma/5);
+  return 0;
+}
+   \end{lstlisting}   
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Exemplos vetores}
+  {\bf Exemplo:} Faça uma programa que receba 10 números inteiros e armazene-os em um vetor. O programa deve calcular e mostrar o maior elemento do vetor.
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Exemplos vetores}
+\begin{lstlisting} 
+#include<stdio.h>
+int main() {
+  int vetor[10], i, maior, pMaior;
+  printf("Digite 10 numeros:");
+  for (i=0;i<10;i++)
+    scanf("%d",&vetor[i]);
+  /* Busca pelo maior */
+  maior = vetor[0];
+  for (i=1;i<10;i++) {
+      if (vetor[i] > maior) {
+        maior = vetor[i];
+        pMaior = i;
+      }
+  }
+  printf("O maior elemento %d estah na posicao %d.", maior, pMaior);
+  return 0;
+}
+\end{lstlisting} 
+\end{frame}
+
+\begin{frame}
+  \frametitle{Exemplos vetores}
+  {\bf Exemplo:} Faça um programa que receba 10 números inteiros e armazene-os em um vetor. O programa deve calcular e mostrar dois vetores resultantes, sendo o primeiro com os números pares e o segundo com os números ímpares, pertencentes ao vetor lido. 
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Exemplos vetores}
+   \begin{lstlisting} 
+#include<stdio.h>
+int main() {
+  int  vetor[10], pares[10], impares[10];
+  int i, nPares = 0, nImpares = 0;
+  printf("Digite 10 numeros: ");
+  for (i=0;i<10;i++)
+    scanf("%d", &vetor[i]);
+  /* Separando pares dos impares */
+  for (i=0;i<10;i++) {
+    if (vetor[i]%2 == 0) {
+      pares[nPares]=vetor[i];
+      nPares++;
+    } else {
+      impares[nImpares]=vetor[i];
+      nImpares++;
+    }
+  }
+  /* Continua... */
+}
+   \end{lstlisting}   
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Exemplos vetores}
+   \begin{lstlisting} 
+#include<stdio.h>
+int main() {
+ /* Codigo anterior */
+ 
+  printf("Pares");
+  for (i=0;i<nPares;i++) {
+    printf("%d ", pares[i]);
+  }
+  printf("Impares");
+  for (i=0;i<nImpares;i++) {
+    printf("%d ", impares[i]);
+  }
+  return 0;
+}
+   \end{lstlisting}   
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Inicialização de vetores}
+\begin{itemize}
+ \item Quando declaramos um vetor, os seus elementos não são inicializados;
+ \item Ao declarar um vetor, é possível atribuir valores iniciais;
+ \item Os valores iniciais são colocados entre chaves. {\bf Exemplo:}
+\end{itemize}
+\begin{lstlisting}
+int vetor[5] = {16, 36, 3, 8, 26};
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Inicialização de vetores}
+\begin{itemize}
+ \item A quantidade de valores entre chaves não deve ser maior que o número de elementos;
+ \item A fim de facilitar a inicialização, a linguagem C permite deixar o número de elementos em branco [ ]. 
+ \item Neste caso, o compilador vai supor que o tamanho do vetor é igual ao número de valores especificados entre chaves {}.
+\end{itemize}
+\begin{lstlisting}
+int vetor[] = {16, 36, 3, 8, 26};
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Inicialização de vetores}
+\begin{itemize}
+ \item A fim de facilitar a programação, pode-se definir o tamanho do vetor como uma constante.
+ \item Para definir uma constante, no início do código inclua o comando na forma geral: 
+\begin{lstlisting}
+#define nome_constante valor
+\end{lstlisting}
+ \item Exemplos de declarações de constantes:
+\begin{lstlisting}
+#define TAM_MAX 100
+#define Pi 3.14159
+\end{lstlisting} 
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Inicialização de vetores}
+Considere o exemplo a seguir em que se inicializa um vetor com zeros:
+\begin{lstlisting}
+#include<stdio.h>
+#define TAM_MAX 100
+int main() {
+  float vetor[TAM_MAX];
+  int i;
+  /* Inicializa o vetor com zero */
+  for (i=0;i<TAM_MAX;i++) {
+    vetor[i] = 0;
+  }
+  return 0;
+}
+\end{lstlisting} 
+\end{frame}
+
+\section{Busca Sequencial}
+
+\begin{frame}
+  \frametitle{Busca Sequencial}
+Dada uma coleção com $n$ valores, pretende-se saber se um determinado valor está presente nessa coleção. Considere que a coleção é implementada utilizando um vetor de $n$ elementos inteiros: vetor[0].. vetor[n-1]. 
+\end{frame}
+
+\begin{frame}
+  \frametitle{Busca Sequencial}
+Uma solução possível é percorrer o vetor desde a primeira posição até a última. Para cada posição $i$, comparamos o elemento na posição com o valor.
+\begin{itemize}
+ \item Se foram iguais, significa que o valor existe no vetor.
+ \item Se chegou ao final do vetor e não encontrou nenhum valor igual, significa que o valor não existe no vetor.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Busca Sequencial}
+Passos:
+1. Inicialização
+\begin{lstlisting}
+#define TAM_MAX 100
+/* ... */
+i = 0;
+encontrado = 0; // Falso
+\end{lstlisting} 
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Busca Sequencial}
+2. Pesquisa
+\begin{lstlisting}
+while (i<TAM_MAX && !encontrado) {
+  if (vetor[i] == valor) 
+    encontrado = 1; // Verdadeiro
+  else 
+    i++;
+}
+\end{lstlisting} 
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Busca Sequencial}
+3. Tratamento do resultado
+\begin{lstlisting}
+if (encontrado) 
+  printf("O valor %d se encontra na posicao %d.", valor, posicao);
+else
+  printf("Valor nao encontrado");
+\end{lstlisting} 
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Busca Sequencial}
+\begin{lstlisting}
+#include<stdio.h>
+#define TAM_MAX 100
+int main() {
+  float vetor[TAM_MAX], valor;
+  int i = 0, posicao, encontrado = 0; // Falso
+  for (i=0;i< TAM_MAX;i++)
+    scanf("%f",&vetor[i]); // Preenchendo vetor
+  printf("Digite o valor a ser buscado no vetor:");
+  scanf("%f",&valor);
+  while (i<TAM_MAX && !encontrado) {
+    if (vetor[i] == valor) { 
+      encontrado = 1; // Verdadeiro
+      posicao = i;
+    }
+    else 
+      i++;
+  }  
+  /* Continua */
+}
+\end{lstlisting}
+\end{frame}
+
+ 
+\begin{frame}[fragile]
+  \frametitle{Busca Sequencial}
+\begin{lstlisting}
+int main() {
+  /* Codigo anterior */
+  if (encontrado) 
+    printf("O valor %f se encontra na posicao %d.", valor, posicao);
+  else
+    printf("Valor nao encontrado");
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+\frametitle{Busca Sequencial}
+Faça uma função chamada busca\_vetor que receba como parâmetros de entrada um vetor preenchido com TAM\_MAX elementos e um valor. Caso o valor exista no vetor, a função deve retornar sua posição no vetor, caso contrário, deve retornar $-1$.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Busca Sequencial}
+\begin{lstlisting}
+int busca_vetor(float vetor[TAM_MAX], float valor) {
+  int i = 0, posicao, encontrado = 0; // Falso
+  while (i<TAM_MAX && !encontrado) {
+    if (vetor[i] == valor) { 
+      encontrado = 1; // Verdadeiro
+      posicao = i;
+    }
+    else 
+      i++;
+  }
+  if (encontrado) 
+    return posicao;
+  else
+  return -1;
+}
+
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Fim}
+\begin{center}
+\Huge Fim
+\end{center}
+\end{frame}
+
+
+\end{document}

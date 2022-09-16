@@ -1,0 +1,364 @@
+\documentclass[aspectratio=169]{beamer}
+\usetheme{Boadilla}
+%\usetheme{Warsaw}
+%\setbeamercovered{transparent}
+\beamertemplatetransparentcoveredhigh
+\usepackage[portuges]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese, linesnumbered, vlined, titlenumbered, ruled]{algorithm2e}
+\usepackage{hyperref} 
+
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\usepackage{listings}
+\lstdefinestyle{CStyle}{
+    language=C++,
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    keepspaces=true,                 
+    numbers=left,       
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+}
+
+
+\newcommand{\eng}[1]{\textsl{#1}}
+\newcommand{\cod}[1]{\texttt{#1}}
+
+\title[Algoritmos de Ordenação]{Algoritmos e Estrutura de Dados II}
+\subtitle{Exercício Prático\\Heapsort e Quicksort}
+\author[Frederico Santos de Oliveira]{prof. Frederico Santos de Oliveira}
+\institute[UFMT]{Universidade Federal de Mato Grosso\\ Instituto de Engenharia}
+\date{}
+
+
+\AtBeginSection[]
+{
+	\begin{frame}
+	\frametitle{Roteiro da Aula}
+	\tableofcontents[currentsection]
+\end{frame}
+}
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section*{Roteiro}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Agenda}
+  \tableofcontents
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exercício 1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Exercício 1}
+Utilizando o algoritmo de ordenação {\bf Heapsort}, ordene um vetor composto por 1.000.000, 2.000.000 e 3.000.000 valores. Para cada um, execute os seguintes testes:
+\begin{itemize}
+ \item vetor composto por números aleatórios;
+ \item vetor composto por números em ordem crescente;
+ \item vetor composto por números em ordem decrescente.
+\end{itemize} 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 1}{Pseudocódigo}
+\scalebox{0.8}{
+\begin{algorithm}[H]
+\caption{ConstroiHeap} 
+\label{ConstroiHeap}
+\Entrada{Vetor $V[i..n-1]$, raiz no nó $i$, tamanho do vetor $n$}
+\Saida{Heap no vetor $V[i..n-1]$}
+\Inicio{
+    $maior \leftarrow i$  \CommentSty{// Inicializa maior como a raiz} \\
+    $l \leftarrow 2i + 1$ \CommentSty{// Filho da esquerda} \\
+    $r \leftarrow 2i + 2$ \CommentSty{// Filho da direita} \\
+    \CommentSty{// Se o filho da esquerda é maior que a raiz}\\
+    \Se{ ( $l < n$ AND $V[l] > V[maior]$ )} {
+        $maior \leftarrow l$\\
+    }
+    \CommentSty{// Se filho da direita é maior que a raiz}\\
+    \Se{ ($r < n$ AND $V[r] > V[maior])$ }{
+        $maior \leftarrow r$\\
+    }
+    \CommentSty{ // Se maior não é a raiz}\\
+    \Se { ($maior \neq i$)}
+    {
+        Troca $V[i] \leftrightarrow V[maior]$ \CommentSty{ // O maior passa a ser a raiz}\\
+        ConstroiHeap(V, maior, n) \CommentSty{// Cria o heap na sub-árvore}\\
+    }
+}
+\end{algorithm}
+}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 1}{Solução}
+\begin{lstlisting}[style=CStyle]
+void constroi_heap(int *vetor, int i, int n) {
+    int maior, l, r, aux;
+    maior = i;
+    l = 2*i + 1;
+    r = 2*i + 2;
+    if (l<n && vetor[l]>vetor[maior])
+        maior = l;
+    if ((r<n) && vetor[r]>vetor[maior]) 
+        maior = r;
+    if (maior!=i) {
+        aux = vetor[i];
+        vetor[i] = vetor[maior];
+        vetor[maior] = aux;
+        constroi_heap(vetor, maior, n);
+    }
+}
+\end{lstlisting}  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 1}{Pseudocódigo}
+\scalebox{0.95}{
+\begin{algorithm}[H]
+\caption{Heapsort} 
+\label{Heap}
+\Entrada{Vetor $V[0..n-1]$, tamanho do vetor $n$}
+\Saida{Vetor $V$ ordenado}
+\Inicio{
+    \CommentSty{// Contrói o heap rearranjando o vetor}\\
+    \Para { ( $i \leftarrow \frac{n}{2}-1$ decrescendo até $i = 0$ )} {
+        ConstroiHeap(V, i, n) \\
+    }
+    \CommentSty{// Extrai cada elemento, um por um, do heap}\\
+    \Para {( $i\leftarrow n-1$ decrescendo até $i=0$) }
+    {
+        \CommentSty{// Move a raiz atual para o fim do vetor.}\\
+        Troca $V[0] \leftrightarrow V[i]$\\
+        \CommentSty{// Chama a função para recriar o heap} \\
+        \CommentSty{// no vetor reduzido}\\
+        ConstroiHeap(V, 0, i)\\
+    }
+}
+\end{algorithm}
+}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 1}{Solução}
+\begin{lstlisting}[style=CStyle]
+void heapsort(int n, int *vetor) {
+    int i, aux;
+    for(i = (n/2)-1; i >= 0; i--) {
+        constroi_heap(vetor, i, n);
+    }
+    for(i = n-1; i >= 0; i--) {
+        aux = vetor[0];
+        vetor[0] = vetor[i];
+        vetor[i] = aux;
+        constroi_heap(vetor, 0, i);
+    }
+}
+\end{lstlisting}  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exercício 2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 2}{Tempo Processamento}
+\begin{itemize}
+\item Calcule o o tempo de processamento para ordenar cada um dos vetores do exercício anterior utilizando o algoritmo {\bf Heapsort}. 
+\item Para isso, utilize a função \verb|clock()|. Acesse \href{http://wurthmann.blogspot.com/2015/04/medir-tempo-de-execucao-em-c.html}{\color{blue} esse link} para entender o funcionamento da função \verb|clock()|.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 2}{Tempo Processamento}
+\begin{itemize}
+\item O código a seguir apresenta um exemplo de ordenação utilizando um vetor com valores aleatórios. 
+\item Modifique esse código a fim de obter o tempo de processamento.
+\end{itemize}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 2}{Solução}
+\begin{lstlisting}[style=CStyle]
+#define tamanho_vetor 100000
+#define valor_max 1000000
+#define valor_min 0
+int main() {
+    int i, *vetor;
+    srand(0);
+    vetor = malloc(tamanho_vetor*sizeof(int));
+    for (i = 0; i < tamanho_vetor; i++)
+        vetor[i] = (rand() % valor_max) + valor_min;
+    for(i = 0; i < tamanho_vetor; i++)
+        printf("%d ", vetor[i]);
+    heapsort(tamanho_vetor, vetor);
+    printf("\n");
+    for(i = 0; i < tamanho_vetor; i++)
+        printf("%d ", vetor[i]);
+    free (vetor);
+    return 0;
+}
+\end{lstlisting}  
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exercício 3}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Exercício 3}
+Utilizando o algoritmo de ordenação {\bf Quicksort}, ordene um vetor composto por 1.000.000, 2.000.000 e 3.000.000 valores. Para cada um, execute os seguintes testes:
+\begin{itemize}
+ \item vetor composto por números aleatórios;
+ \item vetor composto por números em ordem crescente;
+ \item vetor composto por números em ordem decrescente.
+\end{itemize} 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Exercício 3}{Pseudo-código}
+\scalebox{0.9}{
+\begin{algorithm}[H]
+\caption{QuicksortOrdena} 
+\label{QuicksortOrdena}
+\Entrada{Vetor $V[0..n-1]$, tamanho $n$}
+\Saida{Vetor $V$ ordenado}
+\Inicio{
+	Quicksort($V, 0, n-1$) \\
+}
+\end{algorithm}
+}
+
+\scalebox{0.9}{
+\begin{algorithm}[H]
+\caption{Quicksort} 
+\label{Quicksort}
+\Entrada{Vetor $V[Esq..Dir]$, Esq, Dir}
+\Saida{Vetor $V$ ordenado}
+\Inicio{
+	$(i, j) \leftarrow Particiona(V, Esq, Dir)$ \\
+	\Se {( $Esq < j$ ) } {
+        Quicksort($V, Esq, j$ ) \\
+      }
+    	\Se {( $i < Dir$ )} {
+        Quicksort($V, i , Dir$) \\
+	}
+}
+\end{algorithm}
+}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Exercício 3}{Pseudo-código}
+\scalebox{0.8}{
+\begin{algorithm}[H]
+\caption{Particiona} 
+\label{Particiona}
+\Entrada{Vetor $V[Esq..Dir]$, Esq, Dir}
+\Saida{Vetor $V$ ordenado}
+\Inicio{
+    $i \leftarrow Esq$; $j \leftarrow Dir$\\
+    $x \leftarrow V[\frac{(i + j )}{2} ]$ \\
+    \Repita{($i > j$)} { 
+        \Enqto {( $x > V[ i ]$ )} { 
+            $i \leftarrow i + 1$\\
+        }
+        \Enqto {( $x < V[ j ]$ )} { 
+            $j \leftarrow j - 1$\\
+        }
+        \Se {( $i \leq j$ ) }
+        { 
+           Trocar $V[ i ] \leftrightarrow V[ j ] $\\ 
+		$i \leftarrow i + 1$\\
+		$j \leftarrow j - 1$\\
+        }
+    } 
+    \Retorna $(i, j)$
+}
+\end{algorithm}
+}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 3}{Solução}
+\begin{lstlisting}[style=CStyle,basicstyle=\tiny]
+void quicksort(int *a, int left, int right) {
+    int i, j, x, y;
+    i = left; j = right;
+    x = a[(left + right) / 2];
+    while(i <= j) {
+        while(a[i] < x && i < right)
+            i++;
+        while(a[j] > x && j > left) 
+            j--;
+        if(i <= j) {
+            y = a[i];
+            a[i] = a[j];
+            a[j] = y;
+            i++; j--;
+        }
+    }
+    if(j > left) 
+        quicksort(a, left, j);
+
+    if(i < right) 
+        quicksort(a, i, right);
+}
+\end{lstlisting}  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exercício 4}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 4}{Tempo Processamento}
+Calcule o tempo de processamento para ordenar cada um dos vetores do exercício anterior utilizando o algoritmo {\bf Quicksort}. 
+\end{frame}
+%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+\end{document}

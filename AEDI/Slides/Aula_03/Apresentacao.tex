@@ -1,0 +1,343 @@
+%\documentclass{beamer}
+\documentclass[aspectratio=169]{beamer}
+\usetheme{Boadilla}
+%\usetheme{Warsaw}
+%\setbeamercovered{transparent}
+\beamertemplatetransparentcoveredhigh
+\usepackage[portuges]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref} 
+
+\newcommand{\eng}[1]{\textsl{#1}}
+\newcommand{\cod}[1]{\texttt{#1}}
+
+\title[História da Computação]{História da Computação\\
+   Algoritmos e Estrutura de Dados I}
+\author[IEng - UFMT]{Instituto de Engenharia -- UFMT}
+%\institute[2020/2]{Segundo Semestre de 2020}
+\date{}
+
+
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+%\section*{Roteiro}
+
+\begin{frame}
+  \frametitle{Agenda}
+  \tableofcontents
+\end{frame}
+
+\section{Introdução}
+
+\begin{frame}
+  \frametitle{Introdução}
+O desenvolvimento da tecnologia da computação foi a união de várias áreas do conhecimento humano, mas destacam-se:
+\begin{itemize}
+\item a matemática
+\item a eletrônica digital
+\end{itemize}
+\end{frame}
+
+\section{Algoritmo}
+\begin{frame}
+  \frametitle{Origem da palavra Algoritmo}
+\begin{itemize}
+\item No século VII, o matemático indiano Brahmagupta explicou pela primeira vez o sistema de numeração hindu-arábico e o uso do 0. 
+\item Considera-se um dos desenvolvimentos mais significativos na matemática. Seu sucesso é baseado no fato de usar o conceito simulando um ábaco no papel.
+\item Tornou cálculos numéricos muito mais fáceis e revolucionou aritmética.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Origem da palavra Algoritmo}
+\begin{itemize}
+\item Aproximadamente em 825, o matemático persa Al-Khwarizmi escreveu um livro que difundiu o sistema de numeração hindu-arábico no Oriente Médio.
+\item O sistema foi introduzido na Europa por Leonardo Fibonacci, no século XIII.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Algoritmo}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=250pt]{imgs/indo_arabico.png}
+\end{figure}
+\end{frame}	
+
+\begin{frame}
+  \frametitle{Algoritmo}
+O que é um algoritmo?
+\begin{itemize}
+\item ``Um procedimento para resolver um problema matemático em um número finito de passos que frequentemente envolve a repetição de uma
+operação'';
+\item ``ou de forma mais abrangente: um procedimento passo-a-passo para resolver um problema ou realizar algum objetivo.'' (Manber, 1989)
+\end{itemize}
+\end{frame}
+
+\section{Computador}
+\begin{frame}
+  \frametitle{Computador}
+O que é um computador?
+\begin{itemize}
+\item o que computa; calculador, calculista.
+\item máquina destinada ao processamento de dados, capaz de obedecer a instruções que visam produzir certas transformações nesses dados para alcançar um fim determinado.
+\item Máquina programável, capaz de realizar uma grande variedade de tarefas, seguindo uma sequência de comandos, de acordo com o que for especificado.
+
+\end{itemize}
+\end{frame}
+
+\section{Computação}
+
+\begin{frame}
+  \frametitle{O que é Computação?}
+  \begin{itemize}
+   \item Cômputo, cálculo, contagem; operação matemática ou lógica realizada por regras práticas preestabelecidas.
+   \item A computação pode ser definida como a busca de uma solução para um problema a partir de entradas e tem seus resultados depois de trabalhada através de um algoritmo.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Ferramentas para Computação}
+\begin{itemize}
+ \item A capacidade dos seres humanos em calcular quantidades nos mais variados modos foi um dos fatores que possibilitaram o desenvolvimento da matemática e da lógica.
+ \item Nos primórdios da matemática e da álgebra, utilizavam-se os dedos das mãos para efetuar cálculos.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Ferramentas para Computação}
+  \begin{itemize}
+   \item A mais antiga ferramenta conhecida para uso em computação foi o ábaco, e foi inventado na Babilônia por volta de 2400 a.C. 
+  \end{itemize}
+\end{frame}	
+
+\begin{frame}
+  \frametitle{Ábaco}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=250pt]{imgs/abaco.jpg}
+\end{figure}
+\end{frame}	
+
+\begin{frame}
+  \frametitle{Ferramentas para Computação}
+  \begin{itemize}
+   \item John Napier (1550-1617), escocês inventor dos logaritmos, também inventou os ossos de Napier, que eram tabelas de multiplicação gravadas em bastão, o que evitava a memorização da tabuada
+  \end{itemize}
+\end{frame}	
+
+\begin{frame}
+  \frametitle{Ossos de Napier}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=250pt]{imgs/napier.jpg}
+\end{figure}
+\end{frame}	
+
+\begin{frame}
+  \frametitle{Ferramentas para Computação}
+  \begin{itemize}
+   \item Em 1642, o matemático francês Bleise Pascal desenvolveu o que pode ser chamado da primeira calculadora mecânica da história, a máquina de Pascal.
+   \item A ideia inicial de Pascal era desenvolver uma máquina que realizasse as quatro operações matemáticas básicas, o que não aconteceu na prática, pois ela era capaz apenas de somar e subtrair. 
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Máquina de Pascal}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=250pt]{imgs/pascal.jpg}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Ferramentas para Computação}
+  \begin{itemize}
+   \item Alguns anos após a Máquina de Pascal, em 1672, o alemão Gottfried Leibnitz conseguiu o que Pascal não tinha conseguido, criar uma calculadora que efetuava a soma e a divisão, além da raiz quadrada.  
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Calculadora de Leibnitz}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=250pt]{imgs/leibniz.jpg}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Ferramentas para Computação}
+  \begin{itemize}
+   \item Em 1820, o francês natural de Paris, Charles Xavier Thomas, conhecido como Thomas de Colmar, projetou e construiu uma máquina capaz de efetuar as 4 operações aritméticas básicas: a Arithmometer.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Arithmometer}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=250pt]{imgs/arithmometre.jpg}
+\end{figure}
+\end{frame}		
+
+\begin{frame}
+  \frametitle{Ferramentas para Computação}
+Todas essas máquinas, porém, estavam longe de serem consideradas um computador, pois não eram programáveis. Isto quer dizer que a entrada era feita apenas de números, mas não de instruções a respeito do que fazer com os números.
+\end{frame}
+
+\section{Revolução Industrial}
+
+\begin{frame}
+  \frametitle{Revolução Industrial}
+\begin{itemize}
+\item Em 1801, na França, durante a Revolução Industrial, Joseph Marie Jacquard, mecânico francês, (1752-1834) inventou um tear mecânico controlado por grandes cartões perfurados. 
+\item Esse tear era programado por uma série de cartões perfurados, cada um deles controlando um único movimento da lançadeira. 
+\end{itemize}
+\end{frame}	
+
+\begin{frame}
+  \frametitle{Revolução Industrial}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=200pt]{imgs/jacquard.jpg}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Revolução Industrial}
+\begin{itemize}
+\item A ideia de Jacquard atravessou o Canal da Mancha, onde por volta de 1833 inspirou Charles Babbage (1792-1871), um professor de matemática de Cambridge, a desenvolver uma máquina de "tecer números", uma máquina de calcular onde a forma de calcular pudesse ser controlada por cartões.
+\item Apresentou sua máquina analítica em 1833, tendo sido considerada o ponto de partida para os modernos computadores eletrônicos.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Revolução Industrial}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=200pt]{imgs/babbage.jpg}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Revolução Industrial}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=150pt]{imgs/cartoes.jpg}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Revolução Industrial}
+\begin{itemize}
+\item Em parceria com Charles Babbage, Ada Augusta (1815-1852) ou Lady Lovelace, filha do poeta Lord Byron, era matemática amadora entusiasta. Ela se tornou a pioneira da lógica de programação, escrevendo séries de instruções para o calculador analítico. 
+\item Charles Babbage investiu toda sua fortuna pessoal e a de seu filho, que com ele trabalhou durante anos, na construção de sua máquina Analítica. Mas faleceu em 1871, sem conseguir terminar o trabalho, devido às limitações tecnológicas da época.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Revolução Industrial}
+\begin{itemize}
+\item O americano Herman Hollerith (1860-1929) inventou uma máquina capaz de processar dados baseada na separação de cartões perfurados (pelos seus furos).
+\item Hollerith baseou-se na idéia de Charles Babbage, e aperfeiçoou os cartões perfurados (os utilizados por Jacquard) e inventou máquinas para manipulá-los (ou seja, tanto a máquina para perfurar cartões, como máquinas de tabular e ordenar). 
+\item Foi também um dos fundadores da IBM, precursor do processamento de dados.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Revolução Industrial}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=200pt]{imgs/hollerith.jpg}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Revolução Industrial}
+\begin{itemize}
+\item No final do século XIX, já existiam equipamentos totalmente mecânicos que podemos chamar de "computadores". Eles realizavam cálculos por meio de um sistema de alavancas e engrenagens, e eram acionados por algum sistema mecânico, como uma manivela, como nas caixas registradoras então usadas nas lojas comerciais. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Computação Mecânica}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=250pt]{imgs/mechanical_calculator_1949.jpg}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Revolução Industrial}
+\begin{itemize}
+\item No final do século XIX surgiu o relê, um dispositivo eletromecânico, formado por um magneto móvel, que se deslocava unindo dois contatos metálicos.
+\item Também no final do século XIX, surgiram as primeiras válvulas. As válvulas foram usadas para criar os primeiros computadores eletrônicos.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Revolução Industrial}
+\begin{itemize}
+\item Em 1934, Konrad Zuse desenvolveu o Z1, uma unidade aritmética mecânica.
+\item Primeiro computador eletro-mecânico.
+\item Usava o sistema de numeração de base 2.
+\item Sua programação era limitada e as instruções eram passadas através de cartão perfurado. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Computadores de Grande Porte}
+\begin{itemize}
+\item Em 1944, Howard Aiken da Universidade de Harvard em parceria com IBM construiu o Mark 1.
+\item Primeira calculadora eletro-mecânica automática produzida em larga escala.
+\item Pesava cerca de 5 toneladas.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Computadores de Grande Porte}
+\begin{itemize}
+\item {\it Atanasoff-Berry Computer}, conhecido como ABC, foi o primeiro computador a usar válvulas termiônicas.
+\item Inventado por John Atanasoff e Clifford Berry em 1939.
+\item O computador tinha válvulas eletrônicas, números binários, capacitores e 1 quilômetro de fios.
+\item Não era programável.
+\item Foi desenvolvido para resolver sistemas de equações lineares.
+\end{itemize}
+\end{frame}
+
+
+\section{A lógica binária}
+
+\begin{frame}
+  \frametitle{A lógica binária}
+\begin{itemize}
+\item Por volta do século III a.C., o matemático indiano Pingala inventou o sistema de numeração binário.
+\item Em 1703, Gottfried Leibniz desenvolveu a lógica em um sentido formal e matemático, utilizando o sistema binário. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{A lógica binária}
+\begin{itemize}
+\item As máquinas do início do século XIX utilizavam base decimal (0 a 9), mas foram encontradas dificuldades em implementar um dígito decimal em componentes eletrônicos, pois qualquer variação provocada por um ruído causaria erros de cálculo consideráveis.
+
+\item O matemático inglês George Boole (1815-1864) publicou em 1854 os princípios da lógica booleana, onde as variáveis assumem apenas valores 0 e 1 (verdadeiro e falso), que passou a ser utilizada a partir do início do século XX.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Leitura Recomendada}
+\begin{itemize}
+\item FONSECA FILHO, Cléuzio. História da computação: O Caminho do Pensamento e da Tecnologia. EdiPucRS, 2007.
+\item FERNANDEZ, Marcial; Cortés, Mariela. Introdução à Computação. EdUECE, 2019. \textcolor{blue}{ \href{https://educapes.capes.gov.br/bitstream/capes/432730/2/Livro\%20\%20Introduc\%C3\%A3o\%20a\%20Computac\%C3\%A3o.pdf}{Disponível aqui}. }
+\end{itemize}
+\end{frame}
+
+\end{document}

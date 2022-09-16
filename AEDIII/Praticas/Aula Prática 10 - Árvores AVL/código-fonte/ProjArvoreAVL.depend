@@ -1,0 +1,39 @@
+# depslib dependency file v1.0
+1406222009 source:d:\andre\pesquisa\publicações\livros\livro estutura de dados em c\códigos\projarvoreavl\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ArvoreAVL.h"
+
+1406222000 d:\andre\pesquisa\publicações\livros\livro estutura de dados em c\códigos\projarvoreavl\arvoreavl.h
+
+1406222026 source:d:\andre\pesquisa\publicações\livros\livro estutura de dados em c\códigos\projarvoreavl\arvoreavl.c
+	<stdio.h>
+	<stdlib.h>
+	"ArvoreAVL.h"
+
+1418916495 source:d:\andre\pesquisa\publicações\livros\livro estutura de dados em c\material auxiliar\códigos\projarvoreavl\arvoreavl.c
+	<stdio.h>
+	<stdlib.h>
+	"ArvoreAVL.h"
+
+1416940602 d:\andre\pesquisa\publicações\livros\livro estutura de dados em c\material auxiliar\códigos\projarvoreavl\arvoreavl.h
+
+1418912912 source:e:\ertai\levar casa\temp\livro estutura de dados em c\material auxiliar\códigos\projarvoreavl\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ArvoreAVL.h"
+
+1416937002 e:\ertai\levar casa\temp\livro estutura de dados em c\material auxiliar\códigos\projarvoreavl\arvoreavl.h
+
+1435255909 source:d:\pesquisa\publicações\livros\livro estutura de dados em c\material auxiliar\códigos\projarvoreavl\arvoreavl.c
+	<stdio.h>
+	<stdlib.h>
+	"ArvoreAVL.h"
+
+1416937002 d:\pesquisa\publicações\livros\livro estutura de dados em c\material auxiliar\códigos\projarvoreavl\arvoreavl.h
+
+1435255910 source:d:\pesquisa\publicações\livros\livro estutura de dados em c\material auxiliar\códigos\projarvoreavl\main.c
+	<stdio.h>
+	<stdlib.h>
+	"ArvoreAVL.h"
+

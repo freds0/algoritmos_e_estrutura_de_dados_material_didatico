@@ -1,0 +1,140 @@
+\documentclass[aspectratio=169]{beamer}
+\usetheme{Boadilla}
+%\usetheme{Warsaw}
+%\setbeamercovered{transparent}
+\beamertemplatetransparentcoveredhigh
+\usepackage[portuges]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref} 
+\usepackage[portuguese, linesnumbered, vlined, titlenumbered, ruled]{algorithm2e}
+\SetKwRepeat{Registro}{registro \{}{\}}%
+\newcommand{\Int}{\KwSty{int}}
+\usepackage{listings}
+\lstset{frame=tb,
+  language=C,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3,
+  numbers=left,
+  stepnumber=1,
+  xleftmargin=2em
+}
+
+\title[Aula Prática]{Algoritmos e Estrutura de Dados II}
+\subtitle{Exercício Prático: Ponteiros e TADs}
+\author[Frederico Santos de Oliveira]{prof. Frederico Santos de Oliveira}
+\institute[UFMT]{Universidade Federal de Mato Grosso\\ Instituto de Engenharia}
+\date{}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+%\section*{Roteiro}
+
+\begin{frame}
+  \frametitle{Agenda}
+  \tableofcontents
+\end{frame}
+
+\section{Exercício 1}
+
+\begin{frame}
+\frametitle{Exercício 1}
+Implemente um Tipo Abstrato de Dados (TAD) denominado Fracao para representar frações de números inteiros. Seu tipo abstrato deverá armazenar os dois elementos do tipo inteiro que formam uma fração: o numerador e o denominador. Para isso, crie o Tipo Abstrato de Dados conforme o pseudo-código a seguir:
+
+
+\begin{algorithm}[H]
+\caption{TAD Fracao} 
+\label{pseudocodigo}
+\Inicio{
+ \Registro{fracao}{
+    \Int{} num, den\; 
+  }
+}
+\end{algorithm}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Exercício 1}
+Na linguagem C, a TAD que representa uma fração tem a seguinte forma:
+
+\color{blue}\rule{\linewidth}{4pt}
+Código em C
+\begin{lstlisting}
+typedef struct {
+  int num, den;
+} fracao;
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Exercício 1}
+Crie as seguintes funções para manipular o TAD fração:
+\begin{enumerate}[a)]
+ \item fracao *criarFracao(int n, int d);
+ \begin{itemize}
+  \item função que recebe dois numeros inteiros (numerador $n$ e denominador $d$) e retorna um ponteiro que aponta para a fração $\frac{n}{d}$;
+ \end{itemize}
+ \item void imprimirFracao(fracao *f); 
+ \begin{itemize}
+  \item função que recebe um ponteiro para uma fração e imprime usando o comando $printf(``\%d / \%d'', n, d);$
+ \end{itemize}
+ \item fracao *somaFracoes(fracao *f, fracao *g):
+ \begin{itemize}
+  \item função que recebe dois ponteiros para frações e retorna uma fração contendo o resultado da soma das duas frações.
+ \end{itemize}
+ \item fracao *multiplicarFracoes(fracao *f, fracao *g);
+ \begin{itemize}
+  \item função que recebe dois ponteiros para frações e retorna uma fração contendo o resultado da multiplicacao das duas frações.
+ \end{itemize} 
+ \item fracao *inverterFracao(fracao *f);
+ \begin{itemize}
+  \item função que recebe um ponteiro para uma fração $\frac{n}{d}$ e retorna uma fração inversa $\frac{d}{n}$.
+ \end{itemize} 
+\end{enumerate}
+
+\end{frame}
+
+
+
+\section{Exercício 2}
+
+\begin{frame}
+\frametitle{Exercício 2}
+Implemente um TAD denominado Conjunto para representar conjuntos de números inteiros positivos. Seu tipo abstrato deverá armazenar os elementos do conjunto e o seu tamanho n. Considere que o tamanho máximo de um conjunto é 20 elementos e use arranjos de 1 dimensão (vetores) para a sua implementação. 
+\end{frame}
+
+\begin{frame}
+\frametitle{Exercício 2}
+Seu TAD deve possuir procedimentos (ou funções quando for o caso) para:
+\begin{enumerate}[a)]
+ \item criar um conjunto vazio;
+ \item ler os dados de um conjunto;
+ \item fazer a união de dois conjuntos;
+ \item fazer a interseção de dois conjuntos;
+ \item verificar se dois conjunto são iguais (possuem os mesmos elementos);
+ \item imprimir um conjunto;
+\end{enumerate}
+Sugestão: Utilize um vetor de tamanho 20 para representar um conjunto. Dessa forma, a união de dois conjuntos poderá ter, no máximo, 40 elementos.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Fim}
+\centering
+\huge{Fim}
+\end{frame}	
+
+
+\end{document}

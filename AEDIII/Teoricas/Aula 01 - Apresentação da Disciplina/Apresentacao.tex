@@ -1,0 +1,259 @@
+\documentclass[aspectratio=169]{beamer}
+\usetheme{Boadilla}
+%\usetheme{Warsaw}
+%\setbeamercovered{transparent}
+\beamertemplatetransparentcoveredhigh
+\usepackage[portuges]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref} 
+
+
+\newcommand{\eng}[1]{\textsl{#1}}
+\newcommand{\cod}[1]{\texttt{#1}}
+
+\title[Apresentação da Disciplina]{Algoritmo e Estrutura de Dados III}
+\subtitle{Apresentação da Disciplina}
+\author[Frederico Santos de Oliveira]{prof. Frederico Santos de Oliveira}
+\institute[UFMT]{Universidade Federal de Mato Grosso\\ Faculdade de Engenharia}
+\date{}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+%\section*{Roteiro}
+
+\begin{frame}
+  \frametitle{Agenda}
+  \tableofcontents
+\end{frame}
+
+%\section{Introdução}
+%
+%%\begin{frame}{Quem sou Eu}
+%%\begin{columns}[T] % align columns
+%%\begin{column}{.30\textwidth}
+%%{\bf Frederico S. Oliveira}
+%%\begin{figure}[h]
+%%\includegraphics[width=3.5cm]{imagens/perfil.png}
+%%\end{figure}
+%%\end{column}%
+%%\hfill%
+%%\begin{column}{.64\textwidth}
+%%\begin{itemize}
+%%\item Bacharel e Mestre em Ciência da Computação (UFLA). 
+%%\item Doutorando em Inteligência Artificial (UFG). 
+%%\item Professor UFMT:
+%%\begin{itemize}
+%%\item Agoritmos e Estrutura de Dados I
+%%\item Agoritmos e Estrutura de Dados II
+%%\item Inteligência Artificial
+%%\end{itemize}
+%%\item \href{http://freds0.github.io}{http://freds0.github.io}
+%%\item fred.santos.oliveira@gmail.com
+%%\end{itemize}
+%%\end{column}%
+%%
+%%\end{columns}
+%%\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Ementa da disciplina}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Ementa da disciplina}
+Árvores. Fila de prioridades. Árvores binárias de Busca. Árvores de Altura Balanceada. Árvores B e indexação em arquivos. Algoritmos em Grafos: busca, numeração topológica, árvore geradora mínima e caminhos mínimos. Espalhamento. Processamento de Cadeias (busca de padrões e compactação de Dados).
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Objetivo Geral}
+\begin{itemize}
+ \item Apresentar estruturas de dados avançadas como árvores e grafos e mostrar suas aplicações em problemas.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Objetivos Específicos}
+\begin{itemize}
+ \item Apresentar as estruturas de dados Heap, árvores binárias, árvores balanceadas (AVL, B e Rubro Negra), grafos, filas de prioridade e tabelas hash.
+ \item Desenvolver os principais algoritmos para manipulação dessas estruturas de dados.
+\end{itemize}  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Conteúdo Programático}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Conteúdo Programático}
+\begin{itemize}
+  \item Unidade I - Tabelas Hash
+  \begin{itemize}
+  \item Tabelas Hash  
+  \end{itemize}
+   \item Unidade II - Árvores
+  \begin{itemize}
+  \item Introdução à Árvores
+  \item Árvores Binárias
+  \item Árvores Binárias de Busca   
+  \end{itemize}
+\end{itemize}
+ \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Conteúdo Programático}
+\begin{itemize}
+  \item Unidade III - Fila de Prioridade (Heap)
+  \begin{itemize}
+  \item Heap
+  \end{itemize}
+ 
+  \item Unidade IV - Árvores Balanceadas 
+  \begin{itemize}
+  \item Árvores AVL 
+  \item Árvores Rubro Negra  
+  \end{itemize}
+ \end{itemize}
+ \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Conteúdo Programático}
+\begin{itemize}
+  \item Unidade V - Árvores Balanceadas (Avançadas)
+  \begin{itemize}
+  \item Árvores B e variações    
+  \end{itemize}
+  
+  \item Unidade VI - Grafos
+  \begin{itemize}
+  \item Introdução à Grafos
+  \item Representação de Grafos (Matriz e Lista de Adjacência)
+  \end{itemize}  
+\end{itemize}
+ \end{frame}
+ 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Conteúdo Programático}
+\begin{itemize}
+   \item Unidade VII - Percurso em Grafos
+  \begin{itemize}
+  \item Busca em Largura 
+  \item Busca em Profundidade
+  \end{itemize}
+\end{itemize}
+ \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Conteúdo Programático}
+\begin{itemize}
+  \item Unidade VIII - Caminho Mínimo em Grafos
+  \begin{itemize}
+  \item Algoritmo de Kruskal
+  \item Algoritmo de Dijkstra
+  \end{itemize}
+   \item Unidade IX - Caminho Mínimo em Grafos
+  \begin{itemize}
+  \item Algoritmo de Bellman-Ford
+  \item Algoritmo de Floyd-Warshall  
+  \end{itemize}
+  
+\end{itemize}
+ \end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Metodologia}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Metodologia}
+Metodologia
+\begin{itemize}
+ \item Vídeo-Aulas assíncronas disponibilizadas on-line
+ \item Aulas síncronas para esclarecimento de dúvidas.
+ \item Desenvolvimento de exercícios.
+ \item Uso do Ambiente Virtual de Aprendizagem (www.ava.ufmt.br)
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Avaliações}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Avaliações}
+Avaliações
+\begin{itemize}
+ \item Lista de Exercícios ($Ex_1$, $Ex_2$ ... $Ex_n$).
+ \item Trabalhos Práticos (TP1, TP2).
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Avaliações}
+Avaliações
+\begin{itemize}
+ \item As médias das listas de exercícios (LE) e trabalhos práticos (TP) serão calculadas pelas fórmulas: 
+ \begin{equation}
+   LE = \frac { \sum_{i=1}^{n} Ex_i } {n}   \textrm{ e }  TP = \frac{(TP1+ TP2)}{2} \nonumber.
+ \end{equation}
+ \item A média final do aluno será calculada combinando as médias das listas de exercícios ($LE$) e dos trabalhos práticos ($TP$), da seguinte forma: 
+ \begin{equation}
+   MF = (0,7TP + 0,3LE) \geq 5,0, \nonumber
+ \end{equation}
+  para aprovação.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Avaliações}
+A média final necessária para ser aprovado é 5.0:
+\begin{itemize}
+ \item Se $MF \geq 5.0$ {\bf Aprovado}
+ \item Caso contrário, {\bf Reprovado}
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Bibliografia}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Bibliografia Utilizada}
+\begin{itemize}
+ \item ZIVIANI, N. Projeto de Algoritmos: com implementações em Pascal e C.
+Cengage Learning, 2010.
+ \item CORMEN, T. H. Algoritmos - Teoria e Prática. Elsevier, 2009.
+ \item DEITEL, H. C - Como programar. Pearson, 2011.
+ \item SEDGEWICK, R. Algorithms. 4th ed. Addison-Wesley, 2011.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+
+\end{document}

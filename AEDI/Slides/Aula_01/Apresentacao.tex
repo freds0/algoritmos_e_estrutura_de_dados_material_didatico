@@ -1,0 +1,293 @@
+%\documentclass{beamer}
+\documentclass[aspectratio=169]{beamer}
+\usetheme{Boadilla}
+
+%\usetheme{Warsaw}
+%\setbeamercovered{transparent}
+\beamertemplatetransparentcoveredhigh
+\usepackage[portuges]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref} 
+
+
+\newcommand{\eng}[1]{\textsl{#1}}
+\newcommand{\cod}[1]{\texttt{#1}}
+
+\title[Apresentação da Disciplina]{Apresentação da Disciplina\\
+   Algoritmos e Estrutura de Dados I}
+
+\author[IEng - UFMT]{Instituto de Engenharia -- UFMT}
+
+%\institute[2020/2]{Segundo Semestre de 2020}
+
+\date{}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+%\section*{Roteiro}
+
+\begin{frame}
+  \frametitle{Agenda}
+  \tableofcontents
+\end{frame}
+
+\section{Introdução}
+
+\begin{frame}{Quem sou Eu}
+\begin{columns}[T] % align columns
+\begin{column}{.30\textwidth}
+{\bf Frederico S. Oliveira}
+\begin{figure}[h]
+\includegraphics[width=3.5cm]{imagens/perfil.png}
+\end{figure}
+\end{column}%
+\hfill%
+\begin{column}{.64\textwidth}
+\begin{itemize}
+\item Bacharel e Mestre em Ciência da Computação (UFLA). 
+\item Doutorando em Inteligência Artificial (UFG). 
+\item Professor UFMT:
+\begin{itemize}
+\item Agoritmos e Estrutura de Dados I
+\item Agoritmos e Estrutura de Dados II
+\item Agoritmos e Estrutura de Dados III
+\item Programação Orientada a Objetos
+\item Inteligência Artificial
+\end{itemize}
+\item \href{http://freds0.github.io}{http://freds0.github.io}
+\item fred.santos.oliveira@gmail.com
+\end{itemize}
+\end{column}%
+
+\end{columns}
+\end{frame}
+
+
+\section{Ementa da disciplina}
+
+\begin{frame}
+\frametitle{Ementa da disciplina}
+Conceitos básicos de organização de computadores. Construção de algoritmos e sua representação em pseudocódigo e linguagens
+de alto nível. Desenvolvimento sistemático e implementação de programas. Algoritmos Iterativos e Recursivos. Estruturação,
+depuração, testes e documentação de programas. Resolução de problemas.
+\end{frame}
+
+\begin{frame}
+\frametitle{Justificativa}
+\begin{itemize}
+ \item A disciplina de Agoritmos e Estrutura de Dados I é a primeira disciplina em que o aluno dos cursos de engenharia de
+Várzea Grande terão contato com raciocínio lógico, técnicas de resolução de problemas computacionais e sua implementação em
+linguagem de programação. 
+ \item O conteúdo deve, portanto, abordar os aspectos básicos de algoritmos e desenvolvimento de
+programas, a saber: conceitos básicos de algoritmos, variáveis, expressões, estruturas de seleção e repetição, funções e
+recursividade.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Objetivo Geral}
+\begin{itemize}
+ \item Apresentar ao aluno uma visão geral sobre o projeto e a implementação de algoritmos. 
+ \item Fazer com que o aluno desenvolva capacidade para analisar problemas e criar soluções lógico-formais. 
+ \item Apresentar técnicas computacionais para resolução de problemas.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Objetivos Específicos}
+\begin{itemize}
+ \item Apresentar uma definição formal de algoritmo e discutir a importância deste conceito na resolução de problemas em Engenharia.
+ \item Apresentar noções sobre organização de computadores e modelos computacionais.
+ \item Estudar formas de representação de informação em computadores.
+\item Desenvolver habilidades úteis à construção, implementação, simulação e teste de algoritmos iterativos e recursivos.
+\end{itemize}  
+\end{frame}
+
+\section{Conteúdo Programático}
+
+\begin{frame}
+\frametitle{Conteúdo Programático}
+Unidade I - Conceitos Iniciais
+\begin{itemize}
+ \item História do computador
+ \item Organização de computadores
+ \item Modelo computacional
+ \item Definição formal de algoritmo
+ \item Modelagem de problemas computacionais
+ \item Introdução à linguagem C e primeiros comandos
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Conteúdo Programático}
+Unidade II - Algoritmos: Características, Funções Básicas e Modelagem
+\begin{itemize}
+ \item Variáveis
+ \item Expressões aritméticas
+ \item Atribuições
+ \item Comandos de Entrada e Saída
+ \item Leiaute e organização de código
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Conteúdo Programático}
+Unidade III - Estruturas de Controle
+\begin{itemize}
+ \item Conceitos
+ \item Expressões relacionais e lógicas
+ \item Comandos simples (if e else)
+ \item Comandos Encaixados
+ \item Escolhas Múltiplas
+ \item Teste de algoritmos condicionais
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Conteúdo Programático}
+Unidade IV - Estrutura de Repetição
+\begin{itemize}
+ \item Conceitos
+ \item Comandos simples (for, while e do...while)
+ \item Comandos encaixados
+ \item Teste de algoritmos iterativos
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Conteúdo Programático}
+Unidade V - Funções
+\begin{itemize}
+ \item Conceito
+ \item Sintaxe
+ \item Chamada, declaração, parâmetros, corpo e retorno
+ \item Teste de algoritmos com funções
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Conteúdo Programático}
+Unidade VI - Estruturas Homogêneas
+\begin{itemize}
+ \item Vetores
+ \item Matrizes
+ \item Cadeias de caracteres
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Conteúdo Programático}
+Unidade VII - Recursividade
+\begin{itemize}
+ \item Conceito
+ \item Funções recursivas
+ \item Teste de algoritmos recursivos
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Conteúdo Programático}
+Unidade VIII - Estruturas Avançadas
+\begin{itemize}
+ \item Estruturas não homogêneas (struct)
+ \item Busca sequencial
+ \item Ordenação (por seleção)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Conteúdo Programático}
+Unidade IX - Apontadores e Alocação de Memória
+\begin{itemize}
+ \item Apontadores (ponteiros)
+ \item Alocação e liberação de memória
+\end{itemize}
+\end{frame}
+
+\section{Metodologia}
+
+\begin{frame}
+\frametitle{Metodologia}
+Metodologia
+\begin{itemize}
+ \item Vídeo-Aulas assíncronas disponibilizadas on-line.
+ \item Aulas síncronas para esclarecimento de dúvidas.
+ \item Conteúdo disponível via Ambiente Virtual de Aprendizagem (www.ava.ufmt.br).
+ \item Uso do sistema de submissão de trabalhos (www.run.codes).
+\end{itemize}
+\end{frame}
+
+\section{Avaliações}
+
+\begin{frame}
+\frametitle{Avaliações}
+Avaliações
+\begin{itemize}
+ %\item Lista de Exercícios ($Ex_1$, $Ex_2$ ... $Ex_n$).
+ \item Trabalhos Práticos (TP1, TP2 e TP3).
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Avaliações}
+Avaliações
+\begin{itemize}
+ \item A média final do aluno será calculada de acordo com as médias trabalhos práticos, da seguinte forma: 
+ \begin{equation}
+   MF = (0,3TP1 + 0,3 TP2 + 0,4TP3) \geq 5,0, \nonumber
+ \end{equation}
+  para aprovação.
+\end{itemize}
+\end{frame}
+
+
+%\begin{frame}
+%\frametitle{Avaliações}
+%Avaliações
+%\begin{itemize}
+% \item Faltas acima de 25\% da carga horária implicarão em reprovação.
+% \item Ou seja, faltas acima de $0.25 \times 64 = 16$ horas-aula implicarão em reprovação. 
+% \item Cada dia de aula conta como duas horas-aula. Portanto, faltas acima de 8 (oito) dias de aula implicarão em reprovação.  
+%\end{itemize}
+%\end{frame}
+
+
+\section{Bibliografia}
+
+\begin{frame}
+\frametitle{Bibliografia Básica}
+\begin{itemize}
+ \item Schildt, H. C: completo e total. 3. ed. São Paulo: Makron Books, 1997.
+ \item Kernighan, Brian W. Ritchie, Dennis M. C: a linguagem de programacao. Rio de Janeiro. Elsevier, 2005.
+ \item Medina, M. Fertig. Algoritmos e Programação: Teoria e Prática. Novatec, 2006.
+ \item Ascencio, A. F. G. Campos, E. A. V. Fundamentos da Programação de Computadores: Algoritmos, Pascal, C/C++ e Java. Pearson, 2007.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Bibliografia Complementar}
+\begin{itemize}
+ \item Kernighan, B. W. Ritchie, D. M. C: a Linguagem de Programação Padrão ANSI. Campus, 1989.
+ \item Forbellone, A. L. V. Eberspächer, H. F. Lógica de programação: a construção de algoritmos e estruturas de dados. 3. ed. São Paulo. Pearson Prentice Hall, 2005.
+ \item Lopes, A. Garcia, G. Introdução à programação: 500 algoritmos resolvidos. Rio de Janeiro. Elsevier, 2004.
+ \item Salvetti, D. D. Barbosa, L. M. Algoritmos. São Paulo. Pearson Education, 1998.
+ \item Ziviani, N. Projeto de Algoritmos, Thomson, 2004.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Fim}
+\begin{center}
+\Huge Fim
+\end{center}
+\end{frame}
+
+
+\end{document}

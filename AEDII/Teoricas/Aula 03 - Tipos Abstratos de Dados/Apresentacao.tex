@@ -1,0 +1,480 @@
+\documentclass[aspectratio=169]{beamer}
+\usetheme{Boadilla}
+%\usetheme{Warsaw}
+%\setbeamercovered{transparent}
+\beamertemplatetransparentcoveredhigh
+\usepackage[portuges]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref} 
+\usepackage{listings}
+
+\lstset{frame=tb,
+  language=C,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\newcommand{\eng}[1]{\textsl{#1}}
+\newcommand{\cod}[1]{\texttt{#1}}
+
+\title[Ponteiros e Alocação Dinâmica]{Algoritmos e Estrutura de Dados II}
+\subtitle{Tipos Abstratos de Dados}
+\author[Frederico Santos de Oliveira]{prof. Frederico Santos de Oliveira}
+\institute[UFMT]{Universidade Federal de Mato Grosso\\ Faculdade de Engenharia}
+\date{}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+%\section*{Roteiro}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Agenda}
+  \tableofcontents
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Introdução}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Introdução}
+\huge{Qual a diferença entre um algoritmo e um programa?}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Introdução}
+\begin{itemize}
+\item Algoritmo
+\begin{itemize}
+\item Sequência de ações executáveis para a solução de um determinado tipo de problema ``apontando'' para a variável que contém o dado desejado.
+\item Exemplo: uma receita de bolo.
+\item Em geral, algoritmos trabalham sobre estruturas de dados.
+\end{itemize}
+\item Estruturas de Dados
+\begin{itemize}
+\item Conjunto de dados que representa uma situação real.
+\item Abstração da realidade.
+\item Estruturas de dados e algoritmos estão intimamente ligados.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Introdução}{Representação}
+\begin{itemize}
+\item Dados podem estar representados (estruturados) de diferentes maneiras.
+\item Normalmente, a escolha da representação é determinada pelas operações que serão utilizadas sobre eles.
+\item Exemplo: números inteiros.
+\begin{itemize}
+\item Representação por palitinhos: $II + IIII = IIIII$. 
+\item Boa para pequenos números (operação simples).=
+\item Representação decimal: $1278 + 321 = 1599$.
+\item Boa para números maiores (operação complexa).
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Introdução}{Exemplo}
+\begin{itemize}
+\item Como representar tempo?
+\item Depende das operações a serem realizadas:
+\begin{itemize}
+\item $time\_t$, tipo inteiro, conta o número de segundos desde 1/1/1970.
+\item $struct\_timespec$, struct com dois inteiros, um $time\_t$ e um contador de nanosegundos.
+\item $struct\_tm$, vários campos para segundo, minuto, dia, mês, ano, horário de verão, etc..
+\item $double$, pra armazenar intervalos de tempo.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Introdução}{Programa}
+\begin{itemize}
+\item Um programa é uma formulação concreta de um algoritmo abstrato, baseado em representações de dados específicas.
+\item Os programas são feitos em alguma linguagem que pode ser entendida e seguida pelo 
+computador.
+\item Linguagem de máquina.
+\item Linguagem de alto nível (uso de compilador).
+\item Utilizaremos a Linguagem C.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Introdução}{Linguagem C}
+\begin{itemize}
+\item Criada no início da década de 70 para a programação do 
+sistema operacional Unix 
+\item Uma das linguagens mais utilizadas no mundo, e serviu como base para outras como C++, C\#, Java e etc. 
+\item Filosofia: ``O programador sabe o que está fazendo''.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Tipos Abstratos de Dados}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Introdução}{Tipos Abstratos de Dados}
+\begin{itemize}
+\item Encapsulam a representação dos dados e as operações que podem ser realizadas sobre eles
+\item Usuário do TAD {\it vs.} programador do TAD
+\begin{itemize}
+\item Usuário só ``enxerga'' a interface, não a implementação.
+\item Não importa se a representação é feita com palitos, números decimais, ou em binário desde que a gente consiga somar, subtrair, multiplicar, etc..
+\end{itemize}
+\item Os usuários de um TAD só têm acesso às operações disponibilizadas sobre os dados.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Introdução}{Tipos Abstratos de Dados}
+Isolamento e Reuso:
+\begin{itemize}
+\item Podemos modificar a implementação do TAD sem modificar o código que usa o TAD.
+\item Também odemos modificar o código que usa o TAD sem modificar a implementação do TAD.
+\item O TAD pode ser reaproveitado em vários programas ou módulos.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Introdução}{Tipos Abstratos de Dados}
+Implementação:
+\begin{itemize}
+\item Em linguagens orientadas a objeto, como por exemplo C++ e Java, a implementação de TADs é feita por meio de classes. 
+\begin{itemize}
+\item Será estudado na disciplina POO.
+\end{itemize}
+\item Em linguagem estruturadas, como C e Pascal, a implementação de TADs é feita por meio da definições de tipos e implementação de funções.
+\item Em C, para definição de TADs, utiliza-se as instruções {\it typedef} e {\it struct}.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Registros (struct)} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Introdução}{Registros}
+\begin{itemize}
+\item Vetores e matrizes 
+\begin{itemize}
+\item Estruturas de dados homogêneas 
+\item Armazenam vários valores, mas todos de um mesmo tipo (todos int, todos double, todos float, todos char).
+\end{itemize}
+\item Registro (ou {\it struct})
+\begin{itemize}
+\item Tipo de dado estruturado heterogêneo.
+\item Coleção de variáveis referenciadas sobre um mesmo nome.
+\item Permite agrupar dados de diferentes tipos numa mesma estrutura (ao contrário de matrizes que possuem elementos de um mesmo tipo).
+\item Cada componente de um registro pode ser de um tipo diferente (int, char, ...)
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Introdução}{Registros}
+Registros ({\it struct}):
+\begin{itemize}
+\item Uma estrutura é uma coleção de uma ou mais variáveis colocadas juntas sob um único nome para manipulação conveniente. 
+\item Por exemplo, para representar um aluno são necessárias as informações nome, matrícula, conceito. 
+\item Ao invés de criar três variáveis, é possível criar uma única variável contendo três campos. 
+\item Em C, usa-se a instrução {\it struct} para representar esse tipo de dado.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Introdução}{Registros}
+Conceito de {\it struct}:
+\begin{itemize}
+\item Os elementos do registro são chamados de campos ou membros da struct.
+\item É utilizado para armazenar informações de um mesmo objeto.
+\item Exemplos: 
+\begin{itemize}
+\item carro $\rightarrow$ cor, marca, ano, placa, chassi.
+\item pessoa $\rightarrow$ nome, idade, endereço.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exemplos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Registros}{Exemplo}
+Exemplo de um registro para armazenar dados de um ponto em duas dimensões:
+\begin{lstlisting}
+struct ponto {
+  float x ;
+  float y ;
+};
+struct ponto p1;
+p1.x = 0.0;
+p1.y = 0.0;
+\end{lstlisting} 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Registros}{Exemplo}
+Exemplo de um registro para armazenar uma fração:
+\begin{lstlisting}
+struct fracao {
+  int numerador;
+  int denominador;
+};
+struct fracao f1;
+f1.numerador   = 1;
+f1.denominador = 2;
+\end{lstlisting} 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Registros}{Exemplo}
+Exemplo de um registro para armazenar dados de um aluno:
+\begin{lstlisting}
+struct aluno {
+  char nome[30];
+  int matricula;
+};
+struct aluno aluno_jose;
+strcpy(aluno_jose.nome,"Jose dos Santos");
+aluno_jose.matricula = 20169999; 
+\end{lstlisting} 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Registros}{Exemplo}
+Exemplo de um registro para armazenar uma data:
+\begin{lstlisting}
+struct data {
+  int dia;
+  int mes;
+  int ano;
+};
+struct data natal;
+natal.dia = 25;
+natal.mes = 12;
+natal.ano = 2017;
+\end{lstlisting} 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Registros}{Exemplo}
+Exemplo de um registro para armazenar dados de um aluno, que é formado por um campo do tipo registro:
+\begin{lstlisting}
+struct data {
+  int dia;
+  int mes;
+  int ano;
+};
+struct aluno {
+  char nome[30];
+  int matricula;
+  struct data nasc;
+};
+struct aluno aluno1;
+strcpy(aluno1.nome,"Jose dos Santos");
+aluno1.matricula = 20169999; 
+aluno1.nasc.dia  = 1;
+aluno1.nasc.mes = 1;
+aluno1.nasc.ano = 2000;
+\end{lstlisting} 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Declaração de Tipos (typedef)}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Declaração de Tipos}{Declaração de Tipos}
+\begin{itemize}
+\item Para simplificar, uma estrutura ou mesmo outros tipos de dados podem ser definidos como um novo tipo.
+\item Uso da construção {\it typedef}
+\end{itemize}
+\end{frame}	
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exemplos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Declaração de Tipos}{Exemplo}
+Exemplo da definição do tipo livro:
+\begin{lstlisting}
+typedef struct {
+   char titulo[50];
+   char autor[50];
+   char assunto[100];
+   int codigo;
+} livro;
+  \end{lstlisting} 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Declaração de Tipos}{Exemplo}
+Exemplo de uso do tipo livro:
+\begin{lstlisting}
+   livro book1;   
+   strcpy( book1.titulo, "C Como Programar");
+   strcpy( book1.autor, "H. M. Deitel"); 
+   strcpy( book1.assunto, "Programacao em c");
+   book1.codigo = 123456;
+   printf( "Titulo do livro : %s\n", book1.titulo);
+   printf( "Autor do livro : %s\n", book1.autor);
+   printf( "Assunto do livro : %s\n", book1.assunto);
+   printf( "Codigo do livro: %d\n", book1.codigo);
+  \end{lstlisting} 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Declaração de Tipos}{Exemplo}
+Exemplo de uso de ponteiro com registro:
+\begin{lstlisting}
+   livro *book2;
+   book2 = malloc(sizeof(livro));
+   strcpy( book2->titulo, "Projeto de Algoritmos");
+   strcpy( book2->autor, "Nivio Ziviani"); 
+   strcpy( book2->assunto, "Estruturas de dados");
+   book2->codigo = 999999;
+   printf( "Titulo do livro : %s\n", book2->titulo);
+   printf( "Autor do livro : %s\n", book2->autor);
+   printf( "Assunto do livro : %s\n", book2->assunto);
+   printf( "Codigo do livro: %d\n", book2->codigo);
+\end{lstlisting} 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Tipos Abstratos de Dados}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Tipos Abstratos de Dados}{Declaração de Tipos}
+\begin{itemize}
+\item Para implementar um Tipo Abstrato de Dados em C, usa-se a definição de tipos juntamente com a implementação de funções que agem sobre aquele tipo. 
+\item Como boa regra de programação, evita-se acessar o dado diretamente, fazendo o acesso 
+somente através das funções. 
+\end{itemize}
+\end{frame}	
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exemplos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Tipos Abstratos de Dados}{Exemplo}
+TAD para representar números complexos:
+\begin{lstlisting}
+typedef struct {
+  double real;
+  double img;
+} complexo;
+\end{lstlisting} 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Tipos Abstratos de Dados}{Exemplo}
+Função que soma dois  números complexos:
+\begin{lstlisting}
+complexo *soma(complexo *n1, complexo *n2) {
+  complexo *soma = malloc(sizeof(complexo));
+  soma->real = n1->real + n2->real;
+  soma->img = n1->img + n2->img;
+  return soma;
+}
+\end{lstlisting} 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Tipos Abstratos de Dados}{Exemplo}
+Função que multiplica dois números complexos:
+\begin{lstlisting}
+complexo *multiplica(complexo *n1, complexo *n2) {
+  complexo *mul = malloc(sizeof(complexo));
+  mul->real = n1->real * n2->real - n1->img * n2->img;
+  mul->img = n1->real * n2->img + n1->img * n2->real;
+  return mul;
+}
+\end{lstlisting} 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Tipos Abstratos de Dados}{Exemplo}
+Função que inverte um número complexo:
+\begin{lstlisting}
+complexo *inverte(complexo *n) {
+  complexo *inv = malloc(sizeof(complexo));
+  inv->real = (-1) * n->real;
+  inv->img = (-1) * n->img;
+  return inv;
+}
+\end{lstlisting} 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Tipos Abstratos de Dados}{Exemplo}
+Funções que inicializa e imprime números complexos:
+\begin{lstlisting}
+\begin{lstlisting}
+void inicializa(complexo *n, double r, double i) {
+  n ->real = r;
+  n ->img = i;
+}
+
+void escreve(complexo *n) {
+  printf("%.2f + %.2fi\n", n->real, n->img);
+}
+\end{lstlisting} 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Tipos Abstratos de Dados}{Exercício}
+Implemente um TAD conta bancária com campos número e saldo que suporte as as seguintes operações:
+\begin{itemize}
+\item Iniciar uma nova conta com um número e saldo.
+\item Depositar um valor na conta.
+\item Sacar um valor da conta.
+\item Imprimir o saldo.
+\end{itemize}
+\end{frame}	
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{FIM}
+\huge{Fim}
+\end{frame}	
+
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+\end{document}

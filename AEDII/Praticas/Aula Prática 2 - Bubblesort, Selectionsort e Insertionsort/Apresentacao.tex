@@ -1,0 +1,539 @@
+\documentclass[aspectratio=169]{beamer}
+\usetheme{Boadilla}
+%\usetheme{Warsaw}
+%\setbeamercovered{transparent}
+\beamertemplatetransparentcoveredhigh
+\usepackage[portuges]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese, linesnumbered, vlined, titlenumbered, ruled]{algorithm2e}
+\usepackage{hyperref} 
+
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\usepackage{listings}
+\lstdefinestyle{CStyle}{
+    language=C++,
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    keepspaces=true,                 
+    numbers=left,       
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+}
+
+
+\newcommand{\eng}[1]{\textsl{#1}}
+\newcommand{\cod}[1]{\texttt{#1}}
+
+\title[Algoritmos de Ordenação]{Algoritmos e Estrutura de Dados II}
+\subtitle{Exercício Prático\\Bubblesort, Insertionsort e Selectionsort}
+\author[Frederico Santos de Oliveira]{prof. Frederico Santos de Oliveira}
+\institute[UFMT]{Universidade Federal de Mato Grosso\\ Instituto de Engenharia}
+\date{}
+
+
+\AtBeginSection[]
+{
+	\begin{frame}
+	\frametitle{Roteiro da Aula}
+	\tableofcontents[currentsection]
+\end{frame}
+}
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section*{Roteiro}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Agenda}
+  \tableofcontents
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exercício 1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Exercício 1}
+Desenvolva um programa que gere um vetor com valores aleatórios.
+\end{frame}
+
+
+\begin{frame}[fragile]{Exercício 1}
+Primeiramente, vamos definir algumas constantes: 
+\begin{itemize}
+\item \verb|tamanho_vetor|: define a quantidade de elementos no vetor.
+\item \verb|valor_max|: define o maior valor a ser inserido no vetor.
+\item \verb|valor_min|: define o menor valor a ser inserido no vetor.
+\end{itemize}
+Definindo as constantes, respectivamente, com os valores 10, 20 e 0, o código na linguagem C fica assim:
+
+\begin{lstlisting}[style=CStyle]
+#define tamanho_vetor 10
+#define valor_max 20
+#define valor_min 0
+\end{lstlisting}     
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 1}
+Agora, dentro da função \verb|main()| vamos alocar um vetor de inteiros de tamanho igual \verb|tamanho_vetor|:
+\begin{lstlisting}[style=CStyle]
+int *vetor;
+vetor = malloc(tamanho_vetor*sizeof(int));
+\end{lstlisting}     
+Não se esqueça de desalocar no final:
+\begin{lstlisting}[style=CStyle]
+free(vetor);
+\end{lstlisting}     
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 1}
+\begin{itemize}
+\item Para inserir números aleatórios no vetor utilizamos a função \verb|rand()|.
+\item Acesse \href{http://linguagemc.com.br/valores-aleatorios-em-c-com-a-funcao-rand/}{\color{blue} esse link} para entender o funcionamento da função \verb|rand()| e \verb|srand()|.
+\item A função \verb|rand()|  é frequentemente usada em conjunto com a função \verb|time(NULL)|, da seguinte forma: \verb|srand(time(NULL))|.
+\end{itemize}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 1}{Vetor Aleatório}
+Vamos inserir valores aleatórios no vetor:
+\begin{lstlisting}[style=CStyle]
+srand(0);
+for (i = 0; i < tamanho_vetor; i++) 
+    vetor[i] = (rand() % valor_max) + valor_min;
+
+\end{lstlisting}  
+Em seguida, vamor imprimí-los:
+\begin{lstlisting}[style=CStyle]
+for(i = 0; i < tamanho_vetor; i++)
+    printf("%d ", vetor[i]);   
+\end{lstlisting}  
+Execute o código utilizando \verb|srand(time(NULL))|, lembre-se que é necessário incluir a biblioteca \verb|<time.h>|.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 1}{Solução}
+O código completo fica:
+\begin{lstlisting}[style=CStyle]
+#include<stdio.h>
+#include<stdlib.h>
+#include<time.h>
+#define tamanho_vetor 10
+#define valor_max 20
+#define valor_min 0
+int main() {
+    int i, *vetor;
+    srand(time(NULL));
+    vetor = malloc(tamanho_vetor*sizeof(int));
+    for (i = 0; i < tamanho_vetor; i++) 
+        vetor[i] = (rand() % valor_max) + valor_min;
+    for(i = 0; i < tamanho_vetor; i++)
+        printf("%d ", vetor[i]);
+    free (vetor);
+    return 0;
+}        
+\end{lstlisting}  
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exercício 2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 2}{Bubblesort}
+Dado o pseudocódigo a seguir, implemente o algoritmo de ordenação {\bf Bubblesort} e execute-o em um vetor formado por valores aleatórios.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 2}{Pseudocódigo}
+\begin{algorithm}[H]
+\caption{Bubblesort} 
+\label{Bubblesort}
+\Entrada{Vetor $V[0..n-1]$, tamanho $n$}
+\Saida{Vetor $V$ ordenado}
+\Inicio{
+  \Para {($i \leftarrow 1 \textrm{ até } n - 1$)} {
+    \Para {($j \leftarrow 0 \textrm{ até } n - i - 1$)} {
+    \Se { ($V[j] > V[j+1]$) } {
+	Trocar $V[j] \leftrightarrow V[j+1]$
+	}    
+    }
+  }
+}
+\end{algorithm}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Exercício 2}{Solução}
+\begin{lstlisting}[style=CStyle]
+void bubblesort(int n, int *vetor) {
+    int i, j, aux;
+    for(i=1; i<n; i++) {
+        for(j=0; j<n-i; j++) {
+            if(vetor[j]>vetor[j+1]) {
+                aux = vetor[j+1];
+                vetor[j+1] = vetor[j];
+                vetor[j] = aux;
+            }
+        }
+    }
+}
+\end{lstlisting}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exercício 3}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 3}{Selectionsort}
+Dado o pseudocódigo a seguir, implemente o algoritmo de ordenação {\bf Selectionsort} e execute-o em um vetor formado por valores aleatórios.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 3}{Pseudocódigo}
+\begin{algorithm}[H]
+\caption{Selectionsort} 
+\label{SelectionSort}
+\Entrada{Vetor $V[0..n-1]$, tamanho $n$}
+\Saida{Vetor $V$ ordenado}
+\Inicio{
+  \Para {$i \leftarrow 0 \textrm{ até } n-2$} {
+    $min \leftarrow i$ \\
+    \Para {$j \leftarrow i + 1 \textrm{ até } n-1$} {
+	\Se{$V[j] < V[min]$} {
+	  $min \leftarrow j$
+	}
+    }
+    trocar $V[min] \leftrightarrow V[i]$ \\    
+  }
+}
+\end{algorithm}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Exercício 3}{Solução}
+\begin{lstlisting}[style=CStyle]
+void selectionsort(int n, int *vetor) {
+    int i, j, aux, min;
+    for(i = 0; i < n-1; i++) {
+        min = i;
+        for(j = i+1; j < n; j++) {
+            if(vetor[j] < vetor[min])  {
+                min = j;
+            }
+        }
+        aux = vetor[min];
+        vetor[min] = vetor[i];
+        vetor[i] = aux;
+    }
+}
+\end{lstlisting}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exercício 4}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 4}{Inserionsort}
+Dado o pseudocódigo a seguir, implemente o algoritmo de ordenação {\bf Inserionsort} e execute-o em um vetor formado por valores aleatórios.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 4}{Pseudocódigo}
+\begin{algorithm}[H]
+\caption{Insertionsort} 
+\label{Insertionsort}
+\Entrada{Vetor $V[0..n-1]$, tamanho $n$}
+\Saida{Vetor $V$ ordenado}
+\Inicio{
+  \Para {($i \leftarrow 1 \textrm{ até } n - 1$)} {
+    $chave \leftarrow V[ i ]$ \\
+    $j \leftarrow i - 1$ \\
+    \Enqto {($j \geq 0 \textrm{ AND }  V[ j ] > chave$)} {
+	$V[j+1] \leftarrow V[j]$ \\
+	$j \leftarrow j - 1$ \\
+    }
+    $V[j+1] \leftarrow chave$ \\
+  }
+}
+\end{algorithm}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[fragile]{Exercício 4}{Solução}
+\begin{lstlisting}[style=CStyle]
+void insertionsort(int n, int *vetor) {
+    int i, j, chave;
+    for(i = 1; i < n; i++) {
+        chave = vetor[i];
+        j = i - 1;
+        while(j>=0 && vetor[j]>chave) {
+            vetor[j+1] = vetor[j];
+            j = j - 1;
+        }
+        vetor[j+1] = chave;
+    }
+}
+\end{lstlisting}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exercício 5}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 5}{Tempo Processamento}
+\begin{itemize}
+\item Calcule o tempo de processamento para ordenar um vetor contendo mil valores utilzando cada um dos algoritmos de ordenação. Para isso, utilizamos a função \verb|clock()|. 
+\item Acesse \href{http://wurthmann.blogspot.com/2015/04/medir-tempo-de-execucao-em-c.html}{\color{blue} esse link} para entender o funcionamento da função \verb|clock()|.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Introdução}
+Analise o exemplo a seguir que demostra como deve-se medir o tempo de processamento de um determinado programa. 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 5}{Tempo Processamento}
+\begin{lstlisting}[style=CStyle]
+#include <time.h>
+int main () {
+    clock_t tempoInicial, tempoFinal;
+    double tempoGasto;
+    tempoInicial = clock(); // Obtem o clock inicial
+    /* Adicione aqui a chamada do algoritmo de ordenacao */
+    tempoFinal = clock(); // Obtem o clock final
+    // Calcula o tempo gasto
+    tempoGasto = (tempoFinal-tempoInicial)*1000 / CLOCKS_PER_SEC); 
+    printf("Tempo em milisegundos: %lf", (double)tempoGasto);
+}
+\end{lstlisting}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exercício 6}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 6}{Ordenando um Registro}
+\begin{itemize}
+\item Execute o algoritmo {\bf Bubblesort}, entretanto, dessa vez deverá ordenar um vetor formado por registros, confome a estrutura de dados a seguir. 
+\item Em seguida, calcule seu tempo de processamento para ordenacão de um vetor de dados aleatórios contendo mil valores.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 6}{Pseudocódigo}
+\begin{algorithm}[H]
+\caption{Selectionsort} 
+\label{SelectionSort}
+\Entrada{Vetor $V[0..n-1]$, tamanho $n$}
+\Saida{Vetor $V$ ordenado}
+\Inicio{
+  \Para {$i \leftarrow 0 \textrm{ até } n-2$} {
+    $min \leftarrow i$ \\
+    \Para {$j \leftarrow i + 1 \textrm{ até } n-1$} {
+	\Se{$V[j] < V[min]$} {
+	  $min \leftarrow j$
+	}
+    }
+    trocar $V[min] \leftrightarrow V[i]$ \\    
+  }
+}
+\end{algorithm}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 6}{Estrutura de Dados}
+\begin{lstlisting}[style=CStyle]
+typedef struct {
+    int chave;
+    int valor;
+} dado;
+
+\end{lstlisting}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 6}{Ordenando um Registro}
+O primeiro passo é criar um vetor de registros aleatórios.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 6}{Algoritmo de Ordenacão}
+\begin{lstlisting}[style=CStyle]
+#define tamanho_vetor 10
+#define valor_max 20
+#define valor_min 0
+int main () {
+    srand(0);
+    vetor = malloc(tamanho_vetor*sizeof(dado));
+    for (int i = 0; i < tamanho_vetor; i++) {
+        vetor[i].chave = (rand() % valor_max) + valor_min;
+        vetor[i].valor = i;
+    }
+    free(vetor);
+}
+\end{lstlisting}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 6}{Ordenando um Registro}
+\begin{itemize}
+\item Agora vamos adaptar o algoritmo de ordenacão {\bf Bubblesort}.
+\item O ponto chave é alterar as linhas 4 e 5.
+\end{itemize}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 2}{Pseudocódigo}
+\begin{algorithm}[H]
+\caption{Bubblesort} 
+\label{Bubblesort}
+\Entrada{Vetor $V[0..n-1]$, tamanho $n$}
+\Saida{Vetor $V$ ordenado}
+\Inicio{
+  \Para {($i \leftarrow 1 \textrm{ até } n - 1$)} {
+    \Para {($j \leftarrow 0 \textrm{ até } n - i - 1$)} {
+    \textcolor{red} {
+    	\Se { ($V[j] > V[j+1]$) } {
+			Trocar $V[j] \leftrightarrow V[j+1]$
+		}    
+    }
+  }
+}
+}
+\end{algorithm}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 6}{Estrutura de Dados}
+\begin{lstlisting}[style=CStyle]
+void bubblesort(int n, dado *vetor) {
+    int i, j;
+    dado aux;
+    for(i=1; i<n; i++) {
+        for(j=0; j<n-i; j++) {
+            if(vetor[j].chave > vetor[j+1].chave)  {
+                aux.chave = vetor[j+1].chave ;
+                aux.valor = vetor[j+1].valor ;
+                vetor[j+1].chave = vetor[j].chave;
+                vetor[j+1].valor = vetor[j].valor;                
+                vetor[j].chave = aux.chave;
+                vetor[j].valor = aux.valor;
+            }
+        }
+    }
+}
+\end{lstlisting}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 6}{Ordenando um Registro}
+Voce pode criar uma funcão que troque os elementos.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 6}{Funcão Tocar}
+\begin{lstlisting}[style=CStyle]
+void trocar(dado *d1, dado *d2) {
+	dado aux;
+	aux.chave = d2->chave;
+	aux.valor = d2->valor;
+	d2->chave = d1->chave;
+	d2->valor = d1->valor;                
+	d1->chave = aux.chave;
+	d1->valor = aux.valor;
+}
+\end{lstlisting}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 6}{Bubblesort}
+\begin{lstlisting}[style=CStyle]
+void bubblesort(int n, dado *vetor) {
+    int i, j;
+    for(i=1; i<n; i++) {
+        for(j=0; j<n-i; j++) {
+            if(vetor[j].chave > vetor[j+1].chave)  {
+                trocar(&vetor[j], &vetor[j+1]);
+            }
+        }
+    }
+}
+\end{lstlisting}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 6}{Ordenando um Registro}
+Por fim, vamos adicionar as variáveis para contabilizar o tempo gasto.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 6}{Bubblesort}
+\begin{lstlisting}[style=CStyle]
+clock_t tempoInicial, tempoFinal;
+dado *vetor;
+double tempoGasto;
+tempoInicial = clock(); // Obtem o clock inicial
+bubblesort(tamanho_vetor, vetor);
+tempoFinal = clock(); // Obtem o clock final
+// Calcula o tempo gasto
+tempoGasto = (tempoFinal-tempoInicial)*1000 / CLOCKS_PER_SEC; 
+\end{lstlisting}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+\end{document}

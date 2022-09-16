@@ -1,0 +1,259 @@
+%\documentclass{beamer}
+\documentclass[aspectratio=169]{beamer}
+\usetheme{Boadilla}
+%\usetheme{Warsaw}
+%\setbeamercovered{transparent}
+\beamertemplatetransparentcoveredhigh
+\usepackage[portuges]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref} 
+
+
+\newcommand{\eng}[1]{\textsl{#1}}
+\newcommand{\cod}[1]{\texttt{#1}}
+
+\title[Conceitos Algoritmos]{Conceitos Algoritmos\\
+   Algoritmos e Estrutura de Dados I}
+\author[IEng - UFMT]{Instituto de Engenharia -- UFMT}
+%\institute[2020/2]{Segundo Semestre de 2020}
+\date{}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+%\section*{Roteiro}
+
+\begin{frame}
+  \frametitle{Agenda}
+  \tableofcontents
+\end{frame}
+
+\section{Introdução}
+
+\begin{frame}
+  \frametitle{Introdução}
+\begin{itemize}
+ \item Definição 1: Algoritmo é uma sequência de instruções bem definidas para a solução de um problema em um tempo finito.
+ \item Definição 2: Algoritmo é a especificação da sequencia ordenada de passos que deve ser seguida para a solução de um problema ou para a realização de uma tarefa.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Introdução}
+  Exemplos de algoritmos:
+\begin{itemize}
+ \item Instruções para utilizar um aparelho doméstico.
+ \item Receita de um bolo.
+ \item Fórmula matemática para calcular uma operação.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Introdução}
+ Exemplo: como preparar um sanduiche:
+\begin{itemize}
+ \item corte o pão ao meio.
+ \item abra o pão.
+ \item insira o presunto e o queijo.
+ \item feche o pão.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Introdução}
+  Todo algoritmo deve satisfazer:
+\begin{itemize}
+ \item Entrada: zero ou mais valores de entrada.
+ \item Saída: pelo menos um valor deve ser produzido.
+ \item Claridade: toda instrução deve ser clara e não ambígua.
+ \item Término: o programa deve terminar depois de um número finito de passos.
+ \item Efetividade: toda instrução deve ser factível.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Introdução}
+\begin{itemize}
+ \item Um algoritmo pode ser representado de diversas formas.
+ \item Exemplo: algoritmo que converte Celsius em Fahrenheit.
+ \item Representação algébrica: $F = \frac{9}{5} \times C + 32$.
+ \item Representação narrativa: multiplicar a temperatura em graus Celsius por $\frac{9}{5}$ e então somar 32.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Introdução}
+  Descrição Narrativa
+\begin{itemize}
+ \item Nesta forma de representação os algoritmos são expressos diretamente na linguagem natural.
+ \item Exemplo: cálculo da média de um aluno.
+ \begin{itemize}  
+ \item Obter as notas da primeira e da segunda prova.
+ \item Calcular a média aritmética entre as duas notas.
+ \item Se a média for igual ou maior que 6, o aluno foi aprovado, caso contrário, ele foi reprovado.
+ \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Introdução}
+ A linguagem natural é ambígua. Exemplo: fazendo compras.
+\begin{itemize}
+ \item Vá ao supermercado.
+ \item Compre seis laranjas.
+ \item Se tiver limões, compre 1 dúzia.
+ \end{itemize}
+\end{frame}
+
+\section{Fluxograma}
+
+\begin{frame}
+  \frametitle{Fluxograma}
+  Descrição por meio de Fluxograma
+\begin{itemize}
+ \item É a representação gráfica de algoritmos onde formas geométricas diferentes implicam ações (instruções, comandos) diferentes.
+ \item Tal propriedade facilita o entendimento das ideias contidas nos algoritmos.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Fluxograma}
+  Descrição por meio de Fluxograma
+\begin{itemize}
+ \item Esta forma é aproximadamente intermediária à descrição narrativa e a descrição em linguagem de programação, pois é menos imprecisa.
+ \item Não se preocupa com detalhes de implementação.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Fluxograma}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=250pt]{imgs/fluxograma.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Fluxograma}
+Exemplo cálculo da média.  
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=90pt]{imgs/media.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Fluxograma}
+Exemplo cálculo da média com mensagem.  
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=120pt]{imgs/media2.png}
+\end{figure}
+\end{frame}
+
+\section{Pseudocódigo}
+
+\begin{frame}
+  \frametitle{Pseudocódigo}
+  Descrição por meio de {\bf pseudocódigo}
+\begin{itemize}
+ \item É uma técnica textual de representação de algoritmo.
+ \item Também é conhecida como {\bf Português Estruturado} ou {\bf Portugol}.
+ \item Esta forma de representação é rica em detalhes, com o a definição dos tipos das variáveis usadas no algoritmo.
+ \item Assemelha-se à forma em que os programas são escritos.
+ \item Facilita a tradução manual do algoritmo para uma linguagem de programação.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Pseudocódigo}
+Exemplo cálculo da média utilizando {\bf pseudocódigo}.  
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=120pt]{imgs/pseudocodigo.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Pseudocódigo}
+Exemplo encontrar o maior de dois números.  
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=100pt]{imgs/pseudocodigo2.png}
+\end{figure}
+\end{frame}
+
+\section{Programação}
+
+\begin{frame}
+  \frametitle{Programação}
+{\bf Programação}:
+\begin{itemize}
+ \item É o ato de escrever um programa em alguma \underline{linguagem de programação.}
+ \item Programas são formulações concretas de algoritmos abstratos, baseados em representações e estruturas específicas de dados.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Programação}
+  Etapas de desenvolvimento de um programa:
+\begin{itemize}
+ \item {\bf Análise}
+ \begin{itemize}
+  \item Estudar o enunciado do problema.
+  \item Definir os dados de entrada, o processamento e os dados de saída.
+ \end{itemize}
+ \item {\bf Algoritmo.}
+  \begin{itemize}
+    \item Descrever o problema com suas soluções.
+  \end{itemize}
+ \item {\bf Codificação}
+ \begin{itemize}
+  \item Transformar o algoritmo em uma linguagem de programação.
+ \end{itemize} 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Programação}
+  Processo de {\bf programação}:
+\begin{itemize}
+ \item Inicia com a edição de um programa-fonte (ou código-fonte) e termina com a geração de um programa-executável.
+ \item Passos:
+ \begin{itemize}
+  \item O {\it programa-fonte} é criado em um editor de textos (IDE).
+  \item O {\it compilador} analisa o código-fonte. 
+  \item Caso tenha algum erro, será informado.
+  \item Caso contrário, gera o {\it programa-executável}.
+ \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Programação}
+Principais termos:
+\begin{itemize}
+ \item {\bf Código-fonte}: contém os comandos da linguagem de programação.
+ \item {\bf Compilador}: responsável por analisar o código-fonte e traduzí-lo para linguagem de máquina.
+ \item {\bf Programa-executável}: é o código traduzido em linguagem de máquina que será executado pelo computador.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Fim}
+\begin{center}
+\Huge Fim
+\end{center}
+\end{frame}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+\end{document}

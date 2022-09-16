@@ -1,0 +1,120 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=9"/>
+<meta name="generator" content="Doxygen 1.8.7"/>
+<title>Estruturas de Dados na Linguagem C: Código-Fonte de Pilha.h</title>
+<link href="tabs.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript" src="dynsections.js"></script>
+<link href="search/search.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="search/search.js"></script>
+<script type="text/javascript">
+  $(document).ready(function() { searchBox.OnSelectItem(0); });
+</script>
+<link href="doxygen.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<table cellspacing="0" cellpadding="0">
+ <tbody>
+ <tr style="height: 56px;">
+  <td style="padding-left: 0.5em;">
+   <div id="projectname">Estruturas de Dados na Linguagem C
+   </div>
+  </td>
+ </tr>
+ </tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Gerado por Doxygen 1.8.7 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "search",false,'Busca');
+</script>
+  <div id="navrow1" class="tabs">
+    <ul class="tablist">
+      <li><a href="index.html"><span>Página&#160;Principal</span></a></li>
+      <li><a href="annotated.html"><span>Estruturas&#160;de&#160;Dados</span></a></li>
+      <li class="current"><a href="files.html"><span>Arquivos</span></a></li>
+      <li>
+        <div id="MSearchBox" class="MSearchBoxInactive">
+        <span class="left">
+          <img id="MSearchSelect" src="search/mag_sel.png"
+               onmouseover="return searchBox.OnSearchSelectShow()"
+               onmouseout="return searchBox.OnSearchSelectHide()"
+               alt=""/>
+          <input type="text" id="MSearchField" value="Busca" accesskey="S"
+               onfocus="searchBox.OnSearchFieldFocus(true)" 
+               onblur="searchBox.OnSearchFieldFocus(false)" 
+               onkeyup="searchBox.OnSearchFieldChange(event)"/>
+          </span><span class="right">
+            <a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="search/close.png" alt=""/></a>
+          </span>
+        </div>
+      </li>
+    </ul>
+  </div>
+  <div id="navrow2" class="tabs2">
+    <ul class="tablist">
+      <li><a href="files.html"><span>Lista&#160;de&#160;Arquivos</span></a></li>
+      <li><a href="globals.html"><span>Globais</span></a></li>
+    </ul>
+  </div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow"
+     onmouseover="return searchBox.OnSearchSelectShow()"
+     onmouseout="return searchBox.OnSearchSelectHide()"
+     onkeydown="return searchBox.OnSearchSelectKey(event)">
+<a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(0)"><span class="SelectionMark">&#160;</span>Todos</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(1)"><span class="SelectionMark">&#160;</span>Estruturas de Dados</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(2)"><span class="SelectionMark">&#160;</span>Arquivos</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(3)"><span class="SelectionMark">&#160;</span>Funções</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(4)"><span class="SelectionMark">&#160;</span>Variáveis</a><a class="SelectItem" href="javascript:void(0)" onclick="searchBox.OnSelectItem(5)"><span class="SelectionMark">&#160;</span>Definições de Tipos</a></div>
+
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe src="javascript:void(0)" frameborder="0" 
+        name="MSearchResults" id="MSearchResults">
+</iframe>
+</div>
+
+<div class="header">
+  <div class="headertitle">
+<div class="title">Pilha.h</div>  </div>
+</div><!--header-->
+<div class="contents">
+<a href="Pilha_8h.html">Vá para a documentação deste arquivo.</a><div class="fragment"><div class="line"><a name="l00001"></a><span class="lineno">    1</span>&#160;</div>
+<div class="line"><a name="l00008"></a><span class="lineno">    8</span>&#160;<span class="preprocessor">#include &quot;<a class="code" href="Noh_8h.html">Noh.h</a>&quot;</span></div>
+<div class="line"><a name="l00012"></a><span class="lineno"><a class="line" href="structpilha.html">   12</a></span>&#160;<span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
+<div class="line"><a name="l00013"></a><span class="lineno"><a class="line" href="structpilha.html#aefa51c1937df509cba48dbfb6784fd96">   13</a></span>&#160;  <a class="code" href="structNoh.html">noh</a> *<a class="code" href="structpilha.html#aefa51c1937df509cba48dbfb6784fd96">fundo</a>;</div>
+<div class="line"><a name="l00014"></a><span class="lineno"><a class="line" href="structpilha.html#ab1f3f0694d5334af3f5dc0596b728316">   14</a></span>&#160;  <a class="code" href="structNoh.html">noh</a> *<a class="code" href="structpilha.html#ab1f3f0694d5334af3f5dc0596b728316">topo</a>;  </div>
+<div class="line"><a name="l00015"></a><span class="lineno"><a class="line" href="structpilha.html#afe4a242abd51f12ad1acdccbfd5e8b8d">   15</a></span>&#160;  <span class="keywordtype">int</span> <a class="code" href="structpilha.html#afe4a242abd51f12ad1acdccbfd5e8b8d">tamanho</a>; </div>
+<div class="line"><a name="l00016"></a><span class="lineno">   16</span>&#160;} <a class="code" href="structpilha.html">pilha</a>;</div>
+<div class="line"><a name="l00017"></a><span class="lineno">   17</span>&#160;</div>
+<div class="line"><a name="l00025"></a><span class="lineno">   25</span>&#160;<span class="keywordtype">void</span> <a class="code" href="Pilha_8h.html#affd6f252304427a8610a1c097705f4d6">CriaPilha</a>(<a class="code" href="structpilha.html">pilha</a> *p);</div>
+<div class="line"><a name="l00034"></a><span class="lineno">   34</span>&#160;<span class="keywordtype">int</span> <a class="code" href="Pilha_8h.html#a8f0b0f99bbf4f9c001e42242e0641fb1">Vazia</a>(<a class="code" href="structpilha.html">pilha</a> p);</div>
+<div class="line"><a name="l00043"></a><span class="lineno">   43</span>&#160;<span class="keywordtype">void</span> <a class="code" href="Pilha_8h.html#ada9910865321a36e15d598cd37dfc56e">Empilha</a>(<span class="keywordtype">int</span> x, <a class="code" href="structpilha.html">pilha</a> *p);</div>
+<div class="line"><a name="l00052"></a><span class="lineno">   52</span>&#160;<span class="keywordtype">void</span> <a class="code" href="Pilha_8h.html#a36283541233e699cf48218da656cfb55">Desempilha</a>(<a class="code" href="structpilha.html">pilha</a> *p, <span class="keywordtype">int</span> *item);</div>
+<div class="line"><a name="l00058"></a><span class="lineno">   58</span>&#160;<span class="keywordtype">int</span> <a class="code" href="Pilha_8h.html#adc8f52979c2d34d6f9d280dd904a097d">Tamanho</a>(<a class="code" href="structpilha.html">pilha</a> p);</div>
+<div class="line"><a name="l00066"></a><span class="lineno">   66</span>&#160;<span class="keywordtype">void</span> <a class="code" href="Pilha_8h.html#a63b837b5efb6af92be63aeb8e5981965">ApagaPilha</a>(<a class="code" href="structpilha.html">pilha</a> *p);</div>
+<div class="ttc" id="structpilha_html_ab1f3f0694d5334af3f5dc0596b728316"><div class="ttname"><a href="structpilha.html#ab1f3f0694d5334af3f5dc0596b728316">pilha::topo</a></div><div class="ttdeci">noh * topo</div><div class="ttdef"><b>Definition:</b> Pilha.h:14</div></div>
+<div class="ttc" id="Pilha_8h_html_a8f0b0f99bbf4f9c001e42242e0641fb1"><div class="ttname"><a href="Pilha_8h.html#a8f0b0f99bbf4f9c001e42242e0641fb1">Vazia</a></div><div class="ttdeci">int Vazia(pilha p)</div><div class="ttdoc">Verifica se a pilha passada como parametro estah vazia. </div><div class="ttdef"><b>Definition:</b> Pilha.c:19</div></div>
+<div class="ttc" id="structNoh_html"><div class="ttname"><a href="structNoh.html">Noh</a></div><div class="ttdoc">Definicao do TAD noh. </div><div class="ttdef"><b>Definition:</b> Noh.h:8</div></div>
+<div class="ttc" id="structpilha_html_aefa51c1937df509cba48dbfb6784fd96"><div class="ttname"><a href="structpilha.html#aefa51c1937df509cba48dbfb6784fd96">pilha::fundo</a></div><div class="ttdeci">noh * fundo</div><div class="ttdef"><b>Definition:</b> Pilha.h:13</div></div>
+<div class="ttc" id="Pilha_8h_html_adc8f52979c2d34d6f9d280dd904a097d"><div class="ttname"><a href="Pilha_8h.html#adc8f52979c2d34d6f9d280dd904a097d">Tamanho</a></div><div class="ttdeci">int Tamanho(pilha p)</div><div class="ttdoc">Retorna o tamanho da pilha. </div><div class="ttdef"><b>Definition:</b> Pilha.c:48</div></div>
+<div class="ttc" id="structpilha_html_afe4a242abd51f12ad1acdccbfd5e8b8d"><div class="ttname"><a href="structpilha.html#afe4a242abd51f12ad1acdccbfd5e8b8d">pilha::tamanho</a></div><div class="ttdeci">int tamanho</div><div class="ttdef"><b>Definition:</b> Pilha.h:15</div></div>
+<div class="ttc" id="Pilha_8h_html_a63b837b5efb6af92be63aeb8e5981965"><div class="ttname"><a href="Pilha_8h.html#a63b837b5efb6af92be63aeb8e5981965">ApagaPilha</a></div><div class="ttdeci">void ApagaPilha(pilha *p)</div><div class="ttdoc">Apaga toda a pilha, inclusive o noh vazio localizado no topo da pilha. </div><div class="ttdef"><b>Definition:</b> Pilha.c:53</div></div>
+<div class="ttc" id="structpilha_html"><div class="ttname"><a href="structpilha.html">pilha</a></div><div class="ttdoc">Definicao do TAD fila. </div><div class="ttdef"><b>Definition:</b> Pilha.h:12</div></div>
+<div class="ttc" id="Pilha_8h_html_a36283541233e699cf48218da656cfb55"><div class="ttname"><a href="Pilha_8h.html#a36283541233e699cf48218da656cfb55">Desempilha</a></div><div class="ttdeci">void Desempilha(pilha *p, int *item)</div><div class="ttdoc">Desempilha um item da pilha armazenando seu valor na variavel item. </div><div class="ttdef"><b>Definition:</b> Pilha.c:33</div></div>
+<div class="ttc" id="Pilha_8h_html_affd6f252304427a8610a1c097705f4d6"><div class="ttname"><a href="Pilha_8h.html#affd6f252304427a8610a1c097705f4d6">CriaPilha</a></div><div class="ttdeci">void CriaPilha(pilha *p)</div><div class="ttdoc">Cria uma pilha vazia, atribuindo o endereco a um ponteiro passado como parametro. ...</div><div class="ttdef"><b>Definition:</b> Pilha.c:11</div></div>
+<div class="ttc" id="Noh_8h_html"><div class="ttname"><a href="Noh_8h.html">Noh.h</a></div><div class="ttdoc">Conteudo do tipo abstrato de dado Noh. </div></div>
+<div class="ttc" id="Pilha_8h_html_ada9910865321a36e15d598cd37dfc56e"><div class="ttname"><a href="Pilha_8h.html#ada9910865321a36e15d598cd37dfc56e">Empilha</a></div><div class="ttdeci">void Empilha(int x, pilha *p)</div><div class="ttdoc">Empilha o item x na pilha p. </div><div class="ttdef"><b>Definition:</b> Pilha.c:24</div></div>
+</div><!-- fragment --></div><!-- contents -->
+<!-- start footer part -->
+<hr class="footer"/><address class="footer"><small>
+Gerado em Domingo, 4 de Dezembro de 2016 12:32:47 para Estruturas de Dados na Linguagem C por &#160;<a href="http://www.doxygen.org/index.html">
+<img class="footer" src="doxygen.png" alt="doxygen"/>
+</a> 1.8.7
+</small></address>
+</body>
+</html>

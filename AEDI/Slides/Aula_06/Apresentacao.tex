@@ -1,0 +1,316 @@
+%\documentclass{beamer}
+\documentclass[aspectratio=169]{beamer}
+\usetheme{Boadilla}
+%\usetheme{Warsaw}
+%\setbeamercovered{transparent}
+\beamertemplatetransparentcoveredhigh
+\usepackage[portuges]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref} 
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=C,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+\newcommand{\eng}[1]{\textsl{#1}}
+\newcommand{\cod}[1]{\texttt{#1}}
+
+\title[Variáveis e Operadores]{Variáveis e Operadores\\
+   Algoritmos e Estrutura de Dados I}
+\author[IEng - UFMT]{Instituto de Engenharia -- UFMT}
+%\institute[2020/2]{Segundo Semestre de 2020}
+\date{}
+
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+%\section*{Roteiro}
+
+\begin{frame}
+  \frametitle{Agenda}
+  \tableofcontents
+\end{frame}
+
+\section{Objetivos}
+\begin{frame}
+  \frametitle{Objetivos}
+\begin{itemize}
+ \item Entender como funciona a memória do computador.
+ \item Aprender a usar variáveis para armazenar dados na memória.
+ \item Entender a representação para os tipos de variáveis.
+\end{itemize}
+\end{frame}
+
+\section{Memória}
+
+\begin{frame}
+  \frametitle{Memória}
+\begin{itemize}
+ \item A memória pode ser entendida como uma sequência de células nas quais se pode armazenar um valor correspondente a um dado.
+ \item Uma célula de memória armazena um único valor (conteúdo), que é representado por uma sequência de bits. 
+ \item Um {\bf bit} nada mais é que um dos valores 0 ou 1. A uma sequência de 8 bits damos o nome de {\bf byte}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Memória}
+  \begin{figure}[!ht]
+  \centering
+  \includegraphics[width=150pt]{imgs/memoria.png}
+\end{figure}
+Representação da memória.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Memória}
+\begin{itemize}
+ \item Um programa nada mais faz que manipular valores que estão armazenados nas células de memória.
+ \item O efeito final do programa é dado pelo conteúdo final das células de memória que ele manipula.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Memória}
+  Exemplo algoritmo que calcula a média de dois valores:
+\begin{enumerate}
+ \item Leia um numero e armazene no endereço 990101.
+ \item Leia outro numero e armazene no endereço 990102.
+ \item Some os valores nos endereços 990101 e 990102 e armazene no endereço 990103.
+ \item Divida o valor armazenado no endereço 990103 por dois e armazene o resultado no endereço 990104.
+ \item Informe o valor armazenado no endereço 990104.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Memória}
+\begin{itemize}
+ \item Essa forma complicada utiliza um nível de complexidade desnecessário.
+ \item O uso de endereços fixos de memória torna-se impraticável para algoritmos longos.
+ \item Por esse motivo, as linguagens de programação criaram o conceito de variáveis, para abstrair a complexidade do endereçamente das células de memória.
+\end{itemize}
+\end{frame}
+
+\section{Variáveis}
+
+\begin{frame}
+  \frametitle{Variáveis}
+\begin{itemize}
+ \item Variáveis são abstrações da noção de célula de memória.
+ \item São espaços de memória reservados que guardam valores durante a execução de um programa.
+ \item Cada variável é caracterizada pelo seu rótulo e seu conteúdo.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Variáveis}
+  Exemplo algoritmo que calcula a média de dois valores:
+\begin{enumerate}
+ \item Leia um número e armazene na variável $x$.
+ \item Leia outro número e armazene na variável $y$.
+ \item Some os valores das variáveis $x$ e $y$ e armazene na variável $z$.
+ \item Divida o valor de $z$ por dois e armazene o resultado na variável $w$.
+ \item Informe o valor da variável $w$.
+\end{enumerate}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Tipos de Variáveis}  
+\begin{itemize}
+ \item O tipo de uma variável informa a quantidade de memória, em bytes, que a variável ocupará e a forma como um valor deverá ser armazenado.
+ \item Há cinco tipos básicos de dados em C:
+\end{itemize}
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=200pt]{imgs/tipos_basicos.png}
+\end{figure}
+\end{frame}
+
+\section{Representação Binária: Tipo int}
+
+\begin{frame}
+  \frametitle{Representação Binária}
+\begin{itemize}
+\item As variáveis que armazenam números inteiros são declaradas como sendo do tipo int.
+ \item Computadores utilizam o sistema binária
+ \item No sistema decimal, a base de contagem é o número 10: alfabeto de 10 símbolos: 0,1,2,3,4,5,6,7,8,9.
+ \item No sistema binário, a base de contagem é o número 2: alfabeto de 2 símbolos: 0,1.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Representação Binária}
+\begin{itemize}
+ \item O significado de cada dígito em determinada posição é o valor da casa multiplicado pelo valor do dígito e a quantidade representada é a soma de todos os produtos.
+ \item A equação a seguir transforma um número em base $B$ para decimal
+ \begin{equation}
+  x = a_nB^n + a_{n-1}B^{n-1} + ... + a_0 B^0, \nonumber
+ \end{equation}
+\item onde cada $a_i$ é um número inteiro não negativo e $n$ é um valor que representa a posição mais significativo do número.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Representação Binária}
+  Exemplos na base decimal:
+\begin{itemize}
+ \item $(3547)_{10} = 3 \times 10^3 + 5 \times 10^2 + 4 \times 10^1 + 7 \times 10^0$.
+ \item $(2371)_{10} = ?$ 
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Representação Binária}
+  Exemplos na base binária:
+\begin{itemize}
+ \item $(1011)_{2} = 1 \times 2^3 + 0 \times 2^2 + 1 \times 2^1 + 1 \times 2^0 = 11 $.
+ \item $(1101)_{2} = 1 \times 2^3 + 1 \times 2^2 + 0 \times 2^1 + 1 \times 2^0 = 13 $
+ \item $(1010)_{2} = ?$
+ \item $(0111)_{2} = ?$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Representação Binária}
+\begin{itemize}
+ \item Com 1 bit podemos representar dois valores: 0 e 1.
+ \item Com 2 bits podemos representar 4 valores: 00,01,10,11.
+ \item Com 4 bits podemos representar 16 valores distintos.
+ \item Com $n$ bits podemos representar $2^n$ valores distintos.
+\end{itemize}
+\end{frame}
+
+\section{Conversão Binário para Decimal}
+
+\begin{frame}
+  \frametitle{Conversão Binário para Decimal}
+\begin{itemize}
+ \item Números binários são representados em grupos de 4 em 4.
+ \item $(1001{\ } 1011)_{2} = 1 \times 2^7 + 1 \times 2^4 + 1 \times 2^3 + 1 \times 2^1 + 1 \times 2^0$.
+ \item $(1001{\ } 1011)_{2} = 128 + 16 + 8 + 2 + 1 = 155$.
+ \item $(1011{\ }1011)_{2} = ?$
+\end{itemize}
+\end{frame}
+
+\section{Conversão Decimal para Binário}
+
+\begin{frame}
+  \frametitle{Conversão Decimal para Binário}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=200pt]{imgs/conversao2.png}
+\end{figure}
+\begin{itemize}
+ \item $(0010{\ }0011)_{2} = 1 \times 2^5 1 \times 2^1 + 1 \times 2^0$
+ \item $(0010{\ }0011)_{2} = 32 + 2 + 1 = (35)_{10}$
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Conversão Decimal para Binário}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=200pt]{imgs/conversao.png}
+\end{figure}
+\begin{itemize}
+ \item $(1100{\ }0101)_{2} = 1 \times 2^7 + 1 \times 2^6 + 1 \times 2^2 + 1 \times 2^0$
+ \item $(1100{\ }0101)_{2} = 128 + 64 + 4 + 1 = (197)_{10}$
+\end{itemize}
+\end{frame}
+
+
+\section{Representação Binária: Tipo float}
+
+\begin{frame}
+  \frametitle{Números fracionários}
+\begin{itemize} 
+ \item É trivial para um computador atual tratar e operar com números inteiros. 
+ \item Entretanto, em muitas aplicações do dia a dia é necessário realizar operações com quantidades fracionárias, ou representar valores muito grandes ou
+muito pequenos.
+\item As variáveis que armazenam números fracionários são declaradas como sendo do tipo float.
+\end{itemize}
+\end{frame}
+
+\section{Conversão decimal para float}
+
+\begin{frame}
+  \frametitle{Conversão decimal para ponto flutuante}
+  Convertendo $(13.75)_{10}$
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=200pt]{imgs/conversao3.png}
+\end{figure}
+\end{frame}
+
+\section{Conversão float para decimal}
+
+\begin{frame}
+  \frametitle{Conversão ponto flutuante para decimal}
+  Convertendo $(1010{\ }1110)_{2}$
+\begin{itemize}
+ \item $(1010{\ }1110)_{2} = 1 \times 2^3 + 1 \times 2^1 + 1 \times 2^{-1} + 1 \times 2^{-2} + 1 \times 2^{-3}$
+ \item $(1010{\ }1110)_{2} = 8 + 2 + \frac{1}{2} + \frac{1}{4} + \frac{1}{8}$
+ \item $(1010{\ }1110)_{2} = 10 + 0.5 + 0.25 + 0.125 = 10.875$
+\end{itemize}
+\end{frame}
+
+\section{Representação Binária: Tipo char}
+\begin{frame}
+  \frametitle{Caracteres}
+\begin{itemize}
+ \item As variáveis que armazenam um caractere são declaradas como sendo do tipo char.
+ \item Uma variável do tipo char é armazenada internamente como um inteiro.
+ \item Existe uma correspondência entre símbolos e números, dada pela tabela ASCII ({\it American Standard Code for Information Interchange}).
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Caracteres}
+\begin{itemize}
+ \item Esta tabela utiliza os números de 0 até 127 para letras do alfabeto inglês e para os sinais de pontuação mais comuns.
+ \item Por exemplo, na entrada 65 da tabela ASCII encontramos a letra 'A'. 
+ \item Assim, uma variável do tipo char cujo conteúdo seja 65 representaria também a letra 'A'.
+ \item Infelizmente não existe consenso de como tratar os caracteres numerados a partir de 128, onde estariam os caracteres acentuados.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Fim}
+\begin{center}
+\Huge Fim
+\end{center}
+\end{frame}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+
+\end{document}

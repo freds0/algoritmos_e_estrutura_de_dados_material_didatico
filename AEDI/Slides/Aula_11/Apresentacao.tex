@@ -1,0 +1,317 @@
+%\documentclass{beamer}
+\documentclass[aspectratio=169]{beamer}
+\usetheme{Boadilla}
+%\usetheme{Warsaw}
+%\setbeamercovered{transparent}
+\beamertemplatetransparentcoveredhigh
+\usepackage[portuges]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref} 
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=C,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+\newcommand{\eng}[1]{\textsl{#1}}
+\newcommand{\cod}[1]{\texttt{#1}}
+
+\title[Comandos de Repetição]{Algoritmos e Estrutura de Dados I}
+\subtitle{Comandos de Repetição}
+\author[Frederico Santos de Oliveira]{prof. Frederico Santos de Oliveira}
+\institute[UFMT]{Universidade Federal de Mato Grosso\\ Instituto de Engenharia}
+\date{}
+
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+%\section*{Roteiro}
+
+\begin{frame}
+  \frametitle{Agenda}
+  \tableofcontents
+\end{frame}
+
+\section{Objetivos}
+\begin{frame}
+  \frametitle{Objetivos}
+\begin{itemize}
+ \item Aprender a utilizar o comando de repetição {\bf do-while}.
+ \item Fazer um programa utilizando comando de repetição.
+\end{itemize}
+\end{frame}
+
+
+\section{Comando Do-While}
+
+\begin{frame}
+  \frametitle{Comando Do-While}
+  O comando {\bf do-while} permite que um certo trecho de programa seja executado {\bf ENQUANTO} uma certa condição for {\bf verdadeira}, no entanto, diferente do comando {\bf while}, realiza-se o teste que verifica se o laço é repetido no final do trecho de código.
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=150pt]{imgs/fluxograma_do-while.png}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+A forma do comando {\bf do-while} na linguagem C é a seguinte:
+\begin{lstlisting}
+do {
+  comando1; // Comandos a serem repetidos
+  comando2; // Comandos a serem repetidos
+} while  ( condicao );
+comando3; // Comando executado apos o while
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+ O seu funcionamento é o seguinte:
+\begin{enumerate}
+ \item Executa cada um dos comandos do bloco subordinado ao comando {\bf do-while}.
+ \item Ao executar o último comando do bloco {\bf do-while}, testa a condição;
+ \item Se a condição for {\bf verdadeira}, então voltar para o passo 1;
+ \item Se a condição for {\bf falsa}:
+ \begin{itemize}
+  \item passa a executar os comandos após o bloco do comando {\bf do-while}.
+ \end{itemize}
+\end{enumerate}
+\end{frame}
+
+\section{Exemplos}
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+ {\bf Exemplo:} mostrar os $n$ primeiros números em ordem crescente.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+Solução:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int i = 0, n;
+  printf("Informe o valor de n:");
+  scanf("%d", &n);
+  do {
+    printf("%d\n",i); 
+    i=i+1; 
+  } while ( i < n );
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+ {\bf Exemplo:} mostrar os $n$ primeiros números em ordem decrescente.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+Solução:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int i, n;
+  printf("Informe o valor de n:");
+  scanf("%d", &n);
+  i = n;
+  do {
+    printf("%d\n",i); 
+    i=i-1; 
+  } while ( i > 0 );
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+ {\bf Exemplo:} mostrar os $n$ primeiros números pares.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+Solução 1:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int i = 0, n;
+  printf("Informe o valor de n:");
+  scanf("%d", &n);
+  do {
+    printf("%d\n",i); 
+    i+=2; 
+  } while ( i < 2*n );
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+ {\bf Exemplo:} programa que calcula a soma dos valores digitados pelo usuário. A finalização da entrada de dados é encerrada quando o usuário digitar -1.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+Solução:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int valor = 0, soma = 0;
+  do {
+    printf("Digite um valor: ");
+    scanf("%d",&valor);   
+    if (valor != -1) {
+      soma += valor;
+    }
+  } while ( valor != -1 );
+  printf("Soma=%d",soma);
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+ {\bf Exemplo:} programa que calcula a média dos valores digitados pelo usuário. A finalização da entrada de dados é encerrada quando o usuário digitar -1.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+Solução:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int valor = 0, soma = 0, c = 0;
+  do {
+    printf("Digite um valor: ");
+    scanf("%d",&valor);   
+    if (valor != -1) {
+      soma = soma + valor;
+      c++;
+    }
+  } while ( valor != -1 );
+  printf("Media=%d",soma/c);
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+ {\bf Exemplo:} programa que lê cinco valores e conta quantos são negativos, escrevendo essa informação.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+Solução:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int i = 0, c = 0, valor;
+  do{
+    printf("Digite um valor: ");
+    scanf("%d",&valor);  
+    if ( valor < 0) {
+      c++;
+    }
+    i++;
+  } while ( i < 5 );
+  printf("Total de numeros negativos=%d",c);
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+ {\bf Exemplo:} programa que conta a quantidade de números pares e ímpares fornecidos pelo usuário. A entrada de dados é finalizada quando o usuário digita -1.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+Solução:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int valor, pares = 0, impares = 0;
+  do {
+    printf("Digite um valor: ");
+    scanf("%d",&valor);  
+    if ( valor != -1 && valor%2 == 0) {
+      pares++;
+    }
+    else if ( valor != -1 && valor%2 != 0) {
+      impares++;
+    }
+  } while (valor != -1);
+  printf("Pares=%d\nImpares=%d\n",pares, impares);
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+ {\bf Exemplo:} A conversão de graus Fahrenheit para Centígrados é obtida pela fórmula $C = \frac{5}{9}(F-32)$. 
+ 
+ Escreva um algoritmo que calcule e mostre uma tabela de graus Fahrenheit x Centígrados, mostrando os valores convertidos de 150 até 50 graus Fahrenheit, variando de 0,5 em 0,5.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+Solução:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  float F = 150, C;
+  printf("Fahrenheit\tCentigrados");
+  do {
+    C = 5.0 / 9.0 * (F - 32);
+    printf("%f\t%f\n",F,C);
+    F-=0.5;
+  } while (F>=50);
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Fim}
+\begin{center}
+\Huge Fim
+\end{center}
+\end{frame}
+
+\end{document}

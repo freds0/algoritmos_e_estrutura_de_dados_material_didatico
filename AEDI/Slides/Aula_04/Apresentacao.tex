@@ -1,0 +1,236 @@
+%\documentclass{beamer}
+\documentclass[aspectratio=169]{beamer}
+\usetheme{Boadilla}
+%\usetheme{Warsaw}
+%\setbeamercovered{transparent}
+\beamertemplatetransparentcoveredhigh
+\usepackage[portuges]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref} 
+
+
+\newcommand{\eng}[1]{\textsl{#1}}
+\newcommand{\cod}[1]{\texttt{#1}}
+
+\title[História da Computação]{História da Computação\\
+   Algoritmos e Estrutura de Dados I}
+\author[IEng - UFMT]{Instituto de Engenharia -- UFMT}
+%\institute[2020/2]{Segundo Semestre de 2020}
+\date{}
+
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+%\section*{Roteiro}
+
+\begin{frame}
+  \frametitle{Agenda}
+  \tableofcontents
+\end{frame}
+
+\section{Introdução}
+
+\begin{frame}
+  \frametitle{Introdução}
+\begin{itemize}
+ \item Antes da década de 1920, o computador era um termo associado a pessoas que realizavam cálculos, geralmente liderados por físicos.
+ \item Após a década de 1920, a expressão máquina computacional começou a ser usada para referir-se a qualquer máquina que realize o trabalho de um profissional computador.
+ \item O termo máquina computacional acabou perdendo espaço para o termo reduzido computador no final da década de 1940, com as máquinas digitais
+cada vez mais difundidas. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Introdução}
+\begin{itemize}
+ \item O matemático húngaro John von Neumann (1903-1957) formalizou o projeto lógico de um computador.
+ \item Em sua proposta, von Neumann sugeriu que as instruções fossem armazenadas na memória do computador. 
+ \item Armazená-las na memória, para então executá-las, tornaria o computador mais rápido, já que no momento da execução, as instruções seriam obtidas com rapidez eletrônica.
+ \item A maioria dos computadores de hoje em dia segue ainda o modelo proposto por von Neumann.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Introdução}
+A máquina proposta por Von Neumann reúne os seguintes componentes:  
+\begin{itemize}
+ \item Uma memória
+ \item Uma unidade aritmética e lógica (ALU)
+ \item Uma unidade central de processamento (CPU), composta por diversos registradores, e
+ \item Uma Unidade de Controle (CU), cuja função é buscar um programa na memória, instrução por instrução, e executá-lo sobre os dados de entrada.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Introdução}
+\begin{itemize}
+ \item Alan Turing foi um grande matemático inglês. 
+ \item Na segunda guerra mundial, ele trabalhou quebrando códigos criptografados dos alemães. 
+ \item Foi influente no desenvolvimento da ciência da computação e na formalização do conceito de algoritmo e computação com a máquina de Turing
+ \item Aos 24 anos, consagrou-se com a projeção de uma máquina que, de acordo com um sistema formal, pudesse fazer operações computacionais.
+ \item Essa máquina, mundialmente conhecida como Máquina de Turing, posteriormente evoluiu para o computador moderno.
+ \item Devido a esses feitos, Alan Turing é tido como Pai da ciência da computação. 
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Introdução}
+Os computadores são máquinas capazes de realizar vários cálculos automaticamente, além de possuir dispositivos de armazenamento e de entrada e saída.
+\end{frame}
+\section{Primeira Geração (1946-1954)}
+
+\begin{frame}
+  \frametitle{Primeira Geração (1946-1954)}
+\begin{itemize}
+\item A primeira geração dos computadores é marcada pela utilização de válvulas.  
+\item A válvula é um tubo de vidro, similar a uma lâmpada fechada sem ar em seu interior, ou seja, um ambiente fechado a vácuo, e contendo eletrodos, cuja finalidade é controlar o fluxo de elétrons. 
+\item As válvulas aqueciam bastante e costumavam queimar com facilidade.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{As válvulas eram do tamanho de uma lâmpada}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=250pt]{imgs/valvulas.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Primeira Geração (1946-1954)}
+\begin{itemize}
+\item a programação era realizada diretamente na linguagem de máquina.
+\item O armazenamento dos dados era realizado em cartões perfurados.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Primeira Geração (1946-1954)}
+\begin{itemize}
+\item Um dos representantes desta geração é o ENIAC.
+\item Ele possuía 17.468 válvulas, pesava 30 toneladas, tinha 180 $m^2$ de área construída, sua velocidade era da ordem de 100 kHz e possuia apenas 200 bits de memória RAM.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{ENIAC}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=250pt]{imgs/eniac.jpg}
+\end{figure}
+\end{frame}	
+
+\section{Segunda Geração (1955-1964)}
+
+\begin{frame}
+  \frametitle{Segunda Geração (1955-1964)}
+\begin{itemize}
+\item A segunda geração de computadores foi marcada pela substituição da válvula pelo transistor.
+\item O transistor revolucionou a eletrônica em geral e os computadores em especial.
+\item Eles eram muito menores do que as válvulas a vácuo e tinham outras vantagens: não exigiam tempo de pré-aquecimento, consumiam menos energia, geravam menos calor e eram mais rápidos e confiáveis.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Transistores e Válvulas}
+Circuito com vários transistores (esquerda). Comparação do circuito com válvulas (canto superior-direito) com um circuito composto de transistores (inferior-direito)  
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=250pt]{imgs/transistor-e-valvula.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Segunda Geração (1955-1964)}
+\begin{itemize}
+\item Na segunda geração o conceito de Unidade Central de Procedimento (CPU), memória, linguagem de programação e entrada e saída foram desenvolvidos.
+\item O tamanho dos computadores diminuiu consideravelmente. 
+
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Segunda Geração (1955-1964)}
+\begin{itemize}
+\item Outro desenvolvimento importante foi a mudança da linguagem de máquina para a linguagem {\bf Assembly}, também conhecida como linguagem simbólica.
+\item Em seguida vieram as linguagens de alto nível, como, por exemplo, Fortran e Cobol.
+\item No mesmo período surgiu o armazenamento em disco, complementando os sistemas de fita magnética e possibilitando ao usuário acesso rápido aos dados desejados.
+\end{itemize}
+\end{frame}
+
+
+\section{Terceira Geração (1964-1977)}
+
+\begin{frame}
+  \frametitle{Terceira Geração (1964-1977)}
+\begin{itemize}
+\item A terceira geração de computadores é marcada pela utilização dos circuitos integrados, feitos de silício.
+\item Também conhecidos como microchips, eles eram construídos integrando um grande número de transistores, o que possibilitou a construção de equipamentos menores e mais baratos.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Circuito Integrado}
+Comparação do tamanho do circuito integrado com uma moeda (esquerda) e um chip (direita)
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=250pt]{imgs/circuito-integrado-comparacao-de-tamanho.jpg}
+\end{figure}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Computador Terceira Geração}
+Um computador que representa esta geração foi o IBM's System/360, voltado para o setor comercial e científico. 
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=150pt]{imgs/IBM_system_360-50.jpg}
+\end{figure}
+\end{frame}
+
+\section{Quarta Geração (1977-1991)}
+
+\begin{frame}
+  \frametitle{Quarta Geração (1977-1991)}
+  \begin{itemize}
+   \item Os computadores da quarta geração são reconhecidos pelo surgimento dos processadores - unidade central de processamento.\item Os sistemas operacionais como MS-DOS, UNIX, Apple's Macintosh foram construídos.
+   \item Os computadores eram mais confiáveis, mais rápidos, menores e com maior capacidade de armazenamento. 
+   \item Esta geração é marcada pela venda de computadores pessoais
+  \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Computador pessoal da quarta geração} 
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=200pt]{imgs/computador-quarta-geracao.jpg}
+\end{figure}
+\end{frame}
+
+\section{Quinta Geração (1991 - dias atuais)}
+
+\begin{frame}
+  \frametitle{Quinta Geração (1991 - dias atuais)}
+  \begin{itemize}
+   \item Os computadores da quinta geração usam processadores com milhões de transistores.
+   \item Nesta geração surgiram as arquiteturas de 64 bits, discos rígidos com capacidade superior a 600GB, pen-drives com mais de 1GB de memória e utilização de disco ótico com mais de 50GB de armazenamento.
+   \item A quinta geração está sendo marcada pela inteligência artificial e por sua conectividade.
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Material Recomendado}
+\begin{itemize}
+\item FONSECA FILHO, Cléuzio. História da computação: O Caminho do Pensamento e da Tecnologia. EdiPucRS, 2007.
+\item FERNANDEZ, Marcial; Cortés, Mariela. Introdução à Computação. EdUECE, 2019. \textcolor{blue}{ \href{https://educapes.capes.gov.br/bitstream/capes/432730/2/Livro\%20\%20Introduc\%C3\%A3o\%20a\%20Computac\%C3\%A3o.pdf}{Disponível aqui}. }
+\item Vídeo-Aula:Introdução a Conceitos de Computação - Breve história da computação. UNIVESP. \textcolor{blue}{ \href{https://www.youtube.com/watch?v=IFYDXLsqubM}{Disponível aqui}. }
+\end{itemize}
+\end{frame}
+
+
+\end{document}

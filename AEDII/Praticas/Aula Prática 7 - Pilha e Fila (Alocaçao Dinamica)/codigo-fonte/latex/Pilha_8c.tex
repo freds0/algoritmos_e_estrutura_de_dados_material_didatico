@@ -1,0 +1,158 @@
+\hypertarget{Pilha_8c}{\section{Referência do Arquivo Pilha.\+c}
+\label{Pilha_8c}\index{Pilha.\+c@{Pilha.\+c}}
+}
+
+
+Conteudo das funcoes referentes ao tipo abstrato de dado Pilha.  
+
+
+{\ttfamily \#include $<$stdio.\+h$>$}\\*
+{\ttfamily \#include $<$stdlib.\+h$>$}\\*
+{\ttfamily \#include \char`\"{}Pilha.\+h\char`\"{}}\\*
+Gráfico de dependência de inclusões para Pilha.\+c\+:
+\subsection*{Funções}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{Pilha_8c_affd6f252304427a8610a1c097705f4d6}{Cria\+Pilha} (\hyperlink{structpilha}{pilha} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Cria uma pilha vazia, atribuindo o endereco a um ponteiro passado como parametro. \end{DoxyCompactList}\item 
+int \hyperlink{Pilha_8c_a8f0b0f99bbf4f9c001e42242e0641fb1}{Vazia} (\hyperlink{structpilha}{pilha} p)
+\begin{DoxyCompactList}\small\item\em Verifica se a pilha passada como parametro estah vazia. \end{DoxyCompactList}\item 
+void \hyperlink{Pilha_8c_ada9910865321a36e15d598cd37dfc56e}{Empilha} (int x, \hyperlink{structpilha}{pilha} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Empilha o item x na pilha p. \end{DoxyCompactList}\item 
+void \hyperlink{Pilha_8c_a36283541233e699cf48218da656cfb55}{Desempilha} (\hyperlink{structpilha}{pilha} $\ast$p, int $\ast$item)
+\begin{DoxyCompactList}\small\item\em Desempilha um item da pilha armazenando seu valor na variavel item. \end{DoxyCompactList}\item 
+int \hyperlink{Pilha_8c_adc8f52979c2d34d6f9d280dd904a097d}{Tamanho} (\hyperlink{structpilha}{pilha} p)
+\begin{DoxyCompactList}\small\item\em Retorna o tamanho da pilha. \end{DoxyCompactList}\item 
+void \hyperlink{Pilha_8c_a63b837b5efb6af92be63aeb8e5981965}{Apaga\+Pilha} (\hyperlink{structpilha}{pilha} $\ast$p)
+\begin{DoxyCompactList}\small\item\em Apaga toda a pilha, inclusive o noh vazio localizado no topo da pilha. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Descrição Detalhada}
+Conteudo das funcoes referentes ao tipo abstrato de dado Pilha. 
+
+Este arquivo contem os conteudos das funcoes do tipo abstrato de dado Pilha.
+
+\begin{DoxyAuthor}{Autor}
+Frederico S. Oliveira 
+\end{DoxyAuthor}
+
+
+\subsection{Funções}
+\hypertarget{Pilha_8c_a63b837b5efb6af92be63aeb8e5981965}{\index{Pilha.\+c@{Pilha.\+c}!Apaga\+Pilha@{Apaga\+Pilha}}
+\index{Apaga\+Pilha@{Apaga\+Pilha}!Pilha.\+c@{Pilha.\+c}}
+\subsubsection[{Apaga\+Pilha}]{\setlength{\rightskip}{0pt plus 5cm}void Apaga\+Pilha (
+\begin{DoxyParamCaption}
+\item[{{\bf pilha} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{Pilha_8c_a63b837b5efb6af92be63aeb8e5981965}
+
+
+Apaga toda a pilha, inclusive o noh vazio localizado no topo da pilha. 
+
+Remove todos os elementos da pilha, um por um, incluindo o primeiro noh vazio, desalocando o espaco de memoria de cada item. Esta funcao tem objetivo apagar todo a memoria alocada.
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em pilha} & ponteiro para a pilha. \\
+\hline
+\end{DoxyParams}
+\hypertarget{Pilha_8c_affd6f252304427a8610a1c097705f4d6}{\index{Pilha.\+c@{Pilha.\+c}!Cria\+Pilha@{Cria\+Pilha}}
+\index{Cria\+Pilha@{Cria\+Pilha}!Pilha.\+c@{Pilha.\+c}}
+\subsubsection[{Cria\+Pilha}]{\setlength{\rightskip}{0pt plus 5cm}void Cria\+Pilha (
+\begin{DoxyParamCaption}
+\item[{{\bf pilha} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{Pilha_8c_affd6f252304427a8610a1c097705f4d6}
+
+
+Cria uma pilha vazia, atribuindo o endereco a um ponteiro passado como parametro. 
+
+O elemento localizado no topo eh sempre um noh vazio. Ao criar uma pilha vazia, aponta-\/se os ponteiros topo e fundo para esse noh vazio.
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em pilha} & ponteiro do tipo pilha que receberah o endereco da pilha criada. \\
+\hline
+\end{DoxyParams}
+\hypertarget{Pilha_8c_a36283541233e699cf48218da656cfb55}{\index{Pilha.\+c@{Pilha.\+c}!Desempilha@{Desempilha}}
+\index{Desempilha@{Desempilha}!Pilha.\+c@{Pilha.\+c}}
+\subsubsection[{Desempilha}]{\setlength{\rightskip}{0pt plus 5cm}void Desempilha (
+\begin{DoxyParamCaption}
+\item[{{\bf pilha} $\ast$}]{p, }
+\item[{int $\ast$}]{item}
+\end{DoxyParamCaption}
+)}}\label{Pilha_8c_a36283541233e699cf48218da656cfb55}
+
+
+Desempilha um item da pilha armazenando seu valor na variavel item. 
+
+Para desempilhar o elemento do topo, deve-\/se lembrar que elemento no topo eh sempre um noh vazio. Portanto, o valor a ser desempilhado encontra-\/se no segundo noh. Para isso, remove-\/se o primeiro elemento (noh vazio) e aponta o ponteiro topo para o segundo elemento na pilha. Em seguida, copia o valor do noh desempilhado para a variavel item. Por fim, desaloca o elemento que era o elemento no topo da pilha.
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em pilha} & ponteiro para a pilha da qual serah desempilhado o item. \\
+\hline
+{\em item} & ponteiro que armazenarah o valor do item desempilhado. \\
+\hline
+\end{DoxyParams}
+\hypertarget{Pilha_8c_ada9910865321a36e15d598cd37dfc56e}{\index{Pilha.\+c@{Pilha.\+c}!Empilha@{Empilha}}
+\index{Empilha@{Empilha}!Pilha.\+c@{Pilha.\+c}}
+\subsubsection[{Empilha}]{\setlength{\rightskip}{0pt plus 5cm}void Empilha (
+\begin{DoxyParamCaption}
+\item[{int}]{x, }
+\item[{{\bf pilha} $\ast$}]{p}
+\end{DoxyParamCaption}
+)}}\label{Pilha_8c_ada9910865321a36e15d598cd37dfc56e}
+
+
+Empilha o item x na pilha p. 
+
+Para empilhar um elemento na pilha deve-\/se lembrar que o elemento no topo eh sempre um noh vazio. Portanto, o valor a ser empilhado eh copiado para o noh no topo, que eh vazio. Em seguida, deve-\/se inserir um novo noh no topo. Para isso aloca-\/se um novo noh, apontando o campo prox desse novo noh para o topo. Por fim, aponta-\/se o ponteiro topo para o novo noh inserido.
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em item} & a ser inserido na pilha. \\
+\hline
+{\em pilha} & ponteiro para a pilha na qual serah enfileirado o novo item. \\
+\hline
+\end{DoxyParams}
+\hypertarget{Pilha_8c_adc8f52979c2d34d6f9d280dd904a097d}{\index{Pilha.\+c@{Pilha.\+c}!Tamanho@{Tamanho}}
+\index{Tamanho@{Tamanho}!Pilha.\+c@{Pilha.\+c}}
+\subsubsection[{Tamanho}]{\setlength{\rightskip}{0pt plus 5cm}int Tamanho (
+\begin{DoxyParamCaption}
+\item[{{\bf pilha}}]{p}
+\end{DoxyParamCaption}
+)}}\label{Pilha_8c_adc8f52979c2d34d6f9d280dd904a097d}
+
+
+Retorna o tamanho da pilha. 
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em pilha} & ponteiro para a pilha. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+quantidade de itens na pilha. 
+\end{DoxyReturn}
+\hypertarget{Pilha_8c_a8f0b0f99bbf4f9c001e42242e0641fb1}{\index{Pilha.\+c@{Pilha.\+c}!Vazia@{Vazia}}
+\index{Vazia@{Vazia}!Pilha.\+c@{Pilha.\+c}}
+\subsubsection[{Vazia}]{\setlength{\rightskip}{0pt plus 5cm}int Vazia (
+\begin{DoxyParamCaption}
+\item[{{\bf pilha}}]{p}
+\end{DoxyParamCaption}
+)}}\label{Pilha_8c_a8f0b0f99bbf4f9c001e42242e0641fb1}
+
+
+Verifica se a pilha passada como parametro estah vazia. 
+
+Para verificar se a pilha estah vazia, realiza-\/se o teste se os ponteiros topo e fundo apontam para o mesmo noh, o noh vazio inserido na funcao Cria\+Pilha.
+
+
+\begin{DoxyParams}{Parâmetros}
+{\em pilha} & variavel do tipo pilha. Observe que nao eh um ponteiro. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Retorna}
+Zero (true) se pilha vazia, um (false) se nao-\/vazia. 
+\end{DoxyReturn}

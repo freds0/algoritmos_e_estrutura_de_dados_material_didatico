@@ -1,0 +1,434 @@
+%\documentclass{beamer}
+\documentclass[aspectratio=169]{beamer}
+\usetheme{Boadilla}
+%\usetheme{Warsaw}
+%\setbeamercovered{transparent}
+\beamertemplatetransparentcoveredhigh
+\usepackage[portuges]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref} 
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=C,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+} 
+\newcommand{\eng}[1]{\textsl{#1}}
+\newcommand{\cod}[1]{\texttt{#1}}
+
+\title[Entrada e Saída de Dados]{Entrada e Saída de Dados\\
+   Algoritmos e Estrutura de Dados I}
+\author[IEng - UFMT]{Instituto de Engenharia -- UFMT}
+%\institute[2020/2]{Segundo Semestre de 2020}
+\date{}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+%\section*{Roteiro}
+
+\begin{frame}
+  \frametitle{Agenda}
+  \tableofcontents
+\end{frame}
+
+\section{Objetivos}
+\begin{frame}
+  \frametitle{Objetivos}
+\begin{itemize}
+ \item Aprender a ler um dado do usuário.
+ \item Entender a escrever um dado para o usuário.
+ \item Fazer um programa inicial.
+\end{itemize}
+\end{frame}
+
+\section{Estrutura de um Programa}
+
+\begin{frame}[fragile]
+  \frametitle{Estrutura de um Programa em C}
+A estrutura básica de qualquer programa em C é a seguinte.
+\begin{lstlisting}
+// Diretivas 
+int main() {
+
+  // Instrucoes
+  
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\section{Uso de Variáveis}
+
+\begin{frame}
+  \frametitle{Uso de Variáveis}
+\begin{itemize}
+ \item Todas as variáveis devem ser declaradas, antes de serem usadas.
+ \item Forma geral de uso: \lstinline{tipo_variavel nome_variavel;}
+ \item Para declarar mais de uma variável de mesmo tipo, basta separar os nomes das variáveis por vírgula.
+ \item Exemplo: \lstinline{tipo_variavel variavel1, variavel2 ... ;}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Variáveis}
+Exemplos de declaração de variáveis.
+\begin{lstlisting}
+// Diretivas 
+int main() {
+  // Declaracao de variaveis 
+  int x,y,soma;
+  float media;
+  char letra;
+  
+  // Instrucoes
+  
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Nomes de Variáveis}
+\begin{itemize}
+ \item Em C, letras maiúsculas e minúsculas são tratadas diferentemente.
+ \item Portanto, variavel $\neq$ Variavel $\neq$ VAriavel $\neq$ VARIAVEL.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Nomes de Variáveis}
+  Algumas palavras não podem ser utilizadas como nomes de variáveis, pois são reservadas para a linguagem C:
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=200pt]{imgs/palavras_reservadas.png}
+\end{figure}
+\end{frame}
+
+\section{Operador de Atribuição}
+
+\begin{frame}[fragile]
+  \frametitle{Atribuição}
+\begin{itemize}
+ \item Após declarar uma variável, deve ser possível atribuir-lhe um valor.
+ \item Esta operação é indicada pelo operador ``=''.
+ \item Sua forma geral de uso é: \lstinline{nome_variavel = expressao;}
+ \item A expressão pode ser tão simples como um único valor ou tão complexa como uma equação matemática.
+ \item O destino, valor à esquerda do operador ``='', deve ser sempre uma variável.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Saída de Dados}  
+Exemplo de declaração e inicialização de variáveis.
+\begin{lstlisting}
+// Diretivas 
+int main() {
+  // Declaracao de variaveis 
+  int x = 30, y = 20;
+  
+  // Instrucoes
+ 
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\section{Operadores Aritméticos}
+
+\begin{frame}[fragile]
+  \frametitle{Operadores Aritméticos}
+  Os operadores aritméticos são símbolos utilizados para realizar as operações aritméticas elementares.
+\begin{table}[!ht]
+  \centering
+  \begin{tabular}{|c|c|}
+    \hline
+    Operação & Operador \\
+    \hline
+    Soma &  + \\
+    Subtração & - \\
+    Multiplicação & * \\
+    Divisão & / \\
+    Resto & \% \\
+    Incremento & ++ \\
+    Decremento & - - \\
+    \hline
+  \end{tabular}
+  \caption{Operadores para as respectivas operações matemáticas}
+  \label{table_operadores}
+\end{table}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Operadores Aritméticos}  
+\begin{itemize}
+ \item As regras de precedência são as que já estamos acostumados.
+ \item Multiplicação, divisão e resto têm precedência sobre os operadores de soma e subtração.
+ \item Pode-se utilizar parênteses para indicar a ordem em que as operações devem ser realizadas.
+ \item No caso de operadores com mesma precedência, realiza-se primeiro a operação mais à esquerda.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Operadores Aritméticos}  
+  Exemplos
+ \begin{itemize}
+    \item $x=2+5*3$, \pause $x$ é igual a 17.
+    \item $y=(2+5)*3$, \pause $y$ é igual a 21.
+    \item $z=5\%3*2$, \pause $z$ é igual a 4.
+    \item $w=20/5\%3$, \pause $w$ é igual a 1. 
+ \end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Operadores Aritméticos}  
+\begin{itemize}
+ \item Os operadores de incremento e decremento só podem ser utilizados com variáveis.
+ \item O comando $x++$, realiza a mesma operação que o comando $x=x+1$. Ou seja, incrementa em 1 o valor existente em $x$.
+ \item O comando $y--$, realiza a mesma operação que o comando $y=y-1$. Ou seja, decrementa em 1 o valor existente em $y$.
+\end{itemize}
+
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Operadores Aritméticos}  
+\begin{itemize}
+ \item O operador divisão, quando aplicado a variáveis inteiras ou caracter, nos fornece o resultado da divisão inteira, ou seja, os valores decimais (à direita da vírgula) são truncados (ignorados). Ex. $x=10/3$, o valor de $x$ é 3.
+ \item Ao utilizar o operador divisão com pelo menos um dos operandos (numerador ou denominador) do tipo ponto flutuante, o resultado será um valor do tipo ponto flutuante. Ex. $x=5.0/2$, o valor de $x$ é 2.5, pois 5.0 é do tipo ponto flutuante.
+ \item O operador módulo, nos fornece o resto da divisão e só pode ser utilizado com variáveis inteiras, ou caracter. Ex. $r=5\%2$, $r$ é igual a 1. 
+\end{itemize}
+\end{frame}
+
+\section{Saída de Dados}
+
+\begin{frame}[fragile]
+  \frametitle{Saída de Dados}  
+\begin{itemize}
+ \item A saída de dados na linguagem C é realizada utilizando o comando \lstinline{printf}.
+ \item A função printf faz com que dados sejam escritos na saída padrão, que normalmente é a tela do computador.
+ \item Trata-se de uma função que pertence à biblioteca ``stdio.h''.
+ \item Para utilizá-la, devemos acrescentar a diretiva \lstinline{#include<stdio.h>} no início código.
+ \item Dessa forma, teremos à disposição as funções básicas de entrada e saída em C.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Saída de Dados}  
+Para imprimir uma cadeia de caracteres (string), basta utilizar a forma geral \lstinline{printf("Texto a ser impresso.``);}
+  \begin{lstlisting}
+  #include<stdio.h>
+  int main() {
+    printf("Hello World!");
+    return 0;
+  }
+  \end{lstlisting}  
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Saída de Dados}  
+\begin{itemize}
+ \item Para imprimir o valor de uma variável, deve-se utilizar a forma geral a seguir: 
+\begin{lstlisting}
+    printf("formato da string %x",var)
+\end{lstlisting}
+ \item Onde os argumento var indica a variável que terá seu valor impresso de acordo com o formato indicado pela cadeia de caracteres.
+ \item Na cadeia de caracteres (entre aspas), existe um código de controle (\%x) que indica o tipo da variável. Deve-se utilizar:
+\end{itemize}
+  \begin{figure}[!ht]
+    \centering
+    \includegraphics[width=100pt]{imgs/codigo_controle.png}
+  \end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Saída de Dados}  
+Exemplo do uso de printf para imprimir o conteúdo de uma variável do tipo inteiro.
+  \begin{lstlisting}
+  #include<stdio.h>
+  int main() {
+    int x = 10;
+    printf("O valor de x eh %d.",x);
+    return 0;
+  }
+  \end{lstlisting}  
+  Imprime: O valor de x eh 10.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Saída de Dados}  
+Exemplo do uso de printf para imprimir o conteúdo de uma variável do tipo float.
+  \begin{lstlisting}
+  #include<stdio.h>
+  int main() {
+    float pi = 3.14159;
+    printf("O valor de pi eh %f.",pi);
+    return 0;
+  }
+  \end{lstlisting}  
+  Imprime: O valor de pi eh 3.141590.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Saída de Dados}  
+Exemplo do uso de printf para imprimir o conteúdo de uma variável do tipo char.
+  \begin{lstlisting}
+  #include<stdio.h>
+  int main() {
+    char letra = 'A';
+    printf("O valor da letra eh %c.",letra);
+    return 0;
+  }
+  \end{lstlisting}  
+  Imprime: O valor da letra eh A.
+\end{frame}
+
+\section{Entrada de Dados}
+
+\begin{frame}[fragile]
+  \frametitle{Entrada de Dados}  
+\begin{itemize}
+ \item A entrada de dados na linguagem C é realizada utilizando o comando scanf.
+ \item A função scanf opera, de forma similar à printf, mas trata a entrada de dados do teclado.
+ \item Sua forma geral é a seguinte:
+\end{itemize}  
+  \begin{lstlisting}
+      scanf("string de controle",&var1,&var2, ...)
+  \end{lstlisting}
+Na string de controle utiliza-se os códigos de controle, conforme o tipo da variável.
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=100pt]{imgs/codigo_controle.png}
+\end{figure} 
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Saída de Dados}  
+Exemplo do uso de scanf para receber do usuário um valor do tipo inteiro (int).
+  \begin{lstlisting}
+  #include<stdio.h>
+  int main() {
+    int idade;
+    printf("Digite sua idade:");
+    scanf("%d",&idade);
+    printf("Sua idade eh %d.",idade);
+    return 0;
+  }
+  \end{lstlisting}  
+  Imprime:\\ 
+  Digite sua idade:25\\
+  Sua idade eh 25.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Saída de Dados}  
+Exemplo do uso de scanf para receber do usuário um valor do tipo real (ponto flutuante).
+  \begin{lstlisting}
+  #include<stdio.h>
+  int main() {
+    float nota;
+    printf("Digite sua nota:");
+    scanf("%f",&nota);
+    printf("Voce tirou %f.",nota);
+    return 0;
+  }
+  \end{lstlisting}  
+  Imprime:\\ 
+Digite sua nota:10.0 \\
+Voce tirou 10.000000.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Saída de Dados}  
+Exemplo do uso de scanf para receber do usuário um valor do tipo caracter (char).
+  \begin{lstlisting}
+  #include<stdio.h>
+  int main() {
+    char letra;
+    printf("Digite a primeira letra de seu nome:");
+    scanf("%c",&letra);
+    printf("Seu nome comeca com %c.",letra);
+    return 0;
+  }
+  \end{lstlisting}  
+  Imprime:\\ 
+Digite a primeira letra de seu nome:a
+Seu nome comeca com a.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Saída de Dados}  
+Exemplo do uso de scanf para receber e imprimir vários valores de uma única vez.
+  \begin{lstlisting}
+  #include<stdio.h>
+  int main() {
+    char l1, l2, l3;
+    printf("Digite tres letras:");
+    scanf("%c %c %c",&l1, &l2, &l3);
+    printf("Letras digitadas: %c, %c e %c.",l1, l2, l3);
+    return 0;
+  }
+  \end{lstlisting}  
+  Imprime:\\ 
+Digite tres letras:a b c\\
+Letras digitadas: a, b e c.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Saída de Dados}  
+Exemplo de como imprimir o valor inteiro de uma variável do tipo caracter (char).
+  \begin{lstlisting}  
+  #include<stdio.h>
+  int main() {
+    char letra;
+    printf("Digite a primeira letra de seu nome:");
+    scanf("%c",&letra);
+    printf("Codigo tabela ASCII: %c -> %d.",letra, letra);
+    return 0;
+  }
+  \end{lstlisting}  
+  Imprime:\\ 
+Digite a primeira letra de seu nome:A\\
+Codigo tabela ASCII: A -> 65.
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Exercícios}  
+Faça um programa que calcule a média (real) de três valores inteiros digitados pelo usuário.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Fim}
+\begin{center}
+\Huge Fim
+\end{center}
+\end{frame}
+
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+\end{document}

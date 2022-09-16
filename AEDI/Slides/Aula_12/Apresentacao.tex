@@ -1,0 +1,457 @@
+%\documentclass{beamer}
+\documentclass[aspectratio=169]{beamer}
+\usetheme{Boadilla}
+%\usetheme{Warsaw}
+%\setbeamercovered{transparent}
+\beamertemplatetransparentcoveredhigh
+\usepackage[portuges]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref} 
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=C,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\newcommand{\eng}[1]{\textsl{#1}}
+\newcommand{\cod}[1]{\texttt{#1}}
+
+\title[Comandos de Repetição]{Algoritmos e Estrutura de Dados I}
+\subtitle{Comandos de Repetição}
+\author[Frederico Santos de Oliveira]{prof. Frederico Santos de Oliveira}
+\institute[UFMT]{Universidade Federal de Mato Grosso\\ Instituto de Engenharia}
+\date{}
+
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+%\section*{Roteiro}
+
+\begin{frame}
+  \frametitle{Agenda}
+  \tableofcontents
+\end{frame}
+
+\section{Objetivos}
+\begin{frame}
+  \frametitle{Objetivos}
+\begin{itemize}
+ \item Aprender a utilizar o comando de repetição {\bf for}.
+ \item Aprender a utilizar os comandos de interrupção dos laços de repetição ({\bf break} e {\bf continue}).
+ \item Fazer um programa utilizando comando de repetição e interrupção.
+\end{itemize}
+\end{frame}
+
+
+\section{Comando For}
+
+\begin{frame}
+  \frametitle{Comando For}
+  \begin{itemize}
+   \item O comando {\bf for} é útil quando se conhece previamente o número exato de vezes que se deseja executar um determinado conjunto de comandos.
+   \item Sua estrutura possui mecanismos para contar o número de vezes que o corpo do laço é executado.
+  \end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+A forma do comando {\bf while} na linguagem C é a seguinte:
+\begin{lstlisting}
+inicializacao;
+
+while ( condicao ) {
+  conjunto de instrucoes; // Comandos a serem repetidos
+  
+  incremento;
+}
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Comando For}
+A forma do comando {\bf for} na linguagem C é a seguinte:
+\begin{lstlisting}
+for (inicializacao; condicao; incremento) {
+  conjunto de instrucoes; // Comandos a serem repetidos
+} 
+\end{lstlisting}
+\end{frame}
+
+\section{Exemplos}
+\begin{frame}[fragile]
+  \frametitle{Comando For}
+ {\bf Exemplo:} mostrar os $n$ primeiros números em ordem crescente.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+Solução:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int i, n;
+  printf("Informe o valor de n:");
+  scanf("%d", &n);
+  for (i = 0; i < n; i++) {
+    printf("%d\n",i); 
+  }
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando For}
+ {\bf Exemplo:} mostrar os $n$ primeiros números em ordem decrescente.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando For}
+Solução:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int i, n;
+  printf("Informe o valor de n:");
+  scanf("%d", &n);
+  for (i = n; i > 0; i--) {
+    printf("%d\n",i); 
+  }
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Comando For}
+ {\bf Exemplo:} mostrar os $n$ primeiros números pares.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando For}
+Solução 1:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int i, n;
+  printf("Informe o valor de n:");
+  scanf("%d", &n);
+  for (i = 0; i < n; i++) {
+    printf("%d\n",2*i); 
+  }
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Comando For}
+ {\bf Exemplo:} programa que calcula a soma dos valores digitados pelo usuário. A finalização da entrada de dados é encerrada quando o usuário digitar -1.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando For}
+Solução:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int i, n, soma = 0, valor = 0;
+  for (i = 0; valor!=-1; i++) {
+    printf("Digite um valor ou -1:");
+    scanf("%d",&valor);
+    if (valor != -1) {
+      soma+=valor;
+    }
+  }
+  printf("Soma = %d\n",soma); 
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Comando For}
+ {\bf Exemplo:} programa que calcula a média dos valores digitados pelo usuário. A finalização da entrada de dados é encerrada quando o usuário digitar -1.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando For}
+Solução:
+\begin{lstlisting}
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int i, n, soma = 0, valor = 0;
+  for (i = 0; valor!=-1; i++) {
+    printf("Digite um valor ou -1:");
+    scanf("%d",&valor);
+    if (valor != -1) {
+      soma+=valor;
+    }
+  }
+  // Cuidado ao calcular a media
+  printf("Média = %d\n",soma/(i-1)); // Necessario subtrair, pois i contou o valor -1 
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando For}
+ {\bf Exemplo:} programa que dado um valor $n$ fornecido pelo usuário, informa $n!$.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando For}
+Solução:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int i, n, fat = 1;
+  printf("Informe o valor de n:");
+  scanf("%d",&n);
+  for (i = 1; i <= n; i++) {
+    fat*=i; // Equivalente a fat=fat*i
+  }
+  printf("n!=%d",fat);
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Comando For}
+ {\bf Exemplo:} programa que, dado o valor de $n$ fornecido pelo usuário, calcula o valor da série $1 + \frac{1}{2} + \frac{1}{3} + ... + \frac{1}{n}$
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando For}
+Solução:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int i, n;
+  float soma = 0;
+  printf("Informe o valor de n:");
+  scanf("%d",&n);
+  for (i = 1; i <= n; i++) {
+    soma+=1.0/i; 
+  }
+  printf("soma=%f",soma);
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando For}
+ {\bf Exemplo:} programa que, dado o valor de $n$ fornecido pelo usuário, calcula o valor da série $1 - \frac{1}{4} + \frac{1}{9} - \frac{1}{16} ... + \frac{1}{n^2}$
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando For}
+Solução 1:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int i, n;
+  float soma = 0;
+  printf("Informe o valor de n:");
+  scanf("%d",&n);
+  for (i = 1; i <= n; i++) {
+    if (i%2==0) {
+      soma-=1.0/(i*i); 
+    } 
+    else {
+      soma+=1.0/(i*i); 
+    }
+  }
+  printf("soma=%f",soma);
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando For}
+Solução 2:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int i, n;
+  float soma = 0, sinal = 1;
+  printf("Informe o valor de n:");
+  scanf("%d",&n);
+  for (i = 1; i <= n; i++) {
+      soma+=sinal*1.0/(i*i);
+      sinal*=-1;
+  }
+  printf("soma=%f",soma);
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+
+\section{Comando Break}
+
+\begin{frame}[fragile]
+  \frametitle{Comando Break}
+\begin{itemize}
+ \item Usando o comando {\bf break}, podemos \underline{interromper} um {\it loop} mesmo que a condição ainda seja verdadeira.
+ \item Pode ser usado para terminar um {\it loop} infinito.
+ \item Por exemplo, podemos interromper uma contagem antes de seu final.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando Break}
+ {\bf Exemplo:}
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int i, n;
+  for (i = 1; i <= 10; i++) {
+      printf("%d ",i);
+      if (i==5){
+        printf("Contagem cancelada!");
+        break;
+      }
+  }
+  return 0;
+}
+\end{lstlisting}
+Saída: 1 2 3 4 5 Contagem cancelada!
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Comando Break}
+ {\bf Exemplo:} programa que, dado o valor de $n$ fornecido pelo usuário, verifica se $n$ é primo.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando Break}
+Solução:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int i, n;
+  printf("Informe o valor de n:");
+  scanf("%d",&n);
+  for (i = 2; i < n; i++) {
+    if (n%i==0) {
+      printf("Nao eh primo");
+      break;
+    }
+  }
+  if (i==n) {
+    printf("Eh primo");
+  }
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+
+\section{Comando Continue}
+
+\begin{frame}[fragile]
+  \frametitle{Comando Continue}
+\begin{itemize}
+ \item O comando {\bf continue} faz com que uma iteração seja \underline{saltada}.
+ \item É como se o fim do bloco tivesse sido alcançado
+ \item O programa salta para a próxima iteração.
+ \item Por exemplo, saltaremos o número 5 na contagem regressiva.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Comando Continue}
+ {\bf Exemplo:}
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int i, n;
+  for (i = 1; i <= 10; i++) 
+      if (i==5){
+        continue;
+      }
+      printf("%d ",i);      
+  }
+  return 0;
+}
+\end{lstlisting}
+Saída: 1 2 3 4 6 7 8 9 10
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Comando Continue}
+ {\bf Exemplo:} programa que, dado o valor de $n$ fornecido pelo usuário, informe todos os divisores de $n$.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando Continue}
+Solução:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int n, div;
+  printf("Informe o valor de n:");
+  scanf("%d",&n);
+  printf("Os divisores de %d sao: ", n);
+  for (div = 1; div < n; div++) {
+      if (n%div != 0) {   /* Testa se nao eh divisor */
+          continue;
+      }
+      printf("%d ",div); // Imprime o divisor
+  }
+  printf("%d\n.", n); /* n eh o ultimo divisor */
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+
+
+\begin{frame}
+  \frametitle{Fim}
+\begin{center}
+\Huge Fim
+\end{center}
+\end{frame}
+
+
+\end{document}

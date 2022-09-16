@@ -1,0 +1,558 @@
+%\documentclass{beamer}
+\documentclass[aspectratio=169]{beamer}
+\usetheme{Boadilla}
+%\usetheme{Warsaw}
+%\setbeamercovered{transparent}
+\beamertemplatetransparentcoveredhigh
+\usepackage[portuges]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref} 
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=C,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+\newcommand{\eng}[1]{\textsl{#1}}
+\newcommand{\cod}[1]{\texttt{#1}}
+
+\title[Comandos de Repetição]{Algoritmos e Estrutura de Dados I}
+\subtitle{Comandos de Repetição}
+\author[Frederico Santos de Oliveira]{prof. Frederico Santos de Oliveira}
+\institute[UFMT]{Universidade Federal de Mato Grosso\\ Instituto de Engenharia}
+\date{}
+
+
+
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+%\section*{Roteiro}
+
+\begin{frame}
+  \frametitle{Agenda}
+  \tableofcontents
+\end{frame}
+
+\section{Objetivos}
+\begin{frame}
+  \frametitle{Objetivos}
+\begin{itemize}
+ \item Aprender a utilizar o comando de repetição {\bf while}.
+ \item Fazer um programa utilizando comando de repetição.
+\end{itemize}
+\end{frame}
+
+\section{Introdução}
+\begin{frame}[fragile]
+  \frametitle{Introdução}
+Como imprimir os três primeiros números ímpares?
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  printf("1\n");
+  printf("3\n");
+  printf("5\n");
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Introdução}
+Como imprimir os 100 primeiros números ímpares?
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  printf("1\n");
+  printf("3\n");
+  printf("5\n");
+  // varios comandos depois
+  printf("199\n");
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Introdução}
+\begin{itemize}
+ \item Os comandos de repetição são um recurso que permite que um certo trecho de código de um programa seja repetido um certo número de vezes.
+ \item Na linguagem C, existem três comandos de repetição:
+ \begin{enumerate}
+  \item {\bf while}
+  \item {\bf do-while}
+  \item {\bf for}
+ \end{enumerate}
+\end{itemize}
+\end{frame}
+
+\section{Comando While}
+
+\begin{frame}
+  \frametitle{Comando While}
+  O comando {\bf while} permite que um certo trecho de programa seja executado {\bf ENQUANTO} uma certa condição for {\bf verdadeira}.
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=150pt]{imgs/fluxograma_while.png}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+A forma do comando {\bf while} na linguagem C é a seguinte:
+\begin{lstlisting}
+while ( condicao ) {
+  comando1; // Comandos a serem repetidos
+  comando2; // Comandos a serem repetidos
+}
+comando3; // Comando executado apos o while
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+ O seu funcionamento é o seguinte:
+\begin{enumerate}
+ \item Testa a condição;
+ \item Se a condição for {\bf verdadeira}, então executa cada um dos comandos do bloco subordinado ao comando {\bf while}.
+ \item Ao executar o último comando do bloco {\bf while}, volta ao passo 1.
+ \item Se a condição for {\bf falsa}:
+ \begin{itemize}
+  \item pula todos os comandos do bloco subordinado ao comando {\bf while},
+  \item passa a executar os comandos após o bloco do comando {\bf while}.
+ \end{itemize}
+\end{enumerate}
+\end{frame}
+
+\section{Exemplos}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+ {\bf Exemplo:} mostrar a mensagem ``Bom dia'' 30 vezes.
+\end{frame}
+
+\begin{frame}
+  \frametitle{Comando While}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=120pt]{imgs/fluxograma_helloworld.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+Solução:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int i = 0;
+  while ( i < 30 ) {
+    printf("Bom dia\n"); 
+    i=i+1; 
+  }
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+ {\bf Exemplo:} mostrar os $n$ primeiros números em ordem crescente.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+Solução:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int i = 0, n;
+  printf("Informe o valor de n:");
+  scanf("%d", &n);
+  while ( i < n ) {
+    printf("%d\n",i); 
+    i=i+1; 
+  }
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+ {\bf Exemplo:} mostrar os $n$ primeiros números em ordem decrescente.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+Solução:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int i, n;
+  printf("Informe o valor de n:");
+  scanf("%d", &n);
+  i = n;
+  while ( i > 0 ) {
+    printf("%d\n",i); 
+    i=i-1; 
+  }
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+ {\bf Exemplo:} mostrar os $n$ primeiros números pares.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+Solução 1:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int i = 0, n;
+  printf("Informe o valor de n:");
+  scanf("%d", &n);
+  while ( i < 2*n ) {
+    printf("%d\n",i); 
+    i=i+2; 
+  }
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+Solução 2:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int i = 0, n, par;
+  printf("Informe o valor de n:");
+  scanf("%d", &n);
+  while ( i < n ) {
+    par = 2*i;
+    printf("%d\n",par); 
+    i++; // Equivalente a i=i+1; 
+  }
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+ {\bf Exemplo:} mostrar os $n$ primeiros números ímpares.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+Solução 1:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int i = 1, n;
+  printf("Informe o valor de n:");
+  scanf("%d", &n);
+  while ( i < 2*n ) {
+    printf("%d\n",i); 
+    i+=2; // Equivalente a i=i+2; 
+  }
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+Solução 2:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int i = 0, n, impar;
+  printf("Informe o valor de n:");
+  scanf("%d", &n);
+  while ( i < n ) {
+    impar = 2*i+1;
+    printf("%d\n",impar); 
+    i++; // Equivalente a i=i+1; 
+  }
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+ {\bf Exemplo:} mostrar os $n$ primeiros números ímpares em ordem decrescente.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+Solução 1:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int i, n, impar;
+  printf("Informe o valor de n:");
+  scanf("%d", &n);
+  i = n;
+  while ( i > 0 ) {
+    impar = 2*i-1;
+    printf("%d\n",impar); 
+    i--; // Equivalente a i=i-1; 
+  }
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+ {\bf Exemplo:} mostrar os $n$ primeiros números pares em ordem decrescente.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+Solução:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int i, n, par;
+  printf("Informe o valor de n:");
+  scanf("%d", &n);
+  i = n;
+  while ( i > 0 ) {
+    par = 2*i;
+    printf("%d\n",par); 
+    i--; // Equivalente a i=i-1; 
+  }
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+ {\bf Exemplo:} calcular a soma de $n$ valores fornecidos pelo usuário.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+Solução:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int i = 0, valor, soma = 0, n;
+  printf("Informe o valor de n:");
+  scanf("%d", &n);
+  while ( i < n ) {
+    printf("Digite um valor: ");
+    scanf("%d",&valor);
+    soma = soma + valor; // Comando equivalente soma+=valor;
+    i++; // Equivalente a i=i+1;
+  }
+  printf("Soma=%d",soma);
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+ {\bf Exemplo:} calcular a média de $n$ valores fornecidos pelo usuário.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+Solução:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int i = 0, valor, soma = 0, n;
+  printf("Informe o valor de n:");
+  scanf("%d", &n);
+  while ( i < n ) {
+    printf("Digite um valor: ");
+    scanf("%d",&valor);
+    soma = soma + valor; // Comando equivalente soma+=valor;
+    i++; // Equivalente a i=i+1;
+  }
+  printf("Media=%d",soma/n);
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+ {\bf Exemplo:} programa que calcula a soma dos valores digitados pelo usuário. A finalização da entrada de dados é encerrada quando o usuário digitar -1. Dessa forma, o usuário não precisa informar previamente a quantidade de valores.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+Solução:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int valor = 0, soma = 0;
+  printf("Digite um valor: ");
+  scanf("%d",&valor);  
+  while ( valor != -1 ) {
+    soma = soma + valor; // Comando equivalente soma+=valor;  
+    printf("Digite um valor: ");
+    scanf("%d",&valor);
+  }
+  printf("Soma=%d",soma);
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+ {\bf Exemplo:} programa que calcula a média dos valores digitados pelo usuário. A finalização da entrada de dados é encerrada quando o usuário digitar -1.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+Solução:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int valor = 0, soma = 0, n = 0;
+  printf("Digite um valor: ");
+  scanf("%d",&valor);  
+  while ( valor != -1 ) {
+    n++; // Equivalente a n=n+1;
+    soma = soma + valor; // Comando equivalente soma+=valor;  
+    printf("Digite um valor: ");
+    scanf("%d",&valor);
+  }
+  printf("Media=%d",soma/n);
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+ {\bf Exemplo:} programa que lê cinco valores e conta quantos são negativos, escrevendo essa informação.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+Solução:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int i = 0, c = 0, valor;
+  while ( i < 5 ) {
+    printf("Digite um valor: ");
+    scanf("%d",&valor);  
+    if ( valor < 0) {
+      c++;
+    }
+    i++;
+  }
+  printf("Total de numeros negativos=%d",c);
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+ {\bf Exemplo:} programa que lê cinco valores e calcula a soma dos números que são pares, escrevendo essa informação.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+Solução:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int i = 0, soma = 0, valor;
+  while ( i < 5 ) {
+    printf("Digite um valor: ");
+    scanf("%d",&valor);  
+    if ( valor % 2 == 0) {
+      soma+=valor; // Equivalente a soma=soma+valor;
+    }
+    i++;
+  }
+  printf("Soma=%d",soma);
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+ {\bf Exemplo:} programa que lê cinco valores e calcula a média dos números que são ímpares, escrevendo essa informação.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Comando While}
+Solução:
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int i = 0, soma = 0, valor, c = 0;
+  while ( i < 5 ) {
+    printf("Digite um valor: ");
+    scanf("%d",&valor);  
+    if ( valor % 2 != 0) {
+      soma+=valor; // Equivalente a soma=soma+valor;
+      c++;
+    }
+    i++;
+  }
+  printf("Media=%d",soma/c);
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Fim}
+\begin{center}
+\Huge Fim
+\end{center}
+\end{frame}
+
+
+\end{document}

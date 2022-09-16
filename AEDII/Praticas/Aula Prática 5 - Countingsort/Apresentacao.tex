@@ -1,0 +1,102 @@
+\documentclass{beamer}
+\usetheme{Boadilla}
+%\usetheme{Warsaw}
+%\setbeamercovered{transparent}
+\beamertemplatetransparentcoveredhigh
+\usepackage[portuges]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese, linesnumbered, vlined, titlenumbered, ruled]{algorithm2e}
+\usepackage{hyperref} 
+
+
+\newcommand{\eng}[1]{\textsl{#1}}
+\newcommand{\cod}[1]{\texttt{#1}}
+
+\title[Aula Prática Algoritmos de Ordenação]{Countingsort\\
+   Estrutura de Dados}
+\author[Frederico Santos de Oliveira]{prof. Frederico Santos de Oliveira}
+\institute[UFMT]{Universidade Federal de Mato Grosso\\ Instituto de Engenharia}
+\date{}
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+%\section*{Roteiro}
+
+\begin{frame}
+  \frametitle{Agenda}
+  \tableofcontents
+\end{frame}
+
+
+\section{Exercício 1}
+
+\begin{frame}
+\frametitle{Exercício 1}
+Considere o algoritmo de ordenação Countingsort apresentado em sala de aula. Utilizando alocação dinâmica, ordene um vetor composto de 1.000.000, 2.000.000 e 3.000.000 elementos. Para cada um, execute os seguintes testes:
+\begin{itemize}
+ \item vetor composto por números aleatórios;
+ \item vetor composto por números em ordem crescente;
+ \item vetor composto por números em ordem decrescente.
+\end{itemize} 
+Verifique quantas iteraçoes são necessárias em cada um dos testes. Analise os resultados.
+\end{frame}
+
+
+%------------------------------------------------
+
+\begin{frame}{Countingsort}{Pseudo-código}
+\scalebox{0.75}{
+\begin{algorithm}[H]
+\caption{Countingsort} 
+\label{Countingsort}
+\Entrada{Vetor $V[0..n]$, tamanho do vetor $n$}
+\Saida{Vetor $V$ ordenado}
+\Inicio{
+  \CommentSty{// Considere o vetor auxiliar C[0..k] }\\
+  \CommentSty{// onde k é o maior elemento presente no vetor.}\\
+    \CommentSty{// Inicializa o vetor auxiliar com zeros.}\\
+    \Para { ( $i \leftarrow 0$ até $n-1$ )} {
+       $C[i] \leftarrow 0$ \\
+    }
+    \CommentSty{// Conta quantas vezes cada elemento aparece no vetor.}\\
+    \Para {( $i\leftarrow 0$ até $n-1$) }
+    {
+        $C[V[i]] \leftarrow C[V[i]] + 1$\\
+    }
+    \CommentSty{// Insere no vetor original.}\\
+    $j \leftarrow 0$ \\
+    \Para {( $i\leftarrow 0$ até $n-1$) }
+    {
+	\Enqto {($C[i] > 0$)} {
+	  $V[j] \leftarrow i$\\
+	  $C[i] \leftarrow C[i] - 1$ \\
+	  $j \leftarrow j + 1$\\
+        }
+    }
+}
+\end{algorithm}
+}
+\end{frame}
+
+\section{Exercício 2}
+
+\begin{frame}
+\frametitle{Exercício 2}
+Adapte o Countingsort de forma que ele ordene uma sequencia de letras do alfabeto.
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{FIM}
+\begin{itemize}
+\item \alert{FIM}
+\end{itemize}
+\end{frame}	
+
+
+\end{document}

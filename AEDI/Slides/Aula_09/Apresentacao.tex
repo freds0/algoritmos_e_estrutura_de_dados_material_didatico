@@ -1,0 +1,633 @@
+%\documentclass{beamer}
+\documentclass[aspectratio=169]{beamer}
+\usetheme{Boadilla}
+%\usetheme{Warsaw}
+%\setbeamercovered{transparent}
+\beamertemplatetransparentcoveredhigh
+\usepackage[portuges]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref} 
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=C,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+\newcommand{\eng}[1]{\textsl{#1}}
+\newcommand{\cod}[1]{\texttt{#1}}
+
+\title[Controle de Fluxo e Comandos de Decisão]{Controle de Fluxo e Comandos de Decisão\\
+   Algoritmos e Estrutura de Dados I}
+\author[IEng - UFMT]{Instituto de Engenharia -- UFMT}
+%\institute[2020/2]{Segundo Semestre de 2020}
+\date{}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\section*{Roteiro}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Agenda}
+  \tableofcontents
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Objetivos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Objetivos}
+\begin{itemize}
+ \item Entender os operadores lógicos
+ \item Aprender a utilizar comandos condicionais.
+ \item Fazer um programa utilizando comando condicional.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Comando Condicional if}
+\begin{frame}
+  \frametitle{Comando Condicional if}
+\begin{itemize}
+ \item Permite decidir se um determinado bloco de comandos deve ou não ser executado, a partir do resultado de uma expressão lógica.
+ \item O comando if serve para alterar o fluxo de execução de um programa baseado no valor, verdadeiro ou falso, de uma expressão lógica.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Comando Condicional if}
+  A seguir, o fluxograma do comando if.
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=200pt]{imgs/fluxograma_if.png}
+\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+  \frametitle{Comando Condicional if}
+Forma geral de uso do comando if.
+\begin{lstlisting}
+int main() {
+  if (expressao_logica)
+      comando1; // Executado se expressao_logica for True
+  comando2;  // Executado independente da condicao
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Comando Condicional if}
+{\bf Exemplo:} Escreva um programa que leia um valor do usuário e informe se é positivo.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+  \frametitle{Comando Condicional}
+Solução
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  // Declaracao de variaveis
+  int num = 0;
+  // Leitura dos dados
+  printf("Digite um numero:");
+  scanf("%d",&num);
+  // Verifica numero maior que zero
+  if (num>0)
+      printf("Numero positivo.");
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Comando Condicional if}
+{\bf Exemplo:} Escreva um programa que leia um número e informe se ele é par.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+  \frametitle{Comando Condicional if/else}
+Solução
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int num = 0;
+  // Leitura dos dados
+  printf("Digite um numero:");
+  scanf("%d",&num);
+  // Verifica se eh par
+  if (num%2==0)
+      printf("O numero eh par.");
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Comando Condicional if}
+{\bf Exemplo:} Escreva um programa que leia o valor de venda de um vendedor e calcule seu prêmio (10\% do valor de venda). Se o valor do prêmio for maior do que 2000, o programa imprime uma mensagem de parabéns.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+  \frametitle{Comando Condicional if}
+Solução
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  // Declaracao de variaveis
+  float valor = 0, premio = 0;
+  // Leitura dos dados
+  printf("Digite o valor de venda:");
+  scanf("%f",&valor);
+  // Calculo
+  premio = valor*0.1;
+  if (valor>2000)
+      printf("Parabens pelo premio de %f.",premio);
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Comando Condicional if/else}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Comando Condicional if/else}
+\begin{itemize}
+ \item Quando a expressão \underline{não} é verdadeira, também é possível exercutar comandos.
+ \item O comando {\bf else}, sempre vem após o comando {\bf if}, serve para executar comandos caso a expressão seja falsa.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Comando Condicional if/else}
+  A seguir, o fluxograma dos comandos if e else.
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=150pt]{imgs/fluxograma_if_else.png}
+\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+  \frametitle{Comando Condicional if/else}
+Forma geral de uso dos comandos if e else.
+\begin{lstlisting}
+int main() {
+  if (expressao_logica)
+      comando1; // Executado se expressao_logica for True
+  else
+      comando2;  // Executado se expressao_logica for False
+  comando3;  // Executado independente da condicao      
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Comando Condicional if/else}
+{\bf Exemplo:} Escreva um programa que leia um número e informe se ele é par ou ímpar.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+  \frametitle{Comando Condicional if/else}
+Solução
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  int num = 0;
+  // Leitura dos dados
+  printf("Digite um numero:");
+  scanf("%d",&num);
+  // Verifica se eh par
+  if (num%2==0)
+      printf("O numero eh par.");
+  else
+      printf("O numero eh impar");
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Comando Condicional if/else}
+{\bf Exemplo:} Escreva um programa que receba a idade de uma pessoa e informa se ela pode ou não obter a carteira de habilitação. 
+\begin{itemize}
+\item Caso positivo, também deve informar há quantos anos a pessoa já tem direito a carteira de habilitação.
+\item Caso negativo, deve informar quantos anos a pessoa ainda precisa esperar.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+  \frametitle{Comando Condicional if}
+Solução
+\begin{lstlisting}[basicstyle=\tiny]
+#include<stdio.h>
+int main() {
+  // Declaracao de variaveis
+  int idade = 0;
+  // Leitura dos dados
+  printf("Digite a sua idade:");
+  scanf("%d",&idade);
+  // Verificacao
+  if (idade>=18) {
+      printf("Voce pode obter CNH\n");
+      printf("Voce jah tem direito a %d anos.", idade-18);
+  }
+  else {
+      printf("Voce ainda nao pode obter CNH\n");
+      printf("Voce deve aguardar %d anos.", 18-idade);  
+  }
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Comando Condicional if/else}
+\begin{itemize}
+ \item Observe no código anterior que, quando o bloco de comandos possui mais de um comando, utiliza-se {\bf chaves} para delimitar o bloco.
+ \item O ``\textbackslash n'' no texto do comando {\bf printf} cria uma quebra de linha.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Operadores}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Operadores}{Operadores Aritméticos}
+Operadores {\bf aritméticos}:
+\begin{itemize}
+ \item Soma: +, 
+ \item Subtração: -
+ \item Multiplicação: *
+ \item Divisão: /
+ \item Resto: \%
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Operadores}{Operadores Relacionais e Igualdade}
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+Operador & Significado & Exemplo \\ % Note a separação de col. e a quebra de linhas
+\hline                               % para uma linha horizontal
+== & =         & x == y \\
+!= & $\neq$     & x != y \\
+>  & $>$         & x > y  \\
+>= & $\geq$ & x >= y \\
+<  & $<$         & x < y  \\
+<= & $\leq$ & x <= y \\  
+\hline 
+\end{tabular}
+\caption{Operadores de Comparação}
+\end{table}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Operadores Lógicos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}\frametitle{Operadores Lógicos}
+\begin{itemize}
+ \item Os operadores lógicos unem duas ou mais expressões em uma única expressão.
+ \item São três os operadores lógicos: {\bf AND}, {\bf OR} e {\bf NOT}.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Operadores Lógicos}
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+Operador & Significado & Exemplo \\ % Note a separação de col. e a quebra de linhas
+\hline                               % para uma linha horizontal
+\&\&  & AND   & expressao1 \&\& expressao2 \\
+||    &  OR     & expressao1 || expressao2 \\
+!     & NOT      & !(expressao)  \\
+\hline 
+\end{tabular}
+\caption{Operadores lógicos}
+\end{table}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Operadores}{Resumo}
+Operadores {\bf aritméticos}:
+\begin{itemize}
+ \item +, -, *, /, \%
+\end{itemize}
+Operadores {\bf relacionais} e de {\bf igualdade}:
+\begin{itemize}
+\item $<$, $<=$, $>$, $>=$
+\item $==$, $!=$
+\end{itemize}
+Operadores {\bf lógicos}:
+\begin{itemize}
+\item NOT - !
+\item AND - \&\&
+\item OR  - ||
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Operadores Lógicos}{AND}
+  \begin{itemize}
+   \item Ao utilizar o operador {\bf AND}, as duas condições devem ser verdadeiras.
+   \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\begin{frame}
+%  \frametitle{Operadores Lógicos}
+%  Exemplo
+%  \begin{itemize}
+%   \item Vamos supor que você passou em um concurso, o cargo é para ser programador e trabalhar para o governo.
+%   \item No edital você leu: é necessário ser brasileiro {\bf e} ser maior de 18 anos.
+%   \item Ou seja, você só pode fazer esse concurso se for brasileiro {\bf e também} se tiver 18 anos ou mais.
+%   \item Se for brasileiro mas tiver menos de 18 anos, não pode.
+%   \item Se tiver mais de 18 anos mas não for brasileiro, também não pode.
+%   \item Todas as condições devem ser obedecidas para termos um resultado positivo 
+%  \end{itemize}
+%\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Operadores Lógicos}{AND}
+{\bf Exemplo:} Escreva um programa que leia o sexo e a idade de uma pessoa e informe se o serviço militar é obrigatório. Lembre-se que o serviço militar é obrigatório para homens a partir de 18 anos.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Operadores Lógicos}{AND}
+Solução
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  // Declaracao de variaveis
+  int idade = 0;
+  char sexo = 'F';
+  // Leitura dos dados
+  printf("Qual seu sexo (M/F)?");
+  scanf("%c",&sexo);
+  printf("Qual sua idade?");
+  scanf("%d",&idade);
+  // Verificacao
+  if (idade>=18 && sexo=='M') {
+      printf("O servico militar eh obrigatorio.\n");
+  }
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Operadores Lógicos}{AND}
+A seguir, tabela do operador {\bf AND}, ao verificar \lstinline{(cond1 \&\& cond2)}.
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=200pt]{imgs/operador_and.png}
+\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Operadores Lógicos}{OR}
+  \begin{itemize}
+   \item Ao utilizar o operador {\bf OR}, pelo menos uma das duas condições deve ser verdadeira.
+  \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\begin{frame}
+%  \frametitle{Operadores Lógicos}
+%  Exemplo
+%  \begin{itemize}
+%   \item Vamos supor que você quer trabalhar em outro país, no Canadá por exemplo.
+%   \item Para isso ser possível você deve ser canadense {\bf ou} ser casado com uma canadense.
+%   \item Se você for canadense, mas não for casado com uma, pode trabalhar? Sim, pode.
+%   \item Se você não for canadense, mas for casado com uma canadense, pode trabalhar lá? Sim, pode.
+%   \item Preenchendo apenas um dos requisitos, você está apto e o resultado é positivo.
+%  \end{itemize}
+%\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Comando Condicional if/else}
+{\bf Exemplo}: escreva um programa que leia a idade de uma pessoa e um caracter indicando se é estudante ou não e informe se tem direito a transporte público gratuito. O transporte público é gratuito para idosos, com idade a partir de 60 anos, e estudantes.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+  \frametitle{Comando Condicional if/else}
+Solução
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  // Declaracao de variaveis
+  int idade = 0;
+  char estuda = 'N';
+  // Leitura dos dados
+  printf("Voce eh estudante? (S ou N)");
+  scanf("%c",&estuda);  
+  printf("Qual a sua idade:");
+  scanf("%d",&idade);
+  // Verificacao
+  if (idade>=60 || estuda=='S') {
+      printf("Transporte publico gratuito.");
+  }
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Operadores Lógicos}{OR}
+   A seguir, tabela do operador {\bf OR}, ao verificar \lstinline{(cond1 || cond2)}.
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=200pt]{imgs/operador_or.png}
+\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Operadores Lógicos}{NOT}
+  \begin{itemize}
+   \item Ao utilizar o operador {\bf NOT}, a condição é invertida (ou negada).
+  \end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\begin{frame}[fragile]{Operadores Lógicos}{NOT}
+%  Exemplo
+%  \begin{itemize}
+%   \item Vamos supor que você quer descobrir se um número é ímpar.
+%   \item Mas você só sabe verificar se ele é par.
+%   \item Então você verifica se ele é par, e nega.
+%   \item Ou seja, se o número não for par, ele é ímpar.
+%   \item Por exemplo, 4 é par? O teste seria \lstinline{4%2==0}. A resposta é sim, mas se colocarmos \lstinline{!(4%2==0)}, fica como se perguntássemos 4 não é par?
+%  \end{itemize}
+%\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Comando Condicional if/else}
+{\bf Exemplo}: Escreva um programa que leia um número e informe se ele é ímpar.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+  \frametitle{Comando Condicional if/else}
+Solução
+\begin{lstlisting}
+#include<stdio.h>
+int main() {
+  // Declaracao de variaveis
+  int numero = 0;
+  printf("Digite um numero:");
+  scanf("%d",&numero);
+  if (!numero%2==0) {
+      printf("Eh impar.\n");
+  }
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Operadores Lógicos}
+   A seguir, tabela do operador {\bf not}, ao verificar \lstinline{(!condicao)}.
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=200pt]{imgs/operador_not.png}
+\end{figure}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Comando Condicional if/else}
+{\bf Exemplo:} escreva um programa que leia a idade de uma pessoa e informe se o voto é facultativo, obrigatório ou se a pessoa não pode votar. Lembre-se que o voto é obrigatório para os cidadãos brasileiros maiores de 18 e menores de 70 anos e facultativo para quem tem 16 e 17 anos e para os maiores de 70 anos.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+  \frametitle{Comando Condicional if}
+\begin{lstlisting}[basicstyle=\tiny]
+#include<stdio.h>
+int main() {
+  	// Declaracao de variaveis
+	int idade = 0;
+	// Entrada dos dados
+	printf("Digite a sua idade:");
+  	scanf("%d",&idade);
+	// Verificacao se voto obrigatorio
+  	if (idade>=18 && idade <=70) {
+      	printf("Voto obrigatorio\n");
+  	}
+  	// Verificacao se voto facultativo
+  	else 
+  		if (idade>70 || (idade < 18 && idade >=16)) {
+      		printf("Voto facultativo\n");
+		}
+	  	// Verificacao se nao pode votar
+	  	else {
+      		printf("Voce nao pode votar\n");
+		}
+  	return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Fim}
+\begin{center}
+\Huge Fim
+\end{center}
+\end{frame}
+
+\end{document}

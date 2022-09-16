@@ -1,0 +1,351 @@
+\documentclass[aspectratio=169]{beamer}
+\usetheme{Boadilla}
+%\usetheme{Warsaw}
+%\setbeamercovered{transparent}
+\beamertemplatetransparentcoveredhigh
+\usepackage[portuges]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese, linesnumbered, vlined, titlenumbered, ruled]{algorithm2e}
+\usepackage{hyperref} 
+
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\usepackage{listings}
+\lstdefinestyle{CStyle}{
+    language=C++,
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    keepspaces=true,                 
+    numbers=left,       
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+}
+
+
+\newcommand{\eng}[1]{\textsl{#1}}
+\newcommand{\cod}[1]{\texttt{#1}}
+
+\title[Algoritmos de Ordenação]{Algoritmos e Estrutura de Dados II}
+\subtitle{Exercício Prático\\Shellsort e Mergesort}
+\author[Frederico Santos de Oliveira]{prof. Frederico Santos de Oliveira}
+\institute[UFMT]{Universidade Federal de Mato Grosso\\ Instituto de Engenharia}
+\date{}
+
+
+\AtBeginSection[]
+{
+	\begin{frame}
+	\frametitle{Roteiro da Aula}
+	\tableofcontents[currentsection]
+\end{frame}
+}
+
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\section*{Roteiro}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Agenda}
+  \tableofcontents
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exercício 1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Exercício 1}
+Utilizando o algoritmo de ordenação {\bf Shellsort}, ordene um vetor formado por mil valores. Para cada um, execute os seguintes testes:
+\begin{itemize}
+ \item vetor composto por números aleatórios;
+ \item vetor composto por números em ordem crescente;
+ \item vetor composto por números em ordem decrescente.
+\end{itemize} 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 1}{Pseudocódigo}
+\scalebox{0.8}{
+\begin{algorithm}[H]
+\caption{Shellsort} 
+\label{Shellsort}
+\Entrada{Vetor $V[0..n-1]$, tamanho $n$}
+\Saida{Vetor $V$ ordenado}
+\Inicio{
+  $h \leftarrow 1$ \\
+  \Enqto{($h < n$)} {
+  	$h \leftarrow 3h + 1$
+  }
+  \Enqto {($ h \geq 1$)} {
+    $h \leftarrow \frac{h}{3}$ \\  
+    \Para {($i \leftarrow h \textrm{ até } n - 1$)} {
+      $chave \leftarrow V[ i ]$ \\
+      $j \leftarrow i - h$ \\
+      \Enqto {($j \geq 0 \textrm{ AND }  V[ j ] > chave$)} {
+  	  $V[ j + h ] \leftarrow V[ j ]$ \\
+	  $j \leftarrow j - h$ \\
+      }
+      $V[ j + h ] \leftarrow chave$ \\
+    }
+  }
+}
+\end{algorithm}
+}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 1}{Solução}
+\begin{lstlisting}[style=CStyle]
+void shellsort(int n, int *vetor) {
+    int h, i, j, chave;
+    h = 1;
+    while (h < n) 
+        h = 3 * h + 1;
+    while(h>=1) {
+        h=h/3;
+        for(i = h; i < n; i++) {
+            chave = vetor[i];
+            j = i - h;
+            while(j>=0 && vetor[j]>chave) {
+                vetor[j+h] = vetor[j];
+                j = j - h;
+            }
+            vetor[j+h] = chave;
+        }
+    }
+} 
+\end{lstlisting}  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exercício 2}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 2}{Tempo Processamento}
+\begin{itemize}
+\item Calcule o tempo de processamento para ordenar cada um dos vetores do exercício anterior utilizando o algoritmo {\bf Shellsort}. 
+\item Para isso, utilize a função \verb|clock()|. Acesse \href{http://wurthmann.blogspot.com/2015/04/medir-tempo-de-execucao-em-c.html}{\color{blue} esse link} para entender o funcionamento da função \verb|clock()|.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 2}{Tempo Processamento}
+\begin{itemize}
+\item O código a seguir apresenta um exemplo de ordenação utilizando um vetor com valores aleatórios. 
+\item Modifique esse código a fim de obter o tempo de processamento.
+\end{itemize}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 2}{Solução}
+\begin{lstlisting}[style=CStyle]
+#define tamanho_vetor 1000
+#define valor_max 1000
+#define valor_min 0
+int main() {
+    int i, *vetor;
+    srand(0);
+    vetor = malloc(tamanho_vetor*sizeof(int));
+    for (i = 0; i < tamanho_vetor; i++) 
+        vetor[i] = (rand() % valor_max) + valor_min;
+    for(i = 0; i < tamanho_vetor; i++)
+        printf("%d ", vetor[i]);
+    shellsort(tamanho_vetor, vetor);
+    printf("\n");
+    for(i = 0; i < tamanho_vetor; i++)
+        printf("%d ", vetor[i]);
+    free (vetor);
+    return 0;
+}
+\end{lstlisting}  
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exercício 3}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Exercício 3}
+Utilizando o algoritmo de ordenação {\bf Mergesort}, ordene um vetor formado por mil valores. Para cada um, execute os seguintes testes:
+\begin{itemize}
+ \item vetor composto por números aleatórios;
+ \item vetor composto por números em ordem crescente;
+ \item vetor composto por números em ordem decrescente.
+\end{itemize} 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Exercício 3}{Pseudo-código}
+
+\scalebox{0.8}{
+\begin{algorithm}[H]
+\caption{MergesortOrdena} 
+\label{Mergesort}
+\Entrada{Vetor $V[0..n-1]$, tamanho do vetor $n$. }
+\Saida{Vetor $V$ ordenado}
+\Inicio{
+    Mergesort(V,0,n)\\
+}
+\end{algorithm}
+}
+\scalebox{0.8}{
+\begin{algorithm}[H]
+\caption{Mergesort} 
+\label{Mergesort}
+\Entrada{Vetor $V[i..f-1]$, início $i$ de $V$, e o final $f$ de $V$. }
+\Saida{Vetor $V$ ordenado}
+\Inicio{
+  \Se {($ i < f -1 $)} {
+    $m \leftarrow \frac{(i + f)}{2} $ \\  
+    Mergesort(V,i,m)\\
+    Mergesort(V,m,f)\\
+    Merge(V, i, m, f) \\
+  }
+}
+\end{algorithm}
+} 
+%\\
+% \Tiny{Adaptado de \citeonline{Ziviani2011}.}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 3}{Solução}
+\begin{lstlisting}[style=CStyle]
+void mergesort(int *vetor, int i, int f) {
+    int m;
+    if(i<f-1) {
+        m = (i+f)/2;
+        mergesort(vetor, i, m);
+        mergesort(vetor, m, f);
+        merge(vetor, i, m, f);
+    }
+}
+void mergesort_ordena(int n, int *vetor) {
+    mergesort(vetor, 0, n);
+}
+\end{lstlisting}  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Exercício 3}{Pseudo-código}
+\scalebox{0.62}{
+\begin{algorithm}[H]
+\caption{Merge} 
+\label{Merge}
+\Entrada{Vetor $V[ini..fim-1]$, $ini$, $meio$, $fim$. }
+\Saida{Vetor $V$ ordenado}
+\Inicio{
+      \CommentSty{// Considere o vetor auxiliar W[ini..fim-1]}\\
+	$i \leftarrow ini$; 
+	$j \leftarrow meio$;
+	$k \leftarrow 0$\\
+	\Enqto {( $i < meio$ e $j < fim$)} {
+		\Se{$V[i] \leq V[j]$} {
+			$W[k] \leftarrow V[i]$ \\
+			$i \leftarrow i + 1$\\
+		}
+		\Senao{
+			$W[k] \leftarrow V[j]$ \\
+			$j \leftarrow j + 1$;\\
+		}
+		$k \leftarrow k + 1$\\
+	}
+	\Enqto {($i<meio$)}{
+		$W[k] \leftarrow V[i]$\\
+		$i \leftarrow i + 1$; $k \leftarrow k + 1$\\
+	}
+	\Enqto {($j<fim$)}{
+		$W[k] \leftarrow V[j]$\\
+		$j \leftarrow j + 1$; $k \leftarrow k + 1$\\
+	}	
+	\Para {($i \leftarrow ini \textrm{ até } fim - 1 $)} {
+		$V[i] \leftarrow W[i- ini]$\\
+	}
+}
+\end{algorithm}
+} % scalebox
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 3}{Solução}
+\begin{lstlisting}[style=CStyle,basicstyle=\tiny]
+void merge(int *vetor, int ini, int meio, int fim) {
+    int i = ini, j = meio, k = 0, *w = malloc(fim*sizeof(int));
+    while(i < meio && j < fim) {
+        if(vetor[i] <= vetor[j]) {
+            w[k] = vetor[i];
+            i++;
+        }
+        else {
+            w[k] = vetor[j];
+            j++;
+        }
+        k++;
+    }
+    while(i < meio) {
+        w[k] = vetor[i];
+        i++;k++;
+    }
+    while(j < fim) {
+        w[k] = vetor[j];
+        j++; k++;
+    }
+    for(i = ini; i < fim; i++) {
+        vetor[i] = w[i-ini];
+    }
+    free(w);
+}
+\end{lstlisting}  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exercício 4}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Exercício 4}{Tempo Processamento}
+Calcule o tempo de processamento para ordenar cada um dos vetores do exercício anterior utilizando o algoritmo {\bf Mergesort}. 
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+\end{document}

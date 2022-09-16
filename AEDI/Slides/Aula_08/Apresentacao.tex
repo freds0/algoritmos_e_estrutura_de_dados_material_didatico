@@ -1,0 +1,542 @@
+%\documentclass{beamer}
+\documentclass[aspectratio=169]{beamer}
+\usetheme{Boadilla}
+%\usetheme{Warsaw}
+%\setbeamercovered{transparent}
+\beamertemplatetransparentcoveredhigh
+\usepackage[portuges]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref} 
+\usepackage{listings}
+\usepackage{color}
+\usepackage{verbatim}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=C,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+} 
+\newcommand{\eng}[1]{\textsl{#1}}
+\newcommand{\cod}[1]{\texttt{#1}}
+
+\title[Fluxogramas e Condicionais]{Fluxogramas e Condicionais\\
+   Algoritmos e Estrutura de Dados I}
+\author[IEng - UFMT]{Instituto de Engenharia -- UFMT}
+%\institute[2020/2]{Segundo Semestre de 2020}
+\date{}
+
+\begin{document}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\section*{Roteiro}
+
+\begin{frame}
+  \frametitle{Agenda}
+  \tableofcontents
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Objetivos}
+\begin{frame}[fragile]
+  \frametitle{Objetivos}
+\begin{itemize}
+ \item Apresentar o uso de fluxogramas.
+ \item Demonstrar o uso da biblioteca \verb|math.h|.
+ \item Explicar o uso dos operadores relacionais, lógicos e de decisão.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Estrutura de um Programa}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+  \frametitle{Estrutura de um Programa em C}
+A estrutura básica de qualquer programa em C é a seguinte.
+\begin{lstlisting}
+<inclusão_de_bibliotecas>
+
+int main(<declaração_dos_parâmetros>) {
+    instrução_1;
+    instrução_2;
+    instrução_3;
+    ...
+    instrução_n;
+    return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Fluxogramas}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Fluxogramas}
+\begin{itemize}
+\item Os fluxogramas são representações gráficas dos programas.
+\item São utilizados para nos ajudar a compreender um programa.
+\item Não estão associados a um linguagem específica.
+\item Apresentam a lógica do algoritmo e não as instruções da linguagem.
+\item Utilizam diferentes tipos de blocos para indicar os comandos (entradas, saídas, processamentos, decisões, etc) e setas para indicar
+a sequência de execução.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Fluxogramas}
+  Fluxograma de um programa em C/C++:
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=80pt]{imgs/fluxograma1.png}
+\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+  \frametitle{Fluxogramas}
+\begin{columns}[T] % align columns
+\begin{column}{.6\textwidth}
+Programa Hello World:
+  \begin{lstlisting}
+  // Programa Hello World  
+  #include<stdio.h>
+  int main() {
+    // comentario explicativo
+    printf("Hello World");
+    return 0;
+  }
+  \end{lstlisting}  
+\end{column}%
+\hfill%
+\begin{column}{.4\textwidth}
+\begin{figure}[h]
+\includegraphics[width=4cm]{imgs/fluxograma_hello_world.png}
+\end{figure}
+\end{column}%
+\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Fluxogramas}{Exemplo 1}
+Faça um programa em C para calcular a área de um círculo. A área de um círculo é dada pela seguinte fórmula $a = \pi r^2$. O valor do raio $r$ será digitado pelo usuário.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Fluxogramas}{Exemplo 1}
+  Fluxograma da solução do Exemplo 1:
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=80pt]{imgs/fluxograma_area_circulo.png}
+\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Fluxogramas}{Exemplo 1}
+\begin{columns}[T] % align columns
+\begin{column}{.6\textwidth}
+Programa Área Círculo:
+  \begin{lstlisting}
+  // Programa que calcula a area de um circulo
+  #include<stdio.h>
+  int main() {
+    // declaracao da constante Pi
+    const double PI = 3.141592;
+    double raio;
+    
+    printf("Digite o raio do circulo: ");
+    scanf("%lf", &raio);
+    
+    // calculando e imprimindo a area
+    double area = PI * raio * raio;
+    printf("\nArea do circulo: %lf\n", area);
+    return 0;
+  }
+  \end{lstlisting}  
+\end{column}%
+\hfill%
+\begin{column}{.4\textwidth}
+\begin{figure}[h]
+\includegraphics[width=3cm]{imgs/fluxograma_area_circulo.png}
+\end{figure}
+\end{column}%
+\end{columns}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{O Qualificador const}
+\begin{itemize}
+\item A palavra-chave \texttt{const} assegura que a variável associada não será alterada em todo o programa.
+\item Esse qualificador é indicado para declarar valores {\bf constantes}.
+\item {\it Obrigatoriamente}, as variáveis associadas ao qualificador \texttt{const} devem ser inicializadas.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Dúvida}
+\begin{itemize}
+\item Não existe área negativa.
+\item Portanto, o programa não pode calcular a área se o valor do raio for negativo.
+\item Como saber se o valor do raio digitado é positivo?
+\begin{itemize}
+\item Responderemos no final da aula...
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Biblioteca \texttt{<math.h>}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Biblioteca \texttt{<math.h>}}
+\begin{itemize}
+\item Como calcular $\pi r^2$?
+\begin{itemize}
+\item \texttt{double area = PI * raio * raio;}
+\end{itemize}
+\item A linguagem C não possui um operador para potência, mas possui uma biblioteca com diversas funções matemáticas, para usá-la
+devemos incluir a biblioteca \texttt{math.h}
+\item A função para potência é a \texttt{pow()}, sintaxe: 
+\begin{itemize}
+\item  \texttt{double pow(double base, double expoente);}
+\end{itemize}
+\item Exemplo
+  \begin{lstlisting}
+  // Programa que calcula a area de um circulo
+  #include<math.h>
+  ...
+  double area = PI * pow(raio, 2);
+  ...
+  \end{lstlisting}  
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Biblioteca \texttt{<math.h>}}{Parte I}
+Algumas funções matemáticas disponíveis na biblioteca \texttt{\#include <math.h>}. Para usá-las é necessário: \texttt{\#include <math.h>}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=220pt]{imgs/funcoes_matematicas.png}
+\end{figure}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Biblioteca \texttt{<math.h>}}{Parte I}
+Exemplo: Dada a tabela abaixo com os os valores de $x$, escreva os valores retornados pelas funções.
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=210pt]{imgs/valores_funcoes_matematicas.png}
+\end{figure}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Biblioteca \texttt{<math.h>}}{Parte II}
+Funções para Potências:
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=250pt]{imgs/funcoes_potencias.png}
+\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Biblioteca \texttt{<math.h>}}{Parte III}
+Funções trigonométricas:
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=250pt]{imgs/funcoes_trigonometricas.png}
+\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Biblioteca \texttt{<math.h>}}{Parte IV}
+Funções Exponencias e Logarítmicas:
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=250pt]{imgs/funcoes_exp_log.png}
+\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Operadores Relacionais}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Operadores Relacionais}
+\begin{itemize}
+\item Permite a um programa realizar uma ação alternativa, a partir de um resultado {\color{blue}verdadeiro} ou {\color{red}falso} produzido por uma condição.
+\item As {\bf condições} são formadas utilizando-se os operadores de igualdade e os operadores relacionais.
+\item Ambos operadores de igualdade têm o mesmo nível de precedência, o qual é inferior ao dos operadores relacionais, e associam-se da esquerda para a direita.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Operadores Relacionais}
+Operadores de igualdade e relacionais:
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=320pt]{imgs/operadores_relacionais.png}
+\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Operadores Relacionais}{Erros Comuns}
+Confundir o operador de igualdade \texttt{==} com o operador de atribuição \texttt{=}.
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=320pt]{imgs/erro_operador_atribuicao_igualdade.png}
+\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Operadores Lógicos}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Operadores Lógicos}
+\begin{itemize}
+\item No século 18, George Boole, matemático e filósofo britânico, desenvolveu um sistema algébrico lógico, que passou a ser conhecido
+como Álgebra de Boole.
+\item Base para a lógica dos computadores digitais modernos.
+\item Expressões lógicas (expressões booleanas) possuem o valor {\color{blue}true} ou {\color{red}false}.
+\item Em C os inteiros também são usados como valores booleanos:
+\begin{itemize}
+\item qualquer valor não nulo ({\color{blue}1}) representa {\color{blue}true} e {\color{red}0} representa {\color{red}false}.
+\end{itemize}
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Operadores Lógicos}{Expressões booleanas}
+\begin{itemize}
+\item na matemática, podemos restringir uma temperatura a um intervalo fechado, $0 \leq temp \leq 100$
+\item em C não podemos representar essa expressão por $0 <= temp <= 100$.
+\item A expressão $0 <= temp <= 100$ é uma expressão válida na linguagem C.
+\begin{itemize}
+\item no entanto, o resultado não será o esperado.
+\end{itemize}
+\item por exemplo, suponha que \texttt{temp = 150;} 
+\begin{itemize}
+\item não está no intervalo definido, logo esperamos que o resultado da expressão seja falso.
+\end{itemize} 
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Operadores Lógicos}{Expressões booleanas}
+\begin{itemize}
+\item Os operadores relacionais são associativos a esquerda. A expressão será processada da seguinte forma:
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=90pt]{imgs/operacao_booleana_composta_ex1.png}
+\end{figure}
+
+\item A expressão (a) resulta em {\color{blue}true}, que é representado em C pelo inteiro 1 (ou outro inteiro diferente de 0).
+\item Assim, na segunda etapa da avaliação, a expressão resulta em:
+
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=60pt]{imgs/operacao_booleana_composta_ex2.png}
+\end{figure}
+
+\item que também é verdadeira e resulta em {\color{blue}true}.
+\item Entretanto, a expressão original deveria resultar {\color{red}false}, como na matemática.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Operadores Lógicos}{Expressões booleanas}
+\begin{itemize}
+\item Para solucionar esse problema, reescrevemos a desigualdade como:
+\begin{equation}
+(temp >= 0) \&\& (temp <= 100)\nonumber
+\end{equation}
+\item onde {\color{red}\&\&} é um operador lógico.
+\item Utilizamos os operadores lógicos para combinar expressões booleanas formando, assim, expressões booleanas compostas
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Operadores Lógicos}{Expressões booleanas}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=320pt]{imgs/operadores_logicos.png}
+\end{figure}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Operadores Lógicos}{Tabela Verdade}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=220pt]{imgs/operadores_logicos_tabela_verdade.png}
+\end{figure}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Operadores Lógicos}{Precedência}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=220pt]{imgs/operadores_logicos_tabela_verdade_precedencia.png}
+\end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Comandos de Decisão}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Comandos de Decisão}
+\begin{itemize}
+\item Permite a um programa realizar uma ação alternativa, a partir de um resultado {\bf verdadeiro} ou {\bf falso} produzido por uma condição.
+\item As condições são formadas utilizando-se os operadores de igualdade e os operadores relacionais.
+\item Ambos operadores de igualdade têm o mesmo nível de precedência, o qual é inferior ao dos operadores relacionais, e associam-se da esquerda para a direita.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Comandos de Decisão}
+Comando {\color{red}if}:
+\begin{itemize}
+\item consiste de uma palavra-chave {\color{red}if} seguida de uma expressão de teste entre parênteses. A instrução será executada apenas se a expressão de teste for {\color{blue}verdadeira}.
+\item O corpo de um comando {\color{red}if} pode conter uma única instrução terminada por {\bf ponto-e-vírgula} ou várias instruções entre
+{\bf chaves}.
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Comandos de Decisão}{Fluxograma}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=120pt]{imgs/fluxograma_condicao_if.png}
+\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Comandos de Decisão}{Sintaxe}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=300pt]{imgs/sintaxe_comando_if.png}
+\end{figure}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}{Comandos de Decisão}{Exemplo 1}
+Faça um programa na linguagem C para calcular a área de um círculo. A área de um círculo é dada pela seguinte fórmula $a = \pi r^2$ . O valor do raio $r$ será digitado pelo usuário.
+
+Altere o programa anterior para calcular a área somente se o valor do raio for positivo.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Fluxogramas}{Exemplo 2}
+  \begin{lstlisting}
+  // Programa que calcula a area de um circulo
+  #include<stdio.h>
+  int main() {
+    // declaracao da constante Pi
+    const double PI = 3.141592;
+    double raio;
+    
+    printf("Digite o raio do circulo: ");
+    scanf("%lf", &raio);
+    
+    // calculando e imprimindo a area
+    if (raio >= 0) {
+	    double area = PI * raio * raio;
+	    printf("\nArea do circulo: %lf\n", area);
+	}
+    return 0;
+  }
+  \end{lstlisting}  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exercícios}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+\begin{frame}[fragile]{Exercícios}{Maior Número}
+Faça um programa na linguagem C que leia dois números inteiros e verifique qual deles é maior. Para isso, imprima uma mensagem informando qual deles é o maior. Exemplo de saída caso o usuário digite 10 e 20:
+\begin{verbatim}
+20 é o maior número
+\end{verbatim}
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Fim}
+\begin{center}
+\Huge Fim
+\end{center}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Referências}
+\begin{itemize}
+\item Slides prof. Túlio Toffolo
+\item \url{http://www3.decom.ufop.br/toffolo/pt-br/ensino/bcc201_20201/}
+\end{itemize}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+\end{document}

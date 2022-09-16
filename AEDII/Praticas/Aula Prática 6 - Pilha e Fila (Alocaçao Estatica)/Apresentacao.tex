@@ -1,0 +1,759 @@
+\documentclass[aspectratio=169]{beamer}
+\usetheme{Boadilla}
+%\usetheme{Warsaw}
+%\setbeamercovered{transparent}
+\beamertemplatetransparentcoveredhigh
+\usepackage[portuges]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese, linesnumbered, vlined, titlenumbered, ruled]{algorithm2e}
+\SetKwRepeat{Registro}{registro \{}{\}}%
+\usepackage{hyperref} 
+
+\usepackage{xcolor}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\usepackage{listings}
+\lstdefinestyle{CStyle}{
+    language=C++,
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    keepspaces=true,                 
+    numbers=left,       
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+}
+
+\newcommand{\eng}[1]{\textsl{#1}}
+\newcommand{\cod}[1]{\texttt{#1}}
+
+\title[Aula Prática Pilha, Fila e Lista]{Pilha, Fila e Lista\\
+   Algoritmos e Estrutura de Dados}
+\subtitle{Pilha, Fila e Lista\\(Alocação Estática)}
+\author[Frederico Santos de Oliveira]{prof. Frederico Santos de Oliveira}
+\institute[UFMT]{Universidade Federal de Mato Grosso\\ Instituto de Engenharia}
+\date{}
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+  \frametitle{Agenda}
+  \tableofcontents
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Exercício 1}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}
+\frametitle{Exercício 1}
+Implemente uma pilha utilizando alocação estática. As operações básicas são:
+\begin{enumerate}
+ \item CriaPilhaVazia($S$) 
+ \item PilhaVazia($S$)
+ \item Empilha($S$,$x$)
+ \item Desempilha($S$) 
+\end{enumerate}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Exercício 1}
+Para isso, o primeiro passo é criar a estrutura de dados chamada Pilha, que possui uma variável chamada Topo, que aponta para o índice do elemento no topo da pilha, e um vetor de itens.
+\begin{algorithm}[H]
+\caption{Pilha} 
+\label{Nodo}
+\Inicio{
+ \Registro{Pilha}{
+    Inteiro: itens[MAX]; \\
+    Inteiro Topo; 
+  }
+}
+\end{algorithm} 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Exercício 1}
+Na linguagem C, a implementação fica conforme o código a seguir:
+\begin{lstlisting}[style=CStyle]
+#define MAX 1000
+
+typedef struct {
+  int itens[MAX];
+  int topo;
+} pilha;
+\end{lstlisting}  
+Assim, definindo uma constante chamada MAX com valor igual a 1000, será possível incluir no máximo 1000 itens na nossa pilha.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]	{Pilhas}{CriaPilhaVazia}
+A seguir, tem-se o pseudo-código referente à função CriaPilhaVazia:
+\begin{algorithm}[H]
+\caption{CriaPilhaVazia} 
+\label{CriaPilhaVazia}
+\Entrada{Pilha $S$}
+\Inicio{
+  $S$.topo $\leftarrow$ 0 \\
+}
+\end{algorithm}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Pilhas}{CriaPilhaVazia}
+
+Sua implementação em C, fica da seguinte forma:
+\begin{lstlisting}[style=CStyle]
+void CriaPilhaVazia(pilha *S) { 
+  S -> topo = 0; 
+} 
+\end{lstlisting}  
+Observe que a função recebe como parâmetro um ponteiro do tipo \verb|pilha|. Ao chamar essa função, caso tenha declarado uma variável estática do tipo pilha, será necessário utilizar o operador de endereçamento (\&):
+
+\begin{lstlisting}[style=CStyle]
+pilha S;
+CriaPilhaVazia(&S);
+\end{lstlisting}  
+Caso utilize um ponteiro, não é necessário utilizar o operador de endereçamento:
+\begin{lstlisting}[style=CStyle]
+pilha *S  = malloc(sizeof(pilha));
+CriaPilhaVazia(S);
+\end{lstlisting}  
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Pilhas}{PilhaVazia}
+Agora, vamos implementar a função que verifica se uma pilha está vazia.
+
+\scalebox{0.8}{
+\begin{algorithm}[H]
+\caption{PilhaVazia} 
+\label{PilhaVazia}
+\Entrada{Pilha $S$}
+\Saida{Booleano informando se $S$ está vazia}
+\Inicio{
+  \Se { ($S$.topo = 0) } {
+    \Retorna Verdadeiro \\
+    }
+  \Senao {
+    \Retorna Falso
+  } 
+}
+\end{algorithm}
+}
+
+A implementação na linguagem C fica da seguinte forma:
+
+\begin{lstlisting}[style=CStyle]
+int PilhaVazia(pilha S) { 
+  return (S.topo == 0); 
+} 
+\end{lstlisting}  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Pilhas}{Empilhar}
+A próxima função é \verb|Empilha|:
+% \scalebox{0.5}{
+\begin{algorithm}[H]
+\caption{Empilhar} 
+\label{Empilhar}
+\Entrada{Pilha $S$, item $x$ a ser empilhado}
+\Inicio{
+  \Se {($S$.topo = $S$.tamanhoMáximo)} {
+      {\bf Erro } {\it overflow:} pilha cheia.
+  }
+  \Senao {
+      $S$.itens[$S$.topo] $\leftarrow$ x \\
+      $S$.topo $\leftarrow$ $S$.topo + 1 \\      
+  }
+}
+\end{algorithm}
+% }  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Pilhas}{Empilhar}
+A implementação na linguagem C fica da seguinte forma:
+
+\begin{lstlisting}[style=CStyle]
+void Empilha(int x, pilha *S) { 
+  if (S -> topo == MAX) 
+    printf(" Erro   pilha esta  cheia\n");
+  else  { 
+    S->itens[S->topo] = x;   
+    S->topo++; 
+  }
+} 
+\end{lstlisting}  
+Observe que essa função recebe um ponteiro como parâmetro de entrada. 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Pilhas}{Empilhar}
+Caso tenha declarado a pilha S como uma variável estática, ao invocar a função \verb|Empilha|, a solução é utilizar o {\it operador de endereço} (\&):
+
+\begin{lstlisting}[style=CStyle]
+pilha S;
+Empilha(10, &S) 
+
+\end{lstlisting}  
+Dessa forma, é passado como parâmetro o endereço da variável $S$, que será armazenado em um ponteiro.
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Pilhas}{Desempilhar}
+A próxima função é \verb|Desempilha|:
+% \scalebox{0.5}{
+\begin{algorithm}[H]
+\caption{Desempilhar} 
+\label{Desempilhar}
+\Entrada{Pilha $S$}
+\Saida{Elemento desempilhado}
+\Inicio{
+  \Se { (PilhaVazia($S$)) } {
+      \Retorna {\it underflow: } pilha vazia.
+  } 
+  \Senao {
+      $x \leftarrow S$.itens[ $S$.topo - 1]\\
+      $S$.topo $\leftarrow S$.topo - 1\\
+      \Retorna $x$      
+  }
+}
+\end{algorithm}
+% }  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Pilhas}{Desempilhar}
+A implementação na linguagem C fica da seguinte forma:
+
+\begin{lstlisting}[style=CStyle]
+void Desempilha(pilha *S, int *item) { 
+  if (PilhaVazia(*S)) 
+    printf(" Erro   pilha esta  vazia\n");
+  else 
+  { 
+    *item = S->itens[S->topo - 1]; 
+    S->topo--;     
+  }
+} 
+\end{lstlisting}  
+Observe que, assim como a função \verb|Empilha|, essa função também recebe um ponteiro como parâmetro de entrada, e, além disso, também recebe um ponteiro no qual ficará armazenado o elemento desempilhado. 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Pilhas}{Desempilhar}
+Assim, para utilizar a função desempilha, pode-se utilizar o operador de endereçamento, conforme o código a seguir:
+
+\begin{lstlisting}[style=CStyle]
+int main() { 
+    // Declaracao de variaveis
+	pilha S; 
+	int item = 0;
+	// Cria uma pilha vazia
+	CriaPilhaVazia(&S);
+    // Empilha elemento 10 na pilha
+	Empilha(10, &S);
+	// Desempilha elemento
+	Desempilha(&S, &item);
+	printf("Desempilhou %d.", item)	;
+	
+	return(0);
+} 
+\end{lstlisting}  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Pilhas}{Desempilhar}
+Também é possível utilizar um ponteiro do tipo \verb|pilha|, e assim, não é necessário utilizar o operador de endereçamento:
+
+\begin{lstlisting}[style=CStyle]
+int main() { 
+    // Declaracao de variaveis
+	pilha *S = malloc(sizeof(pilha)); 
+	int item = 0;
+	// Cria uma pilha vazia
+	CriaPilhaVazia(S);
+    // Empilha elemento 10 na pilha
+	Empilha(10, S);
+	// Desempilha elemento
+	Desempilha(S, &item);
+	printf("Desempilhou %d.", item)	;
+	// Desaloca memoria
+	free(S);
+	
+	return(0);
+} 
+\end{lstlisting}  
+\end{frame}
+
+
+\section{Exercício 2}
+
+\begin{frame}
+\frametitle{Exercício 2}
+Implemente uma fila utilizando alocação estática. As operações básicas são:
+\begin{enumerate}
+ \item CriaFilaVazia($Q$) 
+ \item FilaVazia($Q$)
+ \item Enfileira($Q$,$x$)
+ \item Desenfileira($Q$) 
+\end{enumerate}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Exercício 2}
+Assim como no exercício anterior, o primeiro passo é criar a estrutura de dados chamada Fila, que possui uma variável chamada \verb|início| e outra chamada \verb|fim|, e um vetor de \verb|itens|.
+\begin{algorithm}[H]
+\caption{Fila} 
+\label{Nodo}
+\Inicio{
+ \Registro{Fila}{
+    Inteiro: itens[MAX]; \\
+    Inteiro início, fim; 
+  }
+}
+\end{algorithm} 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Filas}
+A implementação na linguagem C fica da seguinte forma:
+
+\begin{lstlisting}[style=CStyle]
+#define MAX  1000
+
+typedef struct {
+  int itens[MAX];
+  int inicio, fim;
+} fila;
+\end{lstlisting}  
+Definindo uma constante chamada MAX com valor igual a 1000, será possível incluir no máximo 1000 itens na nossa fila.
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Fila}{CriaFilaVazia}
+A próxima função é \verb|CriaFilaVazia|:
+% \scalebox{0.5}{
+\begin{algorithm}[H]
+\caption{CriaFilaVazia} 
+\label{CriaFilaVazia}
+\Entrada{Fila $Q$}
+\Inicio{
+  $Q$.início $\leftarrow$ 0 \\
+  $Q$.fim $\leftarrow$ $Q$.início
+}
+\end{algorithm} 
+A implementação na linguagem C fica da seguinte forma:
+
+\begin{lstlisting}[style=CStyle]
+void CriaFila(fila *Q) { 
+  Q->inicio = 0;
+  Q->fim = Q->inicio;
+} 
+\end{lstlisting}  
+
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Fila}{FilaVazia}
+A próxima função é \verb|FilaVazia|:
+% \scalebox{0.5}{
+\begin{algorithm}[H]
+\caption{FilaVazia} 
+\label{FilaVazia}
+\Entrada{Fila $Q$.}
+\Inicio{
+  \Se {($Q$.início = $Q$.fim)} {
+      \Retorna Verdadeiro 
+  }
+  \Senao {
+      \Retorna Falso
+  }
+}
+\end{algorithm}
+A implementação na linguagem C fica da seguinte forma:
+
+\begin{lstlisting}[style=CStyle]
+int FilaVazia(fila Q)
+{ 
+  return (Q.inicio == Q.fim); 
+} 
+\end{lstlisting}  
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Fila}{Enfileira}
+A próxima função é \verb|Enfileira|:
+% \scalebox{0.5}{
+\begin{algorithm}[H]
+\caption{Enfileira} 
+\label{Enfileira}
+\Entrada{Fila $Q$, item $x$}
+\Inicio{
+  \Se { ( ($Q$.fim) MOD ($Q$.tamanhoMáximo) + 1 = $Q$.início)} {
+      {\bf Erro }{\it overflow}: fila cheia.
+  }
+  \Senao {
+      $Q$.itens[$Q$.fim] $\leftarrow$ x \\
+      $Q$.fim $\leftarrow$ ($Q$.fim) MOD ($Q$.tamanhoMáximo) + 1 \\
+  }
+}
+\end{algorithm}
+
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Fila}{Enfileira}
+A implementação na linguagem C fica da seguinte forma:
+
+\begin{lstlisting}[style=CStyle]
+void Enfileira(int x, fila *Q) { 
+  if ((Q->fim+1 )% MAX  == Q->inicio)
+    printf(" Erro   fila esta  cheia\n");
+  else { 
+    Q->itens[Q->fim - 1] = x;
+    Q->fim = Q->fim % MAX + 1;
+  }
+} 
+\end{lstlisting}  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Fila}{Desenfileira}
+A próxima função é \verb|Desenfileira|:
+% \scalebox{0.5}{
+\begin{algorithm}[H]
+\caption{Desenfileira} 
+\label{Desenfileira}
+\Entrada{Fila $Q$}
+\Saida{Elemento desenfileirado}
+\Inicio{
+  \Se {FilaVazia($Q$)} {
+      \Retorna Erro {\it underflow}: fila vazia. 
+  }
+  \Senao {
+      $x$ $\leftarrow$ $Q$.itens[$Q$.início] \\
+      $Q$.início $\leftarrow$ ($Q$.início) MOD ($Q$.tamanhoMáximo) + 1 \\
+      \Retorna $x$
+      
+  }
+}
+\end{algorithm}
+% }  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Fila}{Desenfileira}
+A implementação na linguagem C fica da seguinte forma:
+
+\begin{lstlisting}[style=CStyle]
+void Desenfileira(fila *Q, int *item) { 
+  if (FilaVazia(*Q))
+    printf("Erro fila esta vazia\n");
+  else { 
+    *item = Q->itens[Q->inicio - 1];
+    Q->inicio = Q->inicio % MAX + 1;
+  }
+} 
+\end{lstlisting}  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Pilhas}{Desempilhar}
+Observe que ao utilizar uma variável estática é necessário usar o operador de endereçamento, conforme o código a seguir:
+
+\begin{lstlisting}[style=CStyle]
+int main() { 
+    // Declaracao de variaveis
+	fila Q; 
+	int item = 0;
+	// Cria uma fila vazia
+	CriaFilaVazia(&Q);
+    // Enfileira elemento 10 na fila
+	Enfileira(10, &Q);
+	// Desenfileira elemento
+	Desenfileira(&Q, &item);
+	printf("Desenfileirou %d.", item)	;
+	
+	return(0);
+} 
+\end{lstlisting}  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Pilhas}{Desempilhar}
+Também é possível utilizar um ponteiro do tipo \verb|fila|, e assim, não é necessário utilizar o operador de endereçamento:
+
+\begin{lstlisting}[style=CStyle]
+int main() { 
+    // Declaracao de variaveis
+	fila *Q = malloc(sizeof(fila));  
+	int item = 0;
+	// Cria uma fila vazia
+	CriaFilaVazia(Q);
+    // Enfileira elemento 10 na fila
+	Enfileira(10, Q);
+	// Desenfileira elemento
+	Desenfileira(Q, &item);
+	printf("Desenfileirou %d.", item)	;
+	// Desaloca memoria
+	free(Q);
+	return(0);
+} 
+\end{lstlisting}  
+\end{frame}
+
+\section{Exercício 3}
+
+\begin{frame}
+\frametitle{Exercício 3}
+Implemente uma lista utilizando alocação estática. As operações básicas são:
+\begin{enumerate}
+ \item CriaListaVazia($L$) 
+ \item ListaVazia($L$)
+ \item Inserir($L$, $x$, $p$)
+ \item Remover($L$, $p$) 
+\end{enumerate}
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Exercício 3}
+Para isso, o primeiro passo é criar a estrutura de dados chamada Lista, que possui uma variável chamada primeiro, outra chamada último, e um vetor de itens.
+\begin{algorithm}[H]
+\caption{Lista} 
+\label{Nodo}
+\Inicio{
+ \Registro{Lista}{
+    Inteiro: itens[MAX]; \\
+    Inteiro primeiro, último 
+  }
+}
+\end{algorithm} 
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]
+\frametitle{Exercício 1}
+Na linguagem C, a implementação fica conforme o código a seguir:
+\begin{lstlisting}[style=CStyle]
+#define MAX 1000
+
+typedef struct {
+  int itens[MAX];
+  int primeiro, ultimo;
+} lista;
+\end{lstlisting}  
+Assim, definindo uma constante chamada MAX com valor igual a 1000, será possível incluir no máximo 1000 itens na nossa lista.
+\end{frame}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Lista}
+A primeira função é \verb|CriaListaVazia|:
+% \scalebox{0.5}{
+\begin{algorithm}[H]
+\caption{CriaListaVazia} 
+\label{CriaListaVazia}
+\Entrada{Lista $L$}
+\Inicio{
+  $L$.primeiro $\leftarrow$ 0 \\
+  $L$.ultimo $\leftarrow$ $L$.primeiro \\
+}
+\end{algorithm}
+% }  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Lista}{CriaListaVazia}
+A implementação na linguagem C fica da seguinte forma:
+
+\begin{lstlisting}[style=CStyle]
+void CriaListaVazia(lista *l) { 
+  l->primeiro = 0;
+  l->ultimo = l->primeiro;
+}
+\end{lstlisting}  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Lista}{ListaVazia}
+A próxima função é \verb|ListaVazia|:
+\begin{algorithm}[H]
+\caption{ListaVazia} 
+\label{ListaVazia}
+\Entrada{Lista $L$.}
+\Inicio{
+  \Se {($L$.primeiro = $L$.ultimo)} {
+      \Retorna Verdadeiro 
+  }
+  \Senao {
+      \Retorna Falso
+  }
+}
+\end{algorithm}
+% }  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Lista}{ListaVazia}
+A implementação na linguagem C fica da seguinte forma:
+
+\begin{lstlisting}[style=CStyle]
+int ListaVazia(lista l) { 
+  return (l.primeiro == l.ultimo);
+} 
+\end{lstlisting}  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Lista}{Insere}
+A próxima função é \verb|Insere|:
+\begin{algorithm}[H]
+\caption{Inserir} 
+\label{Inserir}
+\Entrada{Lista $L$, elemento $x$, posição $p$}
+\Inicio{
+  \Se { ( ($L$.ultimo + 1) MOD $L$.tamanhoMáximo = $L$.primeiro )} {
+      {\bf Erro }{\it overflow}: lista cheia.
+  }
+  \Senao {
+      \Para {( $i \leftarrow L.ultimo $ até $p$) } { 
+      	$L$.itens[ i+1 ] $\leftarrow$ $L$.itens[ i ] \\
+      }
+     	$L$.itens[ $p$ ] $\leftarrow$ x \\
+     	$L$.ultimo = $L$.ultimo + 1 \\
+  }
+}
+\end{algorithm}
+% }  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Lista}{Insere}
+A implementação na linguagem C fica da seguinte forma:
+
+\begin{lstlisting}[style=CStyle]
+void Insere(lista *l, int x, int p) { 
+  if ((l->ultimo+1 )% MAX  == l->primeiro)
+    printf("Lista esta cheia\n");
+  else  { 
+    for (int i = l->ultimo; i < p; i++) 
+    	l->itens[i+1] = l->itens[i];
+    l->itens[p] = x;
+    l->ultimo++;
+  }
+} 
+\end{lstlisting}  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Lista}{Remove}
+A próxima função é \verb|Remove|:
+\begin{algorithm}[H]
+\caption{Remove} 
+\label{Remove}
+\Entrada{Lista $L$, posição $p$}
+\Saida{Elemento removido}
+\Inicio{
+  \Se {ListaVazia($L$)} {
+      \Retorna Erro {\it underflow}: lista vazia. 
+  }
+  \Senao {
+    	$x$ $\leftarrow$ $L$.itens[ p ] \\
+  	\Para {( $i \leftarrow p$ até $L.ultimo$ ) }  {
+      	$L$.itens[ i ] $\leftarrow$ $L$.itens[ i+1 ] \\
+     }
+     $L$.ultimo = $L$.ultimo - 1 \\
+     	\Retorna $x$
+  }
+}
+\end{algorithm}
+% }  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[fragile]{Lista}{Remove}
+A implementação na linguagem C fica da seguinte forma:
+
+\begin{lstlisting}[style=CStyle]
+void Remove(int p, lista *l, int *item) { 
+  if (ListaVazia(*l)) { 
+    printf(" Erro   Lista vazia\n");
+  }
+  *item = l->itens[p];
+  for (int aux = p; aux < l->ultimo; aux++)
+    l->itens[aux] = l->itens[aux+1];
+  l->ultimo--;    
+} 
+\end{lstlisting}  
+\end{frame}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+
+\end{document}

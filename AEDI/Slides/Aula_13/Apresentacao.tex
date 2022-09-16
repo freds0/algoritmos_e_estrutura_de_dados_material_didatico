@@ -1,0 +1,485 @@
+%\documentclass{beamer}
+\documentclass[aspectratio=169]{beamer}
+\usetheme{Boadilla}
+%\usetheme{Warsaw}
+%\setbeamercovered{transparent}
+\beamertemplatetransparentcoveredhigh
+\usepackage[portuges]{babel}
+\usepackage[latin1]{inputenc}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage{hyperref} 
+\usepackage{listings}
+\usepackage{color}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+  language=C,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true,
+  tabsize=3
+}
+
+\newcommand{\eng}[1]{\textsl{#1}}
+\newcommand{\cod}[1]{\texttt{#1}}
+
+\title[Procedimentos e Funções]{Procedimentos e Funções\\
+   Algoritmos e Estrutura de Dados I}
+\author[IEng - UFMT]{Instituto de Engenharia -- UFMT}
+%\institute[2020/2]{Segundo Semestre de 2020}
+\date{}
+
+
+\begin{document}
+
+\begin{frame}[plain]
+  \titlepage
+\end{frame}
+
+%\section*{Roteiro}
+
+\begin{frame}
+  \frametitle{Agenda}
+  \tableofcontents
+\end{frame}
+
+\section{Objetivos}
+\begin{frame}
+  \frametitle{Objetivos}
+\begin{itemize}
+ \item Entender e compreender a utilização de funções. 
+ \item Aprender a criar suas próprias funções e procedimentos.
+\end{itemize}
+\end{frame}
+
+
+\section{Introdução}
+
+\begin{frame}[fragile]
+  \frametitle{Procedimento}
+   Procedimentos são funções estruturadas que agrupam um conjunto de comandos, que são executados quando o procedimento é chamado. Exemplo
+\begin{lstlisting}
+k = fabs(-1);
+x = sqrt(4);
+y = log10(2);
+z = pow(2,3);
+\end{lstlisting}   
+\end{frame}
+
+\section{Por que utilizar funções?}
+
+\begin{frame}
+  \frametitle{Por que utilizar funções?}
+\begin{itemize}
+ \item Evitar que os blocos do programa fiquem grandes demais (mais difíceis de entender);
+ \item Facilitar a leitura do código-fonte;
+ \item Separar o programa em partes (blocos) que possam ser logicamente compreendidos de forma isolada.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Por que utilizar funções?}
+\begin{itemize}
+ \item Permitir o reaproveitamento de código já construído (por você ou por outros programadores);
+ \item Evitar que um trecho de código seja repetido várias vezes dentro de um mesmo programa;
+ \item Permitir a alteração de um trecho de código de uma forma mais rápida.
+\end{itemize}
+\end{frame}
+
+\section{Declaração de funções}
+
+\begin{frame}
+  \frametitle{Declarando uma função}
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=200pt]{imgs/funcao.png}
+\end{figure}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Declarando uma função}
+Uma função possui o seguinte formato:
+\begin{lstlisting}
+tipo nome_da_funcao (tipo parametro, tipo parametro, ...) {
+  comandos;
+  return valor;
+}
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Declarando uma função}
+\begin{itemize}
+ \item Toda função deve ter um tipo;
+ \item Esse tipo determina qual será o tipo de seu valor de retorno;
+ \item Os parâmetros de uma função determinam qual será o seu comportamento (como se fosse uma função matemática, onde o parâmetro determina o valor da função).
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Declarando uma função}
+\begin{itemize}
+ \item Uma função pode não ter parâmetros, bata não informá-los;
+ \item A expressão contida dentro do comando return é chamado de valor de retorno, e corresponde a resposta de uma determinada função;
+ \item O comando return é sempre o último a ser executado por uma função, e nada após ele será executado;
+ \item As funções devem ser declaradas fora do programa principal ( main() ).
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Declarando uma função}
+Exemmplo: a função a seguir soma dois valores passados como parâmetro.
+\begin{lstlisting}
+int soma (int a, int b) {
+  int c = 0;
+  c = a + b;
+  return c;
+}
+\end{lstlisting}
+
+que também pode ser feita de forma mais direta:
+\begin{lstlisting}
+int soma (int a, int b) {
+  return a + b;
+}
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Declarando uma função}
+Para invocar a função, basta executar o seguinte código:
+\begin{lstlisting}
+z = soma (5, 3) ;
+printf("%d", z);
+\end{lstlisting}
+Que imprimirá 8.
+\begin{figure}[!ht]
+  \centering
+  \includegraphics[width=90pt]{imgs/chamada_funcao.png}
+\end{figure}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Declarando uma função}
+\begin{itemize}
+ \item Uma forma clássica de realizarmos a invocação (ou chamada) de uma função é atribuindo o seu valor a uma variável:
+\begin{lstlisting}
+variavel = funcao (parametros) ;
+\end{lstlisting} 
+\item Mas o seu valor também pode ser diretamente impresso:
+\begin{lstlisting}
+printf("%d",funcao(parametros));
+\end{lstlisting} 
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Declarando uma função}
+\begin{itemize}
+ \item As variáveis passadas como parâmetros indicam quais são os valores com os quais a função irá trabalhar;
+ \item Esses valores são copiados para os parâmetros da função, que pode manipulá-los;
+ \item Os parâmetros passados para a função não necessariamente possuem os mesmos nomes que os parâmetros que a função espera.
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Declarando uma função}
+\begin{lstlisting}
+#include<stdio.h>
+int soma (int a, int b) {
+  return a + b;
+}
+int main() {
+  int x = 10, y = 30, z;
+  z = soma(x,y);
+  printf("soma = %d", soma);
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Declarando uma função}
+\begin{itemize}
+ \item As variáveis declaradas dentro da função só existem na função;
+ \item Os parâmetros passados para a função também só podem ser acessados na função;
+ \item Podem existir variáveis dentro de funções com o mesmo nome de variáveis na função main(). Porém tratam-se de posições de memória diferentes.
+ \item Recomenda-se utilizar nomes de variáveis diferentes para evitar confusão.
+\end{itemize}
+\end{frame}
+\begin{frame}[fragile]
+  \frametitle{Declarando uma função}
+O seguinte código está ERRADO!
+\begin{lstlisting}
+#include<stdio.h>
+int soma (int a, int b) {
+  return a + b;
+}
+int main() {
+  int x = 10, y = 30, z;
+  z = soma(x,y);
+  printf("a = %d", a);
+  printf("b = %d", b);
+  return 0;
+}
+\end{lstlisting}
+\begin{itemize}
+ \item As variáveis a e b são variáveis locais e só podem ser acessadas na função;
+ \item Não é possível acessar variáveis locais dentro do programa principal ( main() ).
+\end{itemize}
+\end{frame}
+
+\section{Declaração de Procedimentos}
+
+\begin{frame}
+  \frametitle{O tipo void}
+\begin{itemize}
+ \item Tipo especial utilizado principalmente em funções;
+ \item Representa o ``nada'';
+ \item Uma variável desse tipo armazena conteúdo indeterminado;
+ \item Uma função desse tipo retorna um conteúdo indeterminado.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Procedimento em C}
+\begin{itemize}
+ \item Procedimentos na linguagem C são funções que retornam o tipo void;
+ \item O procedimento abaixo imprime um número que é passado como parâmetro:
+\begin{lstlisting}
+#include<stdio.h>
+void imprime (int numero) {
+  printf("%d",numero);
+}
+int main() {
+  int x = 10;
+  imprime(x);
+  return 0;
+} 
+\end{lstlisting}
+\item Em procedimentos não existe valor de retorno.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{A função main()}
+\begin{itemize}
+ \item O programa principal ( main() ) na verdade é uma função especial;
+ \item A função main() é invocada automaticamente pelo programa quando esse inicia sua execução e possui um tipo fixo (int);
+ \item O comando return informa ao sistema operacional se o programa funcionou corretamente ou não;
+ \item O padrão é que um programa retorne zero caso tenha funcionado corretamente, ou qualquer outro valor caso contrário.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Declaração de funções/procedimentos}
+\begin{itemize}
+ \item Normalmente as funções são definidas no início do código, antes da função main();
+ \item Dessa forma, a função é declarada e também implementada;
+ \item Também é possível definir uma função no fim do código, após a função main();
+ \item No entanto, a função deve ser declarada no início do código, e sua implementação fica no fim do código.
+ \item Para declará-la sem a implementação, basta incluir a primeira linha da função, com um ponto e vírgula no final.
+\begin{lstlisting}
+int nome_da_funcao(tipo parametro, tipo parametro, ... );
+\end{lstlisting} 
+\end{itemize}
+\end{frame}
+
+\section{Exemplos}
+
+\begin{frame}[fragile]
+  \frametitle{Declaração de funções/procedimentos}
+\begin{lstlisting}
+#include<stdio.h>
+int soma (int a, int b);
+int main() {
+  int x = 10, y = 30, z;
+  z = soma(x,y);
+  printf("%d",z);
+  return 0;
+}
+int soma (int a, int b) {
+  return a + b;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Declaração de funções/procedimentos}
+Crie uma função que retorna 1 se um  número é par, e 0 caso contrário.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Declaração de funções/procedimentos}
+\begin{lstlisting}
+#include<stdio.h>
+int par (int x);
+int main() {
+  int numero;
+  scan("%d", numero);
+  if ( par(numero) == 1) 
+    printf("Eh par.");
+  else 
+    printf("Eh impar.");
+  return 0;
+}
+int par (int x) {
+  if (x%2==0)
+    return 1; // Verdadeiro
+  else
+    return 0; // Falso
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Declaração de funções/procedimentos}
+Leia dois catetos e crie uma função para calcular a hipotenusa e um procedimento para imprimir o seu valor.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Declaração de funções/procedimentos}
+\begin{lstlisting}
+#include<stdio.h>
+float pitagoras (float cat1, float cat2);
+void imprime(float x);
+int main() {
+  float cat1, cat2, hipo;
+  printf("Digite os valores dos catetos:");
+  scanf("%f %f",&cat1, &cat2);
+  hipo = pitagoras(cat1, cat2);
+  imprime(hipo)
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Declaração de funções/procedimentos}
+\begin{lstlisting}
+float pitagoras (float cat1, float cat2) {
+  return sqrt( pow(cat1,2) + pow(cat2,2));
+}
+void imprime(float valor) {
+  printf("Hipotenusa = %f", valor);
+}
+\end{lstlisting}
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Declaração de funções/procedimentos}
+Faça uma função que retorne 1 caso um número seja primo, ou 0 caso contrário.
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Declaração de funções/procedimentos}
+\begin{lstlisting}
+#include<stdio.h>
+int eh_primo(int x);
+int main() {
+  int n
+  scanf("%d",&n);
+  if (eh_primo(n) == 1)
+    printf("Eh primo\n");
+  else 
+    printf("Nao eh primo\n");
+  return 0;
+}
+\end{lstlisting}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Declaração de funções/procedimentos}
+\begin{lstlisting}
+#include<stdio.h>
+int eh_primo(int numero) {
+  int cont = 0, i;
+  for (i=2,i<numero;i++) {
+    if (numero%i==0)
+      cont++; 
+  }
+  if (cont == 0)
+    return 1; // Verdadeiro
+  else
+    return 0; // Falso
+}
+\end{lstlisting}
+\end{frame}
+
+\section{Variáveis Locais x Variáveis Globais}
+
+\begin{frame}
+  \frametitle{Variáveis Locais}
+\begin{itemize}
+ \item Variáveis Locais
+ \begin{itemize}
+    \item É declarada dentro de uma função;
+    \item Existe apenas dentro da função;
+    \item Após o término da execução da função, ela deixa de existir.
+ \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+  \frametitle{Variáveis Globais}
+\begin{itemize}
+ \item Variáveis Globais
+ \begin{itemize}
+    \item É declarada fora de qualquer função, incluindo a função main();
+    \item Existe dentro de qualquer função e procedimento;
+    \item Qualquer função ou procedimento pode alterar seu valor.
+    \item Evite utilizar variáveis globais;
+ \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\begin{frame}[fragile]
+  \frametitle{Variáveis Locais x Variáveis Globais}
+\begin{lstlisting}
+#include<stdio.h>
+int var_global = 0;
+void incrementa_var_global(int i) {
+  var_global+=i;
+}
+int main() {
+  printf("Var global = %d", var_global);
+  incrementa_var_global(10);
+  printf("Var global = %d", var_global);
+  return 0;
+}
+\end{lstlisting}
+Imprime:\\
+Var global = 0\\
+Var global = 10
+\end{frame}
+
+
+\begin{frame}
+  \frametitle{Fim}
+\begin{center}
+\Huge Fim
+\end{center}
+\end{frame}
+
+
+\end{document}
